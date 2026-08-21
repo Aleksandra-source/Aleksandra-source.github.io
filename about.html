@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Обо мне — Евсеенкова Александра</title>
+<meta name="description" content="Продуктовый дизайнер из Санкт-Петербурга: путь из банкинга в дизайн, метод работы, йога, шахматы, книги и путешествия." />
+<meta property="og:title" content="Обо мне — Евсеенкова Александра" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/img/portrait-main.jpg" />
+
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem("locale"); } catch (e) {}
+  var loc = saved || (((navigator.language || "").toLowerCase().indexOf("ru") === 0) ? "ru" : "en");
+  document.documentElement.setAttribute("data-locale", loc);
+  document.documentElement.setAttribute("lang", loc);
+})();
+</script>
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="assets/fonts/Onest-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/Onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/fonts/Inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="stylesheet" href="assets/css/tokens.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/layout.css" />
+<link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body class="theme-dark">
+
+<a class="skip-link" href="#main">
+  <span data-lang="ru">Перейти к содержанию</span><span data-lang="en">Skip to content</span>
+</a>
+
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__name">Евсеенкова Александра</div>
+  <div class="preloader__bar"><span></span></div>
+  <div class="preloader__count">0</div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <span class="name-ru">Евсеенкова Александра</span>
+      <span class="name-en">Evseenkova Aleksandra</span>
+    </a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a class="main-nav__link" href="index.html#work">
+        <span class="ru">Работы</span><span class="en">Works</span>
+      </a>
+      <a class="main-nav__link" href="about.html">
+        <span class="ru">Обо мне</span><span class="en">About me</span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Язык / Language">
+        <button type="button" data-lang-btn="ru" aria-pressed="true">RU</button>
+        <span class="sep">/</span>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="scroll-fixed">
+<main id="main">
+
+  <!-- ============ INTRO + HOW I WORK (merged, scrubbing prose) ============ -->
+  <section class="section" style="border-top:0; padding-top: calc(var(--header-h) + clamp(32px,6vw,72px));">
+    <div class="wrap">
+      <h1 class="h1" data-reveal="mask" style="margin-bottom: clamp(32px,5vw,56px);">
+        <span data-lang="ru">Привет, я Саша!</span>
+        <span data-lang="en">Hi, I'm Sasha</span>
+      </h1>
+
+      <div class="prose-split">
+        <div class="prose-split__col">
+          <p class="prose-block" data-scrub data-reveal="fade">
+            <span data-lang="ru">Мне 25, живу в Санкт-Петербурге. Мой путь в дизайн начался после нескольких лет работы в банковской сфере.</span>
+            <span data-lang="en">I'm 25 and live in Saint Petersburg. My path into design started after a few years in banking.</span>
+          </p>
+          <p class="prose-block" data-scrub data-reveal="fade">
+            <span data-lang="ru">Опыт в финансах сформировал аналитический подход к решению задач, а дизайн дал возможность применять его для создания понятных цифровых продуктов.</span>
+            <span data-lang="en">That experience shaped an analytical approach to problems, and design gave me a way to put it to use building clear digital products.</span>
+          </p>
+          <p class="prose-block" data-scrub data-reveal="fade">
+            <span data-lang="ru">Мне нравится разбираться в контексте, задавать вопросы, проверять гипотезы и искать решения, которые полезны и пользователям, и бизнесу.</span>
+            <span data-lang="en">I like getting into the context, asking questions, testing hypotheses, and finding solutions that work for both users and the business.</span>
+          </p>
+          <div>
+            <span class="prose-label"><span data-lang="ru">Подход к работе</span><span data-lang="en">How I work</span></span>
+            <p class="prose-block" data-scrub data-reveal="fade">
+              <span data-lang="ru">Хорошо организовываю рабочий процесс и всегда на связи. А конструктивную критику и разбор ошибок считаю главным драйвером роста — своего и продукта.</span>
+              <span data-lang="en">I keep my process organised and I'm always reachable. I treat constructive criticism and picking apart mistakes as the main driver of growth, both mine and the product's.</span>
+            </p>
+          </div>
+          <a class="btn" href="assets/cv-evseenkova-aleksandra-2026.pdf" data-cursor="link" style="align-self:flex-start;" data-reveal="fade-up">
+            <span data-lang="ru">Скачать CV</span><span data-lang="en">Download CV</span>
+          </a>
+        </div>
+        <div class="prose-split__media" data-reveal="fade-up">
+          <div class="cutout">
+            <img src="assets/img/portrait-cutout-color.webp" alt="Александра Евсеенкова" width="1056" height="1600" loading="eager" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PERSONAL: YOGA ============ -->
+  <section class="section" id="personal">
+    <div class="wrap">
+      <div class="section-split">
+        <div class="section-split__media" data-reveal="fade-up">
+          <div class="frame hover-video">
+            <img class="hover-video__poster" src="assets/img/about-sport-poster.jpg" alt="" width="1179" height="2132" loading="lazy" />
+            <video class="hover-video__clip" src="assets/video/about-sport.mp4" muted loop playsinline preload="none" aria-hidden="true"></video>
+          </div>
+        </div>
+        <div class="prose-split__col" data-reveal="fade-up">
+          <div>
+            <span class="prose-label"><span data-lang="ru">Вне работы</span><span data-lang="en">Outside of work</span></span>
+            <p class="prose-block" data-scrub>
+              <span data-lang="ru">Ещё одна важная часть моей жизни — спорт. Занимаюсь спортом регулярно, потому что это помогает держать себя в тонусе, сохранять дисциплину и просто чувствовать себя лучше.</span>
+              <span data-lang="en">Another important part of my life is sport. I train regularly because it keeps me in shape, builds discipline, and simply makes me feel better.</span>
+            </p>
+          </div>
+          <p class="prose-block" data-scrub>
+            <span data-lang="ru">Считаю, что постоянное развитие касается не только профессии, но и образа жизни.</span>
+            <span data-lang="en">I believe continuous growth applies not only to your profession, but to the way you live.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKS ============ -->
+  <section class="section" id="books">
+    <div class="wrap">
+      <div class="section-head" data-reveal="fade-up">
+        <h2><span data-lang="ru">Что читаю</span><span data-lang="en">What I read</span></h2>
+        <p class="meta"><span data-lang="ru">Любимое и недавнее</span><span data-lang="en">Favourites & recent</span></p>
+      </div>
+      <div class="book-grid" data-reveal-group data-reveal="fade-up">
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/saga-o-forsaytah.jpg" alt="Сага о Форсайтах — Джон Голсуорси" loading="lazy" width="400" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/graf-monte-kristo.jpg" alt="Граф Монте-Кристо — Александр Дюма" loading="lazy" width="382" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/doktor-zhivago.jpg" alt="Доктор Живаго — Борис Пастернак" loading="lazy" width="396" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/oblomov.jpg" alt="Обломов — Иван Гончаров" loading="lazy" width="385" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/unesennye-vetrom.jpg" alt="Унесённые ветром — Маргарет Митчелл" loading="lazy" width="367" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/segun.jpg" alt="Сёгун — Джеймс Клавелл" loading="lazy" width="400" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/anna-karenina.jpg" alt="Анна Каренина — Лев Толстой" loading="lazy" width="382" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/k-vostoku-ot-edema.jpg" alt="К востоку от Эдема — Джон Стейнбек" loading="lazy" width="380" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/tayna-pomestya-ebberli.jpg" alt="Тайна поместья Эбберли — Кейт Латимер" loading="lazy" width="382" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/design-privychnyh-veshey.jpg" alt="Дизайн привычных вещей — Дон Норман" loading="lazy" width="413" height="600" /></div>
+        </div>
+        <div class="book-flip" data-reveal="fade-up">
+          <div class="book-flip__page"></div>
+          <div class="book-flip__cover"><img src="assets/img/books/ne-zastavlyayte-dumat.jpg" alt="Не заставляйте меня думать — Стив Круг" loading="lazy" width="414" height="600" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRAVEL ============ -->
+  <section class="section" id="travel">
+    <div class="wrap grid-12">
+      <div style="grid-column: 1 / 6;" data-reveal="fade-up">
+        <div class="drag-stack" data-cursor="drag" id="travel-stack">
+          <figure class="drag-card"><img src="assets/img/travel/jebel-jais.jpg" alt="Джебель-Джайс, ОАЭ" loading="lazy" width="800" height="1067" /><figcaption>Jebel Jais</figcaption></figure>
+          <figure class="drag-card"><img src="assets/img/travel/sochi.jpg" alt="Сочи" loading="lazy" width="800" height="1067" /><figcaption>Sochi</figcaption></figure>
+          <figure class="drag-card"><img src="assets/img/travel/kaliningrad.jpg" alt="Калининград" loading="lazy" width="800" height="1067" /><figcaption>Kaliningrad</figcaption></figure>
+          <figure class="drag-card"><img src="assets/img/travel/altai.jpg" alt="Алтай" loading="lazy" width="800" height="1067" /><figcaption>Altai</figcaption></figure>
+          <figure class="drag-card"><img src="assets/img/travel/dombay.jpg" alt="Домбай" loading="lazy" width="800" height="1067" /><figcaption>Dombay</figcaption></figure>
+          <figure class="drag-card"><img src="assets/img/travel/uae.jpg" alt="ОАЭ" loading="lazy" width="800" height="1067" /><figcaption>UAE</figcaption></figure>
+        </div>
+      </div>
+      <div style="grid-column: 7 / 13; display:flex; flex-direction:column; justify-content:center; gap:28px;" data-reveal="fade-up">
+        <p class="lead">
+          <span data-lang="ru">Люблю исследовать мир — горы, море, пустыня, город. Всегда планирую следующее путешествие.</span>
+          <span data-lang="en">I love exploring — mountains, sea, desert, city. Always planning the next one.</span>
+        </p>
+        <blockquote class="pull-quote" style="margin-top: 0;">
+          <span data-lang="ru">«Путешествия губительны для предрассудков, фанатизма и ограниченности мышления»</span>
+          <span data-lang="en">"Travel is fatal to prejudice, bigotry, and narrow-mindedness"</span>
+          <footer class="small" style="margin-top:12px; font-family:var(--font-body);">
+            <span data-lang="ru">— Марк Твен, The Innocents Abroad (1869)</span>
+            <span data-lang="en">— Mark Twain, The Innocents Abroad (1869)</span>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <p class="meta"><span data-lang="ru">Связаться</span><span data-lang="en">Get in touch</span></p>
+    <h2 class="footer-cta" data-reveal="fade-up">
+      <span data-lang="ru">Открыта к сотрудничеству<br>и новым проектам</span>
+      <span data-lang="en">Open to collaboration<br>and new projects</span>
+    </h2>
+
+    <div class="footer-links">
+      <a href="mailto:sasha.evseenkova@list.ru" data-cursor="link">sasha.evseenkova@list.ru</a>
+      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener" data-cursor="link">Telegram</a>
+      <a href="https://www.instagram.com/a_evseenkova_a" target="_blank" rel="noopener" data-cursor="link">Instagram</a>
+      <a href="assets/cv-evseenkova-aleksandra-2026.pdf" data-cursor="link">CV</a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Evseenkova Aleksandra</span>
+      <span class="footer-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span data-lang="ru">Санкт-Петербург · <span data-clock>--:--</span></span>
+        <span data-lang="en">Saint Petersburg · <span data-clock>--:--</span></span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<div id="scroll-spacer"></div>
+
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/cursor.js" defer></script>
+<script src="assets/js/scroll.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/drag-stack.js" defer></script>
+<script src="assets/js/scrub.js" defer></script>
+</body>
+</html>

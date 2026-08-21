@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Base — fonts, reset, global typography, i18n switch, utilities.
+   ========================================================================== */
+
+/* ---- Self-hosted variable fonts (cyrillic + latin) ---- */
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-latin.woff2") format("woff2-variations"),
+       url("../fonts/Onest-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-cyrillic.woff2") format("woff2-variations"),
+       url("../fonts/Onest-cyrillic.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-latin.woff2") format("woff2-variations"),
+       url("../fonts/Inter-latin.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-cyrillic.woff2") format("woff2-variations"),
+       url("../fonts/Inter-cyrillic.woff2") format("woff2");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Metric-matched fallbacks so first paint doesn't jump when the webfont swaps in */
+@font-face {
+  font-family: "Onest Fallback";
+  src: local("Arial");
+  size-adjust: 104%;
+  ascent-override: 96%;
+  descent-override: 27%;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html, body { height: 100%; }
+img, picture, video, svg { display: block; max-width: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; }
+p { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; }
+
+/* ---- Root ---- */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Lock background scroll while the scroll-proxy container is active */
+html.js body { overscroll-behavior-y: none; }
+
+/* ---- Typography ---- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--ls-snug);
+  line-height: var(--lh-snug);
+}
+
+.display {
+  font-size: var(--fs-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  font-weight: 600;
+}
+
+h1, .h1 { font-size: var(--fs-h1); }
+h2, .h2 { font-size: var(--fs-h2); font-weight: 500; }
+h3, .h3 { font-size: var(--fs-h3); font-weight: 500; letter-spacing: var(--ls-narrow); }
+
+/* A lighter heading for personal-voice copy paired inline with a paragraph
+   (intro, method, teasers) — the big clamp(...4rem) size reads too heavy
+   next to a single paragraph, so it gets its own smaller scale. Always pair
+   with .h2 too so <h1> elements pick up the 500 weight, not the base 600. */
+.h2--compact { font-size: clamp(1.4rem, 1.25rem + 0.75vw, 1.9rem); font-weight: 500; }
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-normal);
+  color: var(--ink-mid);
+  font-weight: 400;
+}
+
+.meta {
+  font-family: var(--font-body);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.small { font-size: var(--fs-small); color: var(--ink-mid); }
+
+/* ---- i18n: RU/EN toggle, both stored in the DOM ----
+   Specificity is bumped with a repeated attribute selector so this always
+   wins over layout utilities like .mask > * — display:revert is avoided on
+   purpose, since it would reset to the element's bare UA default (e.g.
+   inline for <span>) and ignore author rules that need block layout. */
+[data-lang][data-lang] { display: none; }
+html[data-locale="ru"] [data-lang="ru"][data-lang],
+html[data-locale="en"] [data-lang="en"][data-lang] { display: inline; }
+html:not([data-locale]) [data-lang="ru"][data-lang] { display: inline; } /* pre-JS fallback */
+
+.mask [data-lang][data-lang] { display: none; }
+html[data-locale="ru"] .mask [data-lang="ru"][data-lang],
+html[data-locale="en"] .mask [data-lang="en"][data-lang] { display: block; }
+html:not([data-locale]) .mask [data-lang="ru"][data-lang] { display: block; }
+
+/* ---- Selection ---- */
+::selection { background: var(--ink); color: var(--bg); }
+
+/* ---- Focus ---- */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+a, button { outline-offset: 4px; }
+
+/* ---- Utilities ---- */
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--gutter);
+  z-index: 999;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 12px 20px;
+  border-radius: 4px;
+  font-size: var(--fs-small);
+  transition: top var(--dur-micro) var(--ease-out);
+}
+.skip-link:focus { top: 16px; }
+
+.mask {
+  overflow: hidden;
+  display: block;
+}
+.mask > * { display: block; will-change: transform; }
+
+.nowrap { white-space: nowrap; }
+
+/* ---- Native page transitions (MPA) ----
+   Chrome/Edge cross-fade between full page loads automatically; browsers
+   without support simply ignore this and navigate instantly — no fallback
+   JS needed, nothing can break. */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root) {
+  animation: page-fade-out var(--dur-page) var(--ease-io) both;
+}
+::view-transition-new(root) {
+  animation: page-fade-in var(--dur-page) var(--ease-io) both;
+}
+@keyframes page-fade-out {
+  to { opacity: 0; transform: scale(0.985); }
+}
+@keyframes page-fade-in {
+  from { opacity: 0; transform: scale(1.012); }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
+
+/* ---- Reduced motion: kill non-essential animation everywhere ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

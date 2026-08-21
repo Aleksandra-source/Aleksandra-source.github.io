@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Евсеенкова Александра — продуктовый дизайнер</title>
+<style>
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-cyrillic.woff2") format("woff2");
+  font-weight: 100 900; font-display: block;
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Onest";
+  src: url("../fonts/Onest-latin.woff2") format("woff2");
+  font-weight: 100 900; font-display: block;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-cyrillic.woff2") format("woff2");
+  font-weight: 100 900; font-display: block;
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter-latin.woff2") format("woff2");
+  font-weight: 100 900; font-display: block;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
+}
+
+:root {
+  --bg: #f8f8f8;
+  --ink: rgba(0, 0, 0, 0.86);
+  --ink-mid: rgba(0, 0, 0, 0.56);
+  --muted: #9b9b9b;
+  --line: rgba(0, 0, 0, 0.1);
+  --accent: #3f8f5f;
+  --font-display: "Onest", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --ls-tight: -0.035em;
+  --ls-snug: -0.03em;
+  --ls-narrow: -0.02em;
+  --ls-wide: 0.08em;
+}
+
+@page { size: A4; margin: 0; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 9.4pt;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  overflow: hidden;
+  padding: 12mm 15mm 10mm;
+  background: var(--bg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.page + .page { page-break-before: always; }
+/* Page 2 has room to spare — let its sections breathe. */
+.page--roomy .section { margin-top: 15mm; }
+
+/* ---------- Header ---------- */
+.head {
+  display: grid;
+  grid-template-columns: 27mm 1fr;
+  gap: 9mm;
+  align-items: start;
+  padding-bottom: 5mm;
+  border-bottom: 1px solid var(--line);
+}
+.name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21pt;
+  line-height: 1.05;
+  white-space: nowrap;
+  letter-spacing: var(--ls-tight);
+}
+.role {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12.5pt;
+  letter-spacing: var(--ls-narrow);
+  color: var(--ink-mid);
+  margin-top: 2.5mm;
+}
+.head-meta {
+  margin-top: 4.5mm;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4mm 5mm;
+  font-size: 8.9pt;
+  color: var(--ink-mid);
+}
+.head-meta b { font-weight: 500; color: var(--ink); }
+.head-meta a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.head-meta .todo { color: var(--muted); border-bottom: 1px dashed var(--line); }
+.photo {
+  width: 27mm;
+  height: 34mm;
+  object-fit: cover;
+  border-radius: 3mm;
+  display: block;
+  filter: grayscale(1) contrast(1.02);
+}
+
+/* ---------- Sections ---------- */
+.section { margin-top: 6mm; }
+.section-label {
+  font-family: var(--font-body);
+  font-size: 6.9pt;
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 1.6mm;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 3.6mm;
+}
+
+.summary { color: var(--ink-mid); font-size: 9.6pt; line-height: 1.55; max-width: 165mm; }
+.summary b { color: var(--ink); font-weight: 500; }
+
+/* ---------- Row layout (year | body) ---------- */
+.row {
+  display: grid;
+  grid-template-columns: 27mm 1fr;
+  gap: 6mm;
+  padding-bottom: 4.5mm;
+  margin-bottom: 4.5mm;
+  border-bottom: 1px solid var(--line);
+}
+.row:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.row-when { font-size: 8.4pt; color: var(--muted); line-height: 1.4; padding-top: 0.6mm; }
+.row-when span { display: block; }
+.row-org {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11pt;
+  letter-spacing: var(--ls-narrow);
+  line-height: 1.2;
+}
+.row-title { font-size: 9.2pt; color: var(--ink-mid); margin-top: 0.7mm; }
+.bullets { margin-top: 2.2mm; }
+.bullets li {
+  list-style: none;
+  position: relative;
+  padding-left: 3.6mm;
+  color: var(--ink-mid);
+  margin-top: 0.85mm;
+}
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 1.55mm;
+  width: 1.2mm; height: 1.2mm;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.bullets li b { color: var(--ink); font-weight: 500; }
+/* ---------- Skills ---------- */
+.skill-group { margin-bottom: 3.6mm; }
+.skill-group:last-child { margin-bottom: 0; }
+.skill-head {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 9.4pt;
+  letter-spacing: var(--ls-narrow);
+  margin-bottom: 1.8mm;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 1.6mm; }
+.chip {
+  border: 1px solid var(--line);
+  border-radius: 40px;
+  padding: 0.9mm 3mm;
+  font-size: 8.4pt;
+  color: var(--ink-mid);
+}
+
+/* ---------- Two-column block ---------- */
+.cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 9mm; }
+
+.mini-row { padding-bottom: 3mm; margin-bottom: 3mm; border-bottom: 1px solid var(--line); }
+.mini-row:last-child { border-bottom: 0; padding-bottom: 0; margin-bottom: 0; }
+.mini-when { font-size: 8.2pt; color: var(--muted); }
+.mini-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 9.8pt;
+  letter-spacing: var(--ls-narrow);
+  margin-top: 0.6mm;
+  line-height: 1.25;
+}
+.mini-desc { font-size: 8.8pt; color: var(--ink-mid); margin-top: 0.6mm; }
+
+.lang-row { display: flex; justify-content: space-between; padding: 1.6mm 0; border-bottom: 1px solid var(--line); font-size: 9pt; }
+.lang-row:last-child { border-bottom: 0; }
+.lang-row span:last-child { color: var(--muted); }
+
+.foot {
+  margin-top: auto;
+  padding-top: 3mm;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7.6pt;
+  color: var(--muted);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<!-- ================= PAGE 1 ================= -->
+<div class="page">
+
+  <div class="head">
+    <img class="photo" src="photo.jpg" alt="" />
+    <div>
+      <h1 class="name">Евсеенкова Александра</h1>
+      <p class="role">Продуктовый дизайнер</p>
+      <div class="head-meta">
+        <span><b>Санкт-Петербург</b></span>
+        <span>+7 911 834-36-34</span>
+        <span>sasha.evseenkova@list.ru</span>
+        <span>Telegram: @a_evseenkova_a</span>
+        <!-- TODO: подставить адрес сайта-портфолио после публикации -->
+        <span>Портфолио: <span class="todo">ссылка появится после публикации сайта</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="summary">
+      Продуктовый дизайнер с&nbsp;<b>почти 6-летним опытом внутри финансовых продуктов</b> — ВТБ,
+      Росбанк и&nbsp;IT-компания. Пришла в&nbsp;дизайн
+      со&nbsp;стороны клиента и&nbsp;поддержки: видела, где сложный сценарий ломается на&nbsp;практике,
+      и&nbsp;теперь проектирую интерфейсы, опираясь на&nbsp;этот опыт. Работаю от&nbsp;исследования к&nbsp;решению: интервью, гипотезы по&nbsp;JTBD, приоритизация ICE, прототип и&nbsp;юзабилити-тест.
+    </p>
+  </div>
+
+  <div class="section">
+    <p class="section-label">Опыт работы</p>
+
+    <div class="row">
+      <div class="row-when"><span>Март 2026 —</span><span>июль 2026</span></div>
+      <div>
+        <p class="row-org">Evercode Lab</p>
+        <p class="row-title">Специалист поддержки L1</p>
+        <ul class="bullets">
+          <li>Обрабатывала <b>более 50&nbsp;обращений в&nbsp;день</b> в&nbsp;режиме высокой нагрузки</li>
+          <li>Передавала репорты в&nbsp;разработку через Jira, участвовала в&nbsp;улучшении UX на&nbsp;основе обратной связи пользователей</li>
+          <li>Инструменты: Zendesk, Jira, Confluence, Slack</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-when"><span>Апрель 2024 —</span><span>январь 2026</span></div>
+      <div>
+        <p class="row-org">ПАО Банк ВТБ</p>
+        <p class="row-title">Главный эксперт</p>
+        <ul class="bullets">
+          <li>Выросла до&nbsp;главного эксперта <b>за&nbsp;полгода</b></li>
+          <li>Провела <b>1000+ сделок</b> и&nbsp;<b>500+ регистраций</b> через внешние сервисы</li>
+          <li>Ежедневно работала во&nbsp;внутренних CRM-системах банка — изнутри видела узкие места сценариев</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-when"><span>Октябрь 2022 —</span><span>апрель 2024</span></div>
+      <div>
+        <p class="row-org">ПАО Росбанк</p>
+        <p class="row-title">Специалист по клиентской работе в розничном банкинге</p>
+        <ul class="bullets">
+          <li>Подняла <b>NPS отдела на&nbsp;15%</b></li>
+          <li>Выполняла индивидуальные планы <b>KPI на&nbsp;100%+</b></li>
+          <li>Полтора года работала между сложным банковским продуктом и&nbsp;живым клиентом</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="row-when"><span>Сентябрь 2020 —</span><span>октябрь 2022</span></div>
+      <div>
+        <p class="row-org">Центр Интеграционных Решений</p>
+        <p class="row-title">Специалист</p>
+        <ul class="bullets">
+          <li>Анализ и&nbsp;актуализация клиентской базы</li>
+          <li>Взаимодействие с&nbsp;командой разработки по&nbsp;техническим вопросам внутренней системы, участие в&nbsp;тестировании внутренних инструментов</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>Евсеенкова Александра · Продуктовый дизайнер</span>
+    <span>1 / 2</span>
+  </div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div class="page page--roomy">
+
+  <div class="section" style="margin-top:0;">
+    <p class="section-label">Навыки</p>
+
+    <div class="skill-group">
+      <p class="skill-head">Исследования и аналитика</p>
+      <div class="chips">
+        <span class="chip">UX-исследования</span>
+        <span class="chip">Глубинные интервью</span>
+        <span class="chip">User Research</span>
+        <span class="chip">JTBD</span>
+        <span class="chip">CJM</span>
+        <span class="chip">User Flow</span>
+        <span class="chip">Бенчмаркинг</span>
+        <span class="chip">Приоритизация ICE</span>
+        <span class="chip">A/B-тесты</span>
+        <span class="chip">Юзабилити-тестирование</span>
+        <span class="chip">Анализ отзывов</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-head">Дизайн и проектирование</p>
+      <div class="chips">
+        <span class="chip">UX/UI-дизайн</span>
+        <span class="chip">Прототипирование</span>
+        <span class="chip">Вайбкодинг</span>
+        <span class="chip">Wireframing</span>
+        <span class="chip">Информационная архитектура</span>
+        <span class="chip">Дизайн-системы</span>
+        <span class="chip">UI-киты</span>
+        <span class="chip">Адаптивный дизайн</span>
+        <span class="chip">Дизайн-ревью</span>
+        <span class="chip">UX-тексты</span>
+        <span class="chip">Веб-дизайн</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-head">Инструменты</p>
+      <div class="chips">
+        <span class="chip">Figma</span>
+        <span class="chip">FigJam</span>
+        <span class="chip">Photoshop</span>
+        <span class="chip">Jira</span>
+        <span class="chip">Confluence</span>
+        <span class="chip">Zendesk</span>
+        <span class="chip">ChatGPT</span>
+        <span class="chip">Claude</span>
+        <span class="chip">Midjourney</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cols2">
+      <div>
+        <p class="section-label">Образование</p>
+        <div class="mini-row">
+          <p class="mini-when">2022 · высшее</p>
+          <p class="mini-name">ГУМРФ имени адмирала С.О.&nbsp;Макарова</p>
+          <p class="mini-desc">Санкт-Петербург · Экономика организаций и&nbsp;предприятий</p>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Курсы</p>
+        <div class="mini-row">
+          <p class="mini-when">2025</p>
+          <p class="mini-name">Продуктовый дизайн</p>
+          <p class="mini-desc">FormFactor</p>
+        </div>
+        <div class="mini-row">
+          <p class="mini-when">2024</p>
+          <p class="mini-name">UX/UI-дизайн</p>
+          <p class="mini-desc">Школа дизайна Filschool</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cols2">
+      <div>
+        <p class="section-label">Языки</p>
+        <div class="lang-row"><span>Русский</span><span>Родной</span></div>
+        <div class="lang-row"><span>Английский</span><span>B1&nbsp;· средний</span></div>
+      </div>
+      <div>
+        <p class="section-label">Формат работы</p>
+        <div class="lang-row"><span>Занятость</span><span>Полная</span></div>
+        <div class="lang-row"><span>Формат</span><span>Гибрид, офис, удалённо</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <p class="section-label">О себе</p>
+    <ul class="bullets">
+      <li>Мыслю продуктово: смотрю на&nbsp;задачу через метрики и&nbsp;пользу для бизнеса, а&nbsp;не&nbsp;только через макет</li>
+      <li>Эмпат с&nbsp;аналитическим складом ума — люблю разобраться в&nbsp;контексте, прежде чем&nbsp;предлагать решение</li>
+      <li>Считаю конструктивную критику и&nbsp;работу над&nbsp;ошибками главным драйвером роста</li>
+      <li>Хорошо организовываю рабочий процесс: всегда на&nbsp;связи, работаю по&nbsp;методу Pomodoro</li>
+      <li>Занимаюсь йогой, играю в&nbsp;шахматы и&nbsp;много читаю</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <span>Евсеенкова Александра · Продуктовый дизайнер</span>
+    <span>2 / 2</span>
+  </div>
+</div>
+
+</body>
+</html>

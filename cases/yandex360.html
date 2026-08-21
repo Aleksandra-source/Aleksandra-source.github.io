@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Единая страница поддержки — Яндекс 360 · Евсеенкова Александра</title>
+<meta name="description" content="Концепт-проект: единая страница пользователя для поддержки Яндекс 360, которая убирает переключение между админками." />
+<meta property="og:title" content="Единая страница поддержки — Яндекс 360" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/img/cases/y360/cover.jpg" />
+
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem("locale"); } catch (e) {}
+  var loc = saved || (((navigator.language || "").toLowerCase().indexOf("ru") === 0) ? "ru" : "en");
+  document.documentElement.setAttribute("data-locale", loc);
+  document.documentElement.setAttribute("lang", loc);
+})();
+</script>
+
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="../assets/fonts/Onest-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../assets/fonts/Onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../assets/fonts/Inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="../assets/fonts/Inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="stylesheet" href="../assets/css/tokens.css" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/case.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">
+  <span data-lang="ru">Перейти к содержанию</span><span data-lang="en">Skip to content</span>
+</a>
+
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__name">Евсеенкова Александра</div>
+  <div class="preloader__bar"><span></span></div>
+  <div class="preloader__count">0</div>
+</div>
+
+<div class="progress-bar" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../index.html">
+      <span class="name-ru">Евсеенкова Александра</span>
+      <span class="name-en">Evseenkova Aleksandra</span>
+    </a>
+    <nav class="main-nav" aria-label="Основная навигация">
+      <a class="main-nav__link" href="../index.html#work">
+        <span class="ru">Работы</span><span class="en">Works</span>
+      </a>
+      <a class="main-nav__link" href="../about.html">
+        <span class="ru">Обо мне</span><span class="en">About me</span>
+      </a>
+      <div class="lang-toggle" role="group" aria-label="Язык / Language">
+        <button type="button" data-lang-btn="ru" aria-pressed="true">RU</button>
+        <span class="sep">/</span>
+        <button type="button" data-lang-btn="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="scroll-fixed">
+<main id="main">
+
+  <!-- ============ COVER ============ -->
+  <section class="case-cover">
+    <div class="wrap">
+      <a class="case-cover__back" href="../index.html#work" data-cursor="link">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M12 4L4 12M4 12H11M4 12V5" stroke="currentColor" stroke-width="1.4"/></svg>
+        <span data-lang="ru">На главную</span><span data-lang="en">Back home</span>
+      </a>
+
+      <h1 class="case-cover__title" data-reveal="fade-up">
+        <span data-lang="ru">Единая страница поддержки</span>
+        <span data-lang="en">Unified support view</span>
+      </h1>
+
+      <dl class="case-cover__facts" data-reveal="fade-up">
+        <div>
+          <dt><span data-lang="ru">Клиент</span><span data-lang="en">Client</span></dt>
+          <dd>Яндекс 360</dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Формат</span><span data-lang="en">Format</span></dt>
+          <dd><span data-lang="ru">Концепт-проект</span><span data-lang="en">Concept project</span></dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Роль</span><span data-lang="en">Role</span></dt>
+          <dd><span data-lang="ru">UX-исследование, дизайн</span><span data-lang="en">UX research, design</span></dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Год</span><span data-lang="en">Year</span></dt>
+          <dd>2026</dd>
+        </div>
+      </dl>
+
+      <div class="frame case-cover__image" data-parallax="0.08" data-reveal="fade-up">
+        <img src="../assets/img/cases/y360/cover.jpg" alt="Единая страница пользователя для поддержки Яндекс 360" loading="eager" width="2300" height="1380" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BODY ============ -->
+  <div class="wrap">
+    <div class="case-body">
+      <nav class="case-toc" aria-label="Содержание кейса">
+        <a href="#problem"><span data-lang="ru">Проблема</span><span data-lang="en">Problem</span></a>
+        <a href="#decomposition"><span data-lang="ru">Декомпозиция задачи</span><span data-lang="en">Task decomposition</span></a>
+        <a href="#ux-audit"><span data-lang="ru">UX-аудит</span><span data-lang="en">UX audit</span></a>
+        <a href="#agent-flow"><span data-lang="ru">Флоу сотрудника</span><span data-lang="en">Agent flow</span></a>
+        <a href="#user-side"><span data-lang="ru">Сторона пользователя</span><span data-lang="en">User side</span></a>
+        <a href="#benchmark"><span data-lang="ru">Бенчмаркинг</span><span data-lang="en">Benchmarking</span></a>
+        <a href="#priority"><span data-lang="ru">Приоритизация</span><span data-lang="en">Prioritisation</span></a>
+        <a href="#solution"><span data-lang="ru">Макеты и решение</span><span data-lang="en">Mockups & solution</span></a>
+        <a href="#results"><span data-lang="ru">Итоги</span><span data-lang="en">Results</span></a>
+      </nav>
+
+      <div class="case-content">
+
+        <!-- ---- PROBLEM ---- -->
+        <section class="case-block" id="problem">
+          <p class="meta case-block__label"><span data-lang="ru">01 · Проблема и задача</span><span data-lang="en">01 · Problem & task</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Саппорт живёт в нескольких админках сразу</span><span data-lang="en">Support lives in several admin panels at once</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Сотрудникам поддержки часто приходится использовать несколько админок одновременно, чтобы разобраться с одним обращением. Это усложняет работу и увеличивает время обработки.</span>
+            <span data-lang="en">Support agents often need several admin panels open at once just to handle a single request. That slows everything down.</span>
+          </p>
+          <div class="stat-row" data-reveal="fade-up">
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Цель</span><span data-lang="en">Goal</span></p>
+              <p class="stat__desc"><span data-lang="ru">Спроектировать единую страницу, которая помогает быстро получить информацию о пользователе, его сервисах и истории обращений.</span><span data-lang="en">Design a single page that surfaces a user's info, services, and ticket history at a glance.</span></p>
+            </div>
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Метрика 1</span><span data-lang="en">Metric 1</span></p>
+              <p class="stat__desc"><span data-lang="ru">Сокращение количества переходов между админками.</span><span data-lang="en">Fewer switches between admin panels.</span></p>
+            </div>
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Метрика 2</span><span data-lang="en">Metric 2</span></p>
+              <p class="stat__desc"><span data-lang="ru">Уменьшение времени обработки одного обращения.</span><span data-lang="en">Less time spent resolving a single ticket.</span></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- TASK DECOMPOSITION ---- -->
+        <section class="case-block" id="decomposition">
+          <p class="meta case-block__label"><span data-lang="ru">02 · Декомпозиция задачи</span><span data-lang="en">02 · Task decomposition</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Декомпозиция задачи</span><span data-lang="en">Breaking the task down</span></h2>
+          <div class="decomp-list" data-reveal="fade-up">
+            <div class="decomp-item">
+              <p class="decomp-item__title"><span data-lang="ru">1. Изучить флоу со стороны саппорта</span><span data-lang="en">1. Study the flow from the support side</span></p>
+              <ul class="decomp-item__list">
+                <li><span data-lang="ru">UX-аудит текущего интерфейса</span><span data-lang="en">UX audit of the current interface</span></li>
+                <li><span data-lang="ru">Предположительный флоу сотрудника поддержки</span><span data-lang="en">The agent's likely workflow</span></li>
+              </ul>
+            </div>
+            <div class="decomp-item">
+              <p class="decomp-item__title"><span data-lang="ru">2. Изучить флоу со стороны пользователя, research</span><span data-lang="en">2. Study the flow from the user side, research</span></p>
+              <ul class="decomp-item__list">
+                <li><span data-lang="ru">Какие сервисы доступны юзеру, с какими вопросами могут обращаться</span><span data-lang="en">What services are available to the user, what they might reach out about</span></li>
+                <li><span data-lang="ru">Портрет пользователя — что важно видеть о нём в первую очередь</span><span data-lang="en">User persona — what matters most to see about them first</span></li>
+              </ul>
+            </div>
+            <div class="decomp-item">
+              <p class="decomp-item__title"><span data-lang="ru">3. Бенчмаркинг</span><span data-lang="en">3. Benchmarking</span></p>
+              <ul class="decomp-item__list">
+                <li><span data-lang="ru">Как похожие сервисы организуют интерфейсы с большим количеством информации</span><span data-lang="en">How similar services organise interfaces dense with information</span></li>
+              </ul>
+            </div>
+            <div class="decomp-item">
+              <p class="decomp-item__title"><span data-lang="ru">4. Приоритизация гипотез</span><span data-lang="en">4. Hypotheses prioritisation</span></p>
+              <ul class="decomp-item__list">
+                <li><span data-lang="ru">Какие гипотезы удалось сформулировать на предыдущих этапах</span><span data-lang="en">Which hypotheses came out of the previous steps</span></li>
+                <li><span data-lang="ru">Распределение по важности — метод ICE</span><span data-lang="en">Prioritising them — the ICE method</span></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- UX AUDIT ---- -->
+        <section class="case-block" id="ux-audit">
+          <p class="meta case-block__label"><span data-lang="ru">03 · UX-аудит</span><span data-lang="en">03 · UX audit</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">UX-аудит текущего интерфейса</span><span data-lang="en">UX audit of the current interface</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Разобрала действующие админки саппорта по карточкам — организации, встречи и истории изменений, — чтобы зафиксировать, где именно сотрудник теряет время.</span>
+            <span data-lang="en">I went through the support team's current admin panels — organisation, meeting and change-history cards — to pin down exactly where an agent loses time.</span>
+          </p>
+          <div class="gallery cols-1" data-reveal="fade-up">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/audit-combined.png" alt="UX-аудит текущего интерфейса: карточка организации, карточка встречи, история изменений" loading="lazy" width="1584" height="2080" /></div>
+            </figure>
+          </div>
+          <div class="case-block__text" data-reveal="fade-up" style="margin-top: 32px;">
+            <p style="font-weight: 600; color: var(--ink);">
+              <span data-lang="ru">Итоги UX-аудита:</span>
+              <span data-lang="en">UX audit takeaways:</span>
+            </p>
+            <ul class="decomp-item__list" style="margin-top: 12px;">
+              <li>
+                <span data-lang="ru">Неочевидна навигация между админками и обратно в чат</span>
+                <span data-lang="en">Navigation between admin panels and back to the chat isn't obvious</span>
+              </li>
+              <li>
+                <span data-lang="ru">Нет единого источника данных о пользователе, его сервисах или ошибке</span>
+                <span data-lang="en">No single source of data about the user, their services, or the issue</span>
+              </li>
+              <li>
+                <span data-lang="ru">Информация не структурирована по важности, есть дубли</span>
+                <span data-lang="en">Information isn't prioritised, and there's duplication</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ---- AGENT FLOW ---- -->
+        <section class="case-block" id="agent-flow">
+          <p class="meta case-block__label"><span data-lang="ru">04 · Флоу сотрудника</span><span data-lang="en">04 · Agent flow</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Предположительный флоу сотрудника поддержки</span><span data-lang="en">The support agent's likely workflow</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">На этом этапе я предположила, из каких этапов состоит процесс работы с запросом пользователя и что важно для его быстрого решения.</span>
+            <span data-lang="en">At this stage I mapped out what steps the process of working through a user request likely consists of, and what matters for resolving it quickly.</span>
+          </p>
+          <div class="gallery cols-1" data-reveal="fade-up">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/flow.png" alt="Предположительный флоу сотрудника поддержки" loading="lazy" width="2432" height="928" /></div>
+            </figure>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 32px;">
+            <span data-lang="ru">Инсайты после проработки флоу:</span>
+            <span data-lang="en">Insights after mapping out the flow:</span>
+          </p>
+          <div class="insight-list" data-reveal="fade-up">
+            <div class="insight"><span class="insight__icon">💡</span><p class="insight__text"><span data-lang="ru">В действующем интерфейсе негде посмотреть информацию о сервисах, которыми пользуется пользователь, и их состоянии</span><span data-lang="en">The current interface has nowhere to see which services a user has, or their status</span></p></div>
+            <div class="insight"><span class="insight__icon">💡</span><p class="insight__text"><span data-lang="ru">Сейчас действительно требуется большое количество шагов, чтобы разобраться в проблеме</span><span data-lang="en">It genuinely takes a lot of steps today just to understand the problem</span></p></div>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 32px;">
+            <span data-lang="ru">Гипотезы после UX-аудита:</span>
+            <span data-lang="en">Hypotheses after the UX audit:</span>
+          </p>
+          <ul class="decomp-item__list" style="margin-top: 12px;">
+            <li><span data-lang="ru">Если сократить переходы между админками, обработка обращений ускорится</span><span data-lang="en">Fewer switches between admin panels means faster ticket handling</span></li>
+            <li><span data-lang="ru">Если собрать данные из разных сервисов в одной панели, сотруднику не придётся переключаться между ними, что упростит работу саппорта</span><span data-lang="en">Gathering data from every service into one panel removes the need to switch between them, simplifying support work</span></li>
+            <li><span data-lang="ru">Если показывать информацию о тарифе и сервисах, это позволит сотруднику быстрее выявлять проблему пользователя</span><span data-lang="en">Showing plan and service info up front helps the agent spot the user's problem faster</span></li>
+          </ul>
+        </section>
+
+        <!-- ---- USER SIDE ---- -->
+        <section class="case-block" id="user-side">
+          <p class="meta case-block__label"><span data-lang="ru">05 · Сторона пользователя</span><span data-lang="en">05 · User side</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Изучение флоу со стороны пользователя, research</span><span data-lang="en">User-side research</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Дальше изучила, какие сервисы Яндекс 360 предлагает своим пользователям и с какими вопросами они могут обращаться в поддержку — это помогло понять, какие данные о пользователе нужны сотруднику в первую очередь.</span>
+            <span data-lang="en">Next I looked at what services Yandex 360 offers its users and what they're likely to contact support about — this helped me understand which user data an agent actually needs first.</span>
+          </p>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 32px;">
+            <span data-lang="ru">Что я выяснила</span>
+            <span data-lang="en">What I found out</span>
+          </p>
+          <div class="stat-row" data-reveal="fade-up">
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Два типа пользователей</span><span data-lang="en">Two kinds of users</span></p>
+              <p class="stat__desc"><span data-lang="ru">Яндекс 360 — сервис, доступный и для обычных пользователей, и для корпоративных клиентов</span><span data-lang="en">Yandex 360 serves both individual users and corporate clients</span></p>
+            </div>
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Разный характер вопросов</span><span data-lang="en">Requests vary widely</span></p>
+              <p class="stat__desc"><span data-lang="ru">Пользователи могут обращаться с разными вопросами: от доступа и настроек до тарифов и технических ошибок</span><span data-lang="en">Users reach out about anything from access and settings to billing and technical errors</span></p>
+            </div>
+            <div class="stat">
+              <p class="stat__title"><span data-lang="ru">Широкий спектр сервисов</span><span data-lang="en">A wide range of services</span></p>
+              <p class="stat__desc"><span data-lang="ru">Телемост, Почта, Календарь, Диск, Мессенджер, Доски и другие — их наличие и работа зависят от тарифа</span><span data-lang="en">Telemost, Mail, Calendar, Disk, Messenger, Boards and more — availability and behaviour depend on the plan</span></p>
+            </div>
+          </div>
+
+          <h3 style="margin-top: 56px; margin-bottom: 20px;"><span data-lang="ru">Портрет пользователя</span><span data-lang="en">User persona</span></h3>
+          <p class="case-block__text">
+            <span data-lang="ru">В реальной работе я бы провела интервью с 7–8 сотрудниками поддержки, чтобы собрать более точную картину необходимых данных и их приоритетности. Однако в рамках этой работы я ориентировалась на свою экспертную оценку, так как у меня есть опыт работы в поддержке и с внутренними CRM-системами.</span>
+            <span data-lang="en">In a real team, I'd interview 7–8 support agents to build a more accurate picture of which data matters and how to prioritise it. For this project I relied on my own expert judgement, since I've worked in support myself, with internal CRM systems.</span>
+          </p>
+          <div class="gallery cols-1" data-reveal="fade-up" style="max-width: 480px; margin-inline: auto; margin-top: 24px;">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/persona.png" alt="Портрет пользователя" loading="lazy" width="1436" height="1012" /></div>
+            </figure>
+          </div>
+        </section>
+
+        <!-- ---- BENCHMARK ---- -->
+        <section class="case-block" id="benchmark">
+          <p class="meta case-block__label"><span data-lang="ru">06 · Бенчмаркинг</span><span data-lang="en">06 · Benchmarking</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Бенчмаркинг</span><span data-lang="en">Benchmarking</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Для проектирования страницы пользователя я изучила разные CRM-системы, чтобы понять, как они организуют интерфейсы с большим количеством информации.</span>
+            <span data-lang="en">To design the user page, I looked at a range of CRM systems to understand how they organise interfaces packed with information.</span>
+          </p>
+          <div class="gallery cols-1" data-reveal="fade-up">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/benchmark.png" alt="Бенчмаркинг CRM-систем: Intercom, HubSpot, Salesforce, Sbercrm" loading="lazy" width="1454" height="381" /></div>
+            </figure>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 32px;">
+            <span data-lang="ru">Гипотезы по результатам бенчмаркинга:</span>
+            <span data-lang="en">Hypotheses from the benchmarking:</span>
+          </p>
+          <ul class="decomp-item__list" style="margin-top: 12px;">
+            <li><span data-lang="ru">Размещение ключевой информации о пользователе рядом с чатом позволит быстрее идентифицировать пользователя</span><span data-lang="en">Placing key user info next to the chat will speed up identifying the user</span></li>
+            <li><span data-lang="ru">Группировка информации по сервисам в отдельных вкладках поможет быстрее находить нужные данные</span><span data-lang="en">Grouping information by service into separate tabs will help find the right data faster</span></li>
+            <li><span data-lang="ru">Добавление истории обращений поможет быстрее понять контекст проблемы и избежать повторной проверки уже известных фактов</span><span data-lang="en">Adding a ticket history will help grasp the context faster and avoid re-checking facts that are already known</span></li>
+          </ul>
+        </section>
+
+        <!-- ---- PRIORITY ---- -->
+        <section class="case-block" id="priority">
+          <p class="meta case-block__label"><span data-lang="ru">07 · Приоритизация</span><span data-lang="en">07 · Prioritisation</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Приоритизация гипотез</span><span data-lang="en">Hypotheses prioritisation</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Для приоритизации гипотез я использовала метод ICE (Impact, Confidence, Ease)</span>
+            <span data-lang="en">I prioritised the hypotheses using the ICE method (Impact, Confidence, Ease)</span>
+          </p>
+          <div class="ice-table-wrap" data-reveal="fade-up">
+            <table class="ice-table">
+              <thead>
+                <tr>
+                  <th><span data-lang="ru">Гипотеза</span><span data-lang="en">Hypothesis</span></th>
+                  <th>Impact</th>
+                  <th>Confidence</th>
+                  <th>Ease</th>
+                  <th><span data-lang="ru">Балл по ICE</span><span data-lang="en">ICE score</span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span data-lang="ru">Сокращение шагов</span><span data-lang="en">Fewer steps</span></td>
+                  <td>10</td><td>10</td><td>10</td><td>800</td>
+                </tr>
+                <tr>
+                  <td><span data-lang="ru">Ключевая информация рядом с чатом</span><span data-lang="en">Key info next to the chat</span></td>
+                  <td>8</td><td>9</td><td>8</td><td>576</td>
+                </tr>
+                <tr>
+                  <td><span data-lang="ru">Единая панель пользователя</span><span data-lang="en">Unified user panel</span></td>
+                  <td>10</td><td>9</td><td>6</td><td>540</td>
+                </tr>
+                <tr>
+                  <td><span data-lang="ru">Группировка по сервисам</span><span data-lang="en">Grouping by service</span></td>
+                  <td>8</td><td>8</td><td>8</td><td>512</td>
+                </tr>
+                <tr>
+                  <td><span data-lang="ru">Информация о тарифе</span><span data-lang="en">Plan info</span></td>
+                  <td>7</td><td>8</td><td>9</td><td>504</td>
+                </tr>
+                <tr>
+                  <td><span data-lang="ru">История обращения/таймлайн</span><span data-lang="en">Ticket history / timeline</span></td>
+                  <td>8</td><td>9</td><td>7</td><td>504</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ---- SOLUTION ---- -->
+        <section class="case-block" id="solution">
+          <p class="meta case-block__label"><span data-lang="ru">08 · Макеты и решение</span><span data-lang="en">08 · Mockups & solution</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Макеты и решение</span><span data-lang="en">Mockups and solution</span></h2>
+          <div class="insight-list" data-reveal="fade-up">
+            <div class="insight"><span class="insight__icon">💡</span><p class="insight__text"><span data-lang="ru">Информации о том, как выглядит страница обращения для саппорта, у меня не было, поэтому я смоделировала её самостоятельно, так как оптимизация начинается именно с этого экрана.</span><span data-lang="en">I didn't have a reference for what the agent's ticket screen looks like today, so I modelled it myself, since that's exactly where the optimisation starts.</span></p></div>
+          </div>
+
+          <div class="gallery cols-1" data-reveal="fade-up" style="margin-top:24px;">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/solution-1.png" alt="Решение, экран 1: обращение с панелью пользователя" loading="lazy" width="2108" height="898" /></div>
+            </figure>
+          </div>
+          <div class="gallery cols-1" data-reveal="fade-up" style="margin-top:24px;">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/solution-2.png" alt="Решение, экран 2: страница пользователя с сервисами" loading="lazy" width="2158" height="1002" /></div>
+            </figure>
+          </div>
+
+          <div class="screen-backdrop" data-reveal="fade-up" style="margin-top:24px; max-width:680px; margin-inline:auto;">
+            <div class="gallery cols-1">
+              <figure>
+                <div class="frame"><img src="../assets/img/cases/y360/solution-details.png" alt="Немного о деталях страницы" loading="lazy" width="1386" height="1552" /></div>
+              </figure>
+            </div>
+          </div>
+
+          <div class="gallery cols-1" data-reveal="fade-up" style="margin-top:24px;">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/solution-3.png" alt="Решение, экран 3: страница сервиса" loading="lazy" width="2162" height="970" /></div>
+            </figure>
+          </div>
+          <div class="gallery cols-1" data-reveal="fade-up" style="margin-top:24px;">
+            <figure>
+              <div class="frame"><img src="../assets/img/cases/y360/solution-4.png" alt="Решение, экран 4: страница встречи" loading="lazy" width="2162" height="1064" /></div>
+            </figure>
+          </div>
+        </section>
+
+        <!-- ---- RESULTS ---- -->
+        <section class="case-block" id="results">
+          <p class="meta case-block__label"><span data-lang="ru">09 · Итоги</span><span data-lang="en">09 · Results</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Результаты</span><span data-lang="en">Results</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Для проверки моего решения в реальной работе я бы провела UX-тест, в котором проверила бы заметность новых элементов для сотрудника поддержки, а также замерила бы общее время обработки обращения (для этого подошёл бы A/B-тест).</span>
+            <span data-lang="en">To validate this for real, I'd run a UX test to check how noticeable the new elements are to a support agent, and measure the total ticket handling time — an A/B test would fit well here.</span>
+          </p>
+          <p class="case-block__text">
+            <span data-lang="ru">Так как возможности провести такое тестирование у меня не было, я могу опираться на свою экспертную оценку.</span>
+            <span data-lang="en">Since I didn't have the means to run that testing, I'm relying on my own expert judgement instead.</span>
+          </p>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 32px;">
+            <span data-lang="ru">В процессе работы мне удалось:</span>
+            <span data-lang="en">In the course of this work I managed to:</span>
+          </p>
+          <ul class="decomp-item__list" style="margin-top: 12px;">
+            <li><span data-lang="ru">Устранить необходимость переключаться между админками при работе с обращениями</span><span data-lang="en">Remove the need to switch between admin panels while working a ticket</span></li>
+            <li><span data-lang="ru">Сократить количество шагов для получения ключевой информации о пользователе</span><span data-lang="en">Cut the number of steps to get key user information</span></li>
+            <li><span data-lang="ru">Собрать данные из разных сервисов в одном окне, что упрощает восприятие и снижает когнитивную нагрузку на сотрудника</span><span data-lang="en">Pull data from every service into one window, simplifying perception and lowering the agent's cognitive load</span></li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="next-case">
+  <a href="vkusvill.html" data-cursor="link">
+    <div class="wrap">
+      <p class="meta"><span data-lang="ru">Следующий кейс</span><span data-lang="en">Next case</span></p>
+      <div class="next-case__title">
+        <span>ВкусВилл</span>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 28L28 12M28 12H15M28 12V25" stroke="currentColor" stroke-width="1.6"/></svg>
+      </div>
+    </div>
+  </a>
+</div>
+
+<footer class="site-footer" id="contact">
+  <div class="wrap">
+    <p class="meta"><span data-lang="ru">Связаться</span><span data-lang="en">Get in touch</span></p>
+    <h2 class="footer-cta" data-reveal="fade-up">
+      <span data-lang="ru">Открыта к сотрудничеству<br>и новым проектам</span>
+      <span data-lang="en">Open to collaboration<br>and new projects</span>
+    </h2>
+
+    <div class="footer-links">
+      <a href="mailto:sasha.evseenkova@list.ru" data-cursor="link">sasha.evseenkova@list.ru</a>
+      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener" data-cursor="link">Telegram</a>
+      <a href="https://www.instagram.com/a_evseenkova_a" target="_blank" rel="noopener" data-cursor="link">Instagram</a>
+      <a href="../assets/cv-evseenkova-aleksandra-2026.pdf" data-cursor="link">CV</a>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Evseenkova Aleksandra</span>
+      <span class="footer-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span data-lang="ru">Санкт-Петербург · <span data-clock>--:--</span></span>
+        <span data-lang="en">Saint Petersburg · <span data-clock>--:--</span></span>
+      </span>
+    </div>
+  </div>
+</footer>
+</div>
+<div id="scroll-spacer"></div>
+
+<script src="../assets/js/i18n.js" defer></script>
+<script src="../assets/js/cursor.js" defer></script>
+<script src="../assets/js/scroll.js" defer></script>
+<script src="../assets/js/reveal.js" defer></script>
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

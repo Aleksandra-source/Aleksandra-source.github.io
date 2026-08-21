@@ -1,0 +1,429 @@
+/* ==========================================================================
+   Case study template.
+   ========================================================================== */
+
+.case-cover {
+  padding-top: calc(var(--header-h) + clamp(32px, 6vw, 72px));
+  padding-bottom: clamp(40px, 6vw, 80px);
+}
+.case-cover__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-small);
+  color: var(--ink-mid);
+  margin-bottom: clamp(28px, 4vw, 56px);
+}
+.case-cover__back svg { transition: transform var(--dur-micro) var(--ease-out); }
+.case-cover__back:hover svg { transform: translateX(-4px); }
+
+.case-cover__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 2rem + 4.5vw, 6.2rem);
+  letter-spacing: var(--ls-tight);
+  line-height: 0.98;
+  max-width: 16ch;
+}
+
+.case-cover__facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: clamp(40px, 6vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.case-cover__facts dt { font-size: var(--fs-meta); letter-spacing: var(--ls-wide); text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.case-cover__facts dd { font-family: var(--font-display); font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem); }
+
+/* Natural aspect, not a forced 16:9 crop — most cover shots are tall phone
+   screens, and cropping to landscape was cutting most of the screen off. */
+.case-cover__image {
+  margin-top: clamp(40px, 6vw, 80px);
+  aspect-ratio: auto;
+  background: none;
+  text-align: center;
+}
+.case-cover__image img,
+.case-cover__image video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 640px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+@media (max-width: 760px) {
+  .case-cover__facts { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+}
+
+/* ---- Case placeholder (coming soon) ---- */
+.case-cover--placeholder { padding-bottom: clamp(80px, 14vw, 200px); }
+.case-placeholder {
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.case-placeholder__text { font-size: var(--fs-lead); color: var(--muted); }
+
+/* ---- Body layout: sticky side rail + content ---- */
+.case-body {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+.case-toc {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: clamp(64px, 10vw, 140px);
+}
+.case-toc a {
+  font-size: var(--fs-small);
+  color: var(--muted);
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+  transition: color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.case-toc a.is-active { color: var(--ink); border-color: var(--ink); }
+
+.case-content { min-width: 0; }
+.case-block {
+  padding-block: clamp(40px, 6vw, 88px);
+  border-top: 1px solid var(--line);
+}
+.case-block:first-child { border-top: 0; padding-top: clamp(64px, 10vw, 140px); }
+.case-block__label { margin-bottom: 16px; }
+.case-block__title { font-size: clamp(1.7rem, 1.4rem + 1.6vw, 2.6rem); margin-bottom: 20px; }
+.case-block__text { max-width: 68ch; color: var(--ink-mid); }
+.case-block__text + .case-block__text { margin-top: 16px; }
+
+@media (max-width: 900px) {
+  .case-body { grid-template-columns: 1fr; }
+  .case-toc {
+    position: static;
+    flex-direction: row;
+    overflow-x: auto;
+    padding-top: 0;
+    gap: 20px;
+  }
+  .case-toc a { border-left: 0; border-bottom: 2px solid var(--line); padding: 0 0 6px; white-space: nowrap; }
+  .case-toc a.is-active { border-color: var(--ink); }
+  .case-block:first-child { padding-top: clamp(40px, 8vw, 72px); }
+}
+
+/* ---- Findings / callouts ---- */
+.finding-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+.finding {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+.finding:first-child { border-top: 0; }
+.finding__icon { font-size: 1.1rem; line-height: 1; }
+.finding__text { color: var(--ink-mid); }
+
+/* ---- Task decomposition ---- */
+.decomp-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+.decomp-item {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 28px) clamp(20px, 3vw, 32px);
+}
+.decomp-item__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.decomp-item__list { display: flex; flex-direction: column; gap: 6px; }
+.decomp-item__list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-mid);
+  font-size: var(--fs-body);
+}
+.decomp-item__list li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: var(--muted);
+}
+.decomp-item__text { color: var(--ink-mid); font-size: var(--fs-body); }
+.decomp-list.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 32px); }
+@media (max-width: 640px) {
+  .decomp-list.cols-2 { grid-template-columns: 1fr; }
+}
+
+/* ---- Media + text split ---- */
+.split-block {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  margin-top: 24px;
+}
+.split-block__media .frame { background: none; }
+/* Media sitting beside a heading should line up with the heading's cap-height,
+   not the top of its line box. */
+.split-block--top .split-block__media { margin-top: -24px; }
+@media (max-width: 760px) {
+  .split-block--top .split-block__media { margin-top: 0; }
+}
+.split-block__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem);
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+@media (max-width: 760px) {
+  .split-block { grid-template-columns: 1fr; }
+}
+
+/* ---- Width cap (used to shrink a block without stretching full-width) ---- */
+.width-cap-70 { max-width: 70%; }
+@media (max-width: 760px) {
+  .width-cap-70 { max-width: 100%; }
+}
+.width-cap-50 { max-width: 50%; margin-inline: auto; }
+@media (max-width: 760px) {
+  .width-cap-50 { max-width: 100%; }
+}
+.width-cap-25 { max-width: 25%; margin-inline: auto; }
+@media (max-width: 760px) {
+  .width-cap-25 { max-width: 60%; }
+}
+
+/* ---- Screen on backdrop ---- */
+.screen-backdrop {
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 20px;
+  padding-block: clamp(10px, 1.5vw, 18px);
+  padding-inline: clamp(20px, 3vw, 36px);
+}
+
+/* ---- Metric cards ----
+   Three tiers: the metric name, then the expected effect as the headline
+   claim (full ink), then the reasoning behind it as quieter support copy. */
+.metric-effect {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  color: var(--ink);
+  font-size: clamp(0.94rem, 0.9rem + 0.25vw, 1.07rem);
+  line-height: 1.45;
+  margin-top: 16px;
+}
+/* An upward arrow reads as "this metric moves up" faster than the words do. */
+.metric-effect::before {
+  content: "↑";
+  color: #3f8f5f;
+  font-weight: 600;
+  line-height: inherit;
+}
+.metric-reason {
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.metric-reason__label { color: var(--ink-mid); font-weight: 500; }
+
+/* ---- JTBD statements ---- */
+.jtbd-banner {
+  background: var(--inverse-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 14px 14px;
+  color: var(--inverse-ink);
+  border-radius: 999px;
+  padding: 18px 32px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  font-size: var(--fs-small);
+  margin-top: 24px;
+}
+.jtbd-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.jtbd-item {
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 26px) clamp(20px, 3vw, 28px);
+  color: var(--ink-mid);
+  font-size: var(--fs-body);
+}
+.jtbd-item strong { color: var(--ink); font-weight: 600; }
+
+/* ---- Risk grid (soft cards, 2x2) ---- */
+.risk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: 24px;
+}
+.risk-card {
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 28px);
+  transition: background var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+}
+.risk-card:hover {
+  background: rgba(0, 0, 0, 0.055);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+.risk-card__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1rem);
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.risk-card__desc { color: var(--muted); font-size: var(--fs-small); }
+@media (max-width: 640px) {
+  .risk-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Insights (soft filled cards) ---- */
+.insight-list { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+.insight {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 20px 24px;
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 16px;
+}
+.insight__icon { font-size: 1.1rem; line-height: 1.4; }
+.insight__text { color: var(--ink-mid); }
+
+/* ---- Two-up comparison ---- */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  margin-top: 24px;
+}
+.compare figure { display: flex; flex-direction: column; gap: 12px; }
+.compare figcaption { font-size: var(--fs-small); color: var(--muted); }
+.compare .tag { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-meta); letter-spacing: var(--ls-wide); text-transform: uppercase; }
+.compare .tag.no { color: #b45252; }
+.compare .tag.yes { color: #3f8f5f; }
+
+@media (max-width: 640px) {
+  .compare { grid-template-columns: 1fr; }
+}
+
+/* ---- Media gallery ----
+   Frames size to each image's own aspect ratio instead of a fixed 9:16
+   crop — the source screenshots range from tall phone mockups to wide
+   annotated diagrams, and forcing them all into one shape cropped most
+   of the annotated ones down to an unreadable sliver. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.5vw, 32px);
+  margin-top: 24px;
+  align-items: start;
+}
+.gallery.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.gallery.cols-1 { grid-template-columns: 1fr; }
+.gallery figure { display: flex; flex-direction: column; gap: 10px; }
+.gallery figcaption { font-size: var(--fs-small); color: var(--muted); }
+.gallery .frame {
+  aspect-ratio: auto;
+  background: none;
+  border-radius: 6px;
+}
+.gallery .frame img,
+.gallery .frame video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+/* A single tall phone screenshot shouldn't stretch across the full content
+   width just because it's alone in a cols-1 row — cap and centre it. */
+.gallery.cols-1.narrow { max-width: 420px; margin-inline: auto; }
+
+@media (max-width: 760px) {
+  .gallery,
+  .gallery.cols-2 { grid-template-columns: 1fr; }
+}
+
+/* ---- ICE / priority table ---- */
+.ice-table-wrap {
+  margin-top: 24px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.ice-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.ice-table th,
+.ice-table td {
+  padding: 16px 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+.ice-table th:first-child,
+.ice-table td:first-child { text-align: left; white-space: normal; }
+.ice-table thead th {
+  background: rgba(0, 0, 0, 0.035);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-small);
+  color: var(--ink-mid);
+}
+.ice-table tbody td { border-top: 1px solid var(--line); color: var(--ink-mid); }
+.ice-table tbody td:first-child { color: var(--ink); }
+.ice-table tbody td:last-child { font-family: var(--font-display); font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.ice-table tbody tr:first-child td { background: rgba(0, 0, 0, 0.025); }
+
+/* ---- Stat row ---- */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+.stat { padding-top: 16px; border-top: 1px solid var(--line); }
+.stat__title { font-family: var(--font-display); font-weight: 500; font-size: 1.05rem; margin-bottom: 8px; }
+.stat__desc { color: var(--ink-mid); font-size: var(--fs-small); }
+
+@media (max-width: 760px) {
+  .stat-row { grid-template-columns: 1fr; }
+}
+
+/* ---- Next case ---- */
+.next-case {
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
+}
+.next-case a { display: block; padding-block: clamp(48px, 8vw, 96px); }
+.next-case .meta { color: var(--inverse-muted); margin-bottom: 16px; }
+.next-case__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 1.8rem + 3vw, 5rem);
+  letter-spacing: var(--ls-tight);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.next-case__title svg { transition: transform var(--dur-base) var(--ease-out); flex-shrink: 0; }
+.next-case a:hover .next-case__title svg { transform: translateX(12px); }

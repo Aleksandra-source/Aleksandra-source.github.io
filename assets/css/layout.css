@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Layout — grid, header, footer, section rhythm, smooth-scroll scaffold.
+   ========================================================================== */
+
+.wrap {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+section { position: relative; }
+
+.section {
+  padding-block: clamp(64px, 10vw, 140px);
+  border-top: 1px solid var(--line);
+}
+.section:first-of-type { border-top: 0; }
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+/* ---- Smooth-scroll scaffold ----
+   #scroll-fixed is taken out of flow and transformed by scroll.js; the page
+   still scrolls natively (scrollbar, wheel, keyboard, touch all work as
+   normal) — #scroll-spacer just reserves the real document height so there
+   is something to scroll, while #scroll-fixed visually lags behind with a
+   lerp for the inertia feel. Header stays outside #scroll-fixed so it keeps
+   a true fixed position on screen. */
+html.has-smooth-scroll #scroll-fixed {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  will-change: transform;
+}
+#scroll-spacer { visibility: hidden; pointer-events: none; }
+html:not(.has-smooth-scroll) #scroll-spacer { display: none; }
+
+/* ---- Header ---- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  mix-blend-mode: normal;
+}
+.site-header .wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.brand .name-ru { font-family: var(--font-display); font-weight: 500; font-size: 0.95rem; letter-spacing: var(--ls-narrow); }
+.brand .name-en { font-size: 0.7rem; color: var(--muted); }
+
+.main-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); }
+.main-nav__link {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-size: 0.9rem;
+}
+.main-nav__link .ru { font-weight: 500; }
+.main-nav__link .en { font-size: 0.68rem; color: var(--muted); }
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.lang-toggle button {
+  padding: 4px 2px;
+  color: var(--muted);
+  transition: color var(--dur-micro) var(--ease-out);
+}
+.lang-toggle button[aria-pressed="true"] { color: var(--ink); }
+.lang-toggle .sep { color: var(--line-strong); }
+
+/* ---- Footer ---- */
+.site-footer {
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
+  padding-block: clamp(56px, 9vw, 120px) 32px;
+}
+.site-footer a { color: var(--inverse-ink); }
+.site-footer .meta { color: var(--inverse-muted); }
+.footer-cta {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1.4rem + 3vw, 4.5rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-snug);
+  line-height: 1.08;
+}
+.footer-cta br { display: block; }
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px clamp(20px, 3vw, 40px);
+  margin-top: clamp(40px, 6vw, 72px);
+}
+.footer-links a {
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.4rem);
+  font-family: var(--font-display);
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--inverse-line);
+}
+.footer-bottom {
+  margin-top: clamp(48px, 7vw, 96px);
+  padding-top: 24px;
+  border-top: 1px solid var(--inverse-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--inverse-muted);
+}
+.footer-status { display: flex; align-items: center; gap: 8px; }
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.18);
+}
+
+/* ---- Breakpoints ---- */
+@media (max-width: 900px) {
+  .grid-12 { grid-template-columns: repeat(6, 1fr); }
+  .main-nav { gap: 18px; }
+}
+
+@media (max-width: 640px) {
+  :root { --header-h: 68px; }
+  .grid-12 { grid-template-columns: repeat(4, 1fr); }
+  .main-nav__link .en { display: none; }
+  .section { padding-block: clamp(48px, 12vw, 96px); }
+}
+
+/* Two-column hand-placed layouts (image + text, using inline grid-column)
+   stack to full width below tablet size instead of squeezing side by side. */
+@media (max-width: 760px) {
+  .grid-12 > [style*="grid-column"] {
+    grid-column: 1 / -1 !important;
+  }
+  .grid-12 > [style*="grid-column"] + [style*="grid-column"] {
+    margin-top: 32px;
+  }
+}

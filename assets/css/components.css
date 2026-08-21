@@ -1,0 +1,492 @@
+/* ==========================================================================
+   Components — cursor, reveal, work list, timeline, marquee, cards, media.
+   ========================================================================== */
+
+/* ---- Custom cursor ----
+   mix-blend-mode: difference inverts whatever is underneath — text, photos,
+   dark or light sections — so the ring always reads with no per-section
+   theming logic needed. This is the same technique garri.design uses. */
+.cursor-dot, .cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  background: #fff;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, width, height, opacity;
+}
+.cursor-dot {
+  width: 6px; height: 6px;
+  transition: opacity var(--dur-micro) var(--ease-out);
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid #fff;
+  background: transparent;
+  transition: width var(--dur-micro) var(--ease-out), height var(--dur-micro) var(--ease-out),
+              background-color var(--dur-micro) var(--ease-out);
+}
+
+.cursor-ring__label {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #0a0a0a;
+  opacity: 0;
+  transition: opacity var(--dur-micro) var(--ease-out);
+  white-space: nowrap;
+}
+
+html.has-custom-cursor, html.has-custom-cursor a, html.has-custom-cursor button { cursor: none; }
+html:not(.has-custom-cursor) .cursor-dot,
+html:not(.has-custom-cursor) .cursor-ring { display: none; }
+
+.cursor-ring.is-link { width: 64px; height: 64px; background: #fff; border-color: transparent; }
+
+.cursor-ring.is-case {
+  width: 112px; height: 112px;
+  background: #fff;
+  border-color: transparent;
+}
+.cursor-ring.is-case .cursor-ring__label { opacity: 1; }
+
+.cursor-ring.is-drag { width: 74px; height: 74px; background: #fff; border-color: transparent; }
+.cursor-ring.is-drag .cursor-ring__label { opacity: 1; }
+
+.cursor-ring.is-copy { width: 78px; height: 78px; background: #fff; border-color: transparent; }
+.cursor-ring.is-copy .cursor-ring__label { opacity: 1; }
+
+/* ---- Reveal animations ---- */
+[data-reveal] { opacity: 0; }
+[data-reveal="fade-up"] { transform: translateY(28px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); }
+[data-reveal="fade-up"].is-visible { opacity: 1; transform: translateY(0); }
+
+[data-reveal="fade"] { transition: opacity var(--dur-reveal) var(--ease-out); }
+[data-reveal="fade"].is-visible { opacity: 1; }
+
+[data-reveal="mask"] { opacity: 1; }
+[data-reveal="mask"] > * { transform: translateY(105%); transition: transform var(--dur-reveal) var(--ease-out); }
+[data-reveal="mask"].is-visible > * { transform: translateY(0); }
+
+[data-reveal-group] [data-reveal] { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* ---- Buttons / pills ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+}
+.btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+.btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn--primary:hover { background: transparent; color: var(--ink); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  font-size: var(--fs-small);
+  color: var(--ink-mid);
+}
+
+/* ---- Capability strip (home) ---- */
+.capabilities {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.capability {
+  background: var(--bg);
+  padding: 28px clamp(16px, 2vw, 28px);
+}
+.capability .num { font-size: var(--fs-meta); color: var(--muted); letter-spacing: var(--ls-wide); }
+.capability p { margin-top: 14px; font-family: var(--font-display); font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem); font-weight: 500; letter-spacing: var(--ls-narrow); line-height: 1.25; }
+
+@media (max-width: 900px) {
+  .capabilities { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .capabilities { grid-template-columns: 1fr; }
+}
+
+/* ---- Work grid (home) ----
+   Each project is a static card: the full first screen sits inside a padded,
+   bordered frame (object-fit: contain, so nothing is ever cropped), with
+   title, one-line result and meta beside it. */
+.work-grid {
+  display: flex;
+  flex-direction: column;
+}
+.work-card {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) 1fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 64px);
+  padding-block: clamp(32px, 5vw, 56px);
+  border-top: 1px solid var(--line);
+}
+.work-card:first-child { border-top: 0; }
+
+.work-card__frame {
+  aspect-ratio: 6 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: scale(1);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.work-card:hover .work-card__frame { transform: scale(1.015); }
+.work-card__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.work-card__body { min-width: 0; }
+.work-card__index { display: block; margin-bottom: 12px; }
+.work-card__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 1.3rem + 1.6vw, 2.6rem);
+  letter-spacing: var(--ls-narrow);
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.work-card__desc { margin-top: 14px; color: var(--ink-mid); max-width: 46ch; }
+.work-card__meta { margin-top: 18px; }
+
+.work-card__arrow {
+  flex-shrink: 0;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+}
+.work-card:hover .work-card__arrow { background: var(--ink); transform: rotate(45deg); }
+.work-card:hover .work-card__arrow svg { stroke: var(--bg); }
+
+@media (max-width: 760px) {
+  .work-card { grid-template-columns: 1fr; }
+}
+
+/* ---- Timeline (experience) ---- */
+.timeline { border-top: 1px solid var(--line); }
+.timeline-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  padding: clamp(24px, 3vw, 40px) 4px;
+  border-bottom: 1px solid var(--line);
+}
+.timeline-row__years { font-family: var(--font-display); font-size: 0.95rem; color: var(--muted); padding-top: 4px; }
+.timeline-row__org { font-family: var(--font-display); font-size: clamp(1.15rem, 1rem + 0.8vw, 1.6rem); font-weight: 500; margin-bottom: 8px; }
+.timeline-row__desc { color: var(--ink-mid); max-width: 62ch; }
+.timeline-row__tag { display: inline-block; margin-top: 12px; }
+
+@media (max-width: 640px) {
+  .timeline-row { grid-template-columns: 1fr; gap: 8px; }
+}
+
+/* ---- Marquee ---- */
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding-block: 22px;
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 3rem;
+  will-change: transform;
+}
+.marquee__track span {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1rem + 1.2vw, 2rem);
+  letter-spacing: var(--ls-narrow);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.marquee__track span.accent { color: var(--ink); }
+
+/* ---- About: travel drag-stack ----
+   A Tinder-style card stack: the front photo can be dragged left/right with
+   the pointer; releasing past the threshold sends it to the back of the
+   stack and the next card becomes active. See assets/js/drag-stack.js. */
+.drag-stack {
+  position: relative;
+  width: min(320px, 82vw);
+  aspect-ratio: 4 / 5;
+  margin-inline: auto;
+  touch-action: pan-y;
+}
+.drag-card {
+  position: absolute;
+  inset: 0;
+  background: #f4f2ee; /* fixed paper tone — a print stays cream regardless of page theme */
+  padding: 12px 12px 40px;
+  box-shadow: 0 28px 48px -16px rgba(0, 0, 0, 0.22);
+  cursor: grab;
+  will-change: transform, opacity;
+}
+.drag-card:active { cursor: grabbing; }
+.drag-card.is-dragging { transition: none !important; }
+.drag-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+.drag-card figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.56); /* fixed — sits on the card's own cream tone, not the page bg */
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+/* ---- About: hover-to-play video ----
+   A poster image by default; hovering (or tapping, on touch) cross-fades
+   into the looping clip. Kept correctly sized to the source's own aspect
+   ratio so nothing gets cropped or blown up. */
+.hover-video { position: relative; cursor: pointer; }
+.hover-video__poster, .hover-video__clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hover-video__poster { position: relative; transition: opacity var(--dur-base) var(--ease-out); }
+.hover-video__clip { opacity: 0; transition: opacity var(--dur-base) var(--ease-out); }
+.hover-video.is-active .hover-video__poster { opacity: 0; }
+.hover-video.is-active .hover-video__clip { opacity: 1; }
+
+/* ---- About: books — 3D cover flip ----
+   Hovering swings the cover open around its left edge like a real book,
+   revealing a plain page behind it. */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(16px, 2vw, 28px) clamp(12px, 1.6vw, 20px);
+}
+.book-flip {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  perspective: 900px;
+}
+.book-flip__page {
+  position: absolute;
+  inset: 0;
+  left: 6%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+.book-flip__cover {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.35);
+  transform-origin: left center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.book-flip__cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.book-flip:hover .book-flip__cover,
+.book-flip:focus-within .book-flip__cover { transform: rotateY(-32deg); }
+
+@media (max-width: 900px) {
+  .book-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 560px) {
+  .book-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .book-flip__title { font-size: 0.78rem; }
+}
+
+/* ---- About: scrubbing prose intro ----
+   A tall photo pinned on the right while a column of paragraphs scrolls
+   past on the left; whichever paragraph crosses the viewport's centre band
+   lights up to full ink, the rest sit dim. See assets/js/scrub.js. */
+.prose-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: clamp(28px, 3.5vw, 64px);
+  align-items: start;
+}
+/* Short single-paragraph copy (teasers) shouldn't sit in a full 1fr track —
+   grid gap is measured from the TRACK edge, not the content edge, so a
+   wide track leaves dead air before the gap even starts regardless of how
+   narrow the text itself is. Capping the track width directly (not just
+   the item inside it) is what actually pulls the gap in. */
+.prose-split--tight { grid-template-columns: minmax(0, 46ch) minmax(280px, 420px); }
+/* A fixed photo track ends short of the content edge, leaving dead space to
+   its right. Letting it take the remainder centres the silhouette in what's
+   actually left over. */
+.prose-split--fill-media { grid-template-columns: minmax(0, 53ch) 1fr; }
+@media (max-width: 860px) {
+  .prose-split--fill-media { grid-template-columns: 1fr; }
+}
+.prose-split__media {
+  position: sticky;
+  top: calc(var(--header-h) + clamp(24px, 4vw, 56px));
+}
+.prose-split__col { display: flex; flex-direction: column; gap: clamp(28px, 4vw, 44px); }
+
+.prose-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.prose-block {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 1rem + 0.9vw, 1.6rem);
+  font-weight: 450;
+  line-height: 1.45;
+  letter-spacing: var(--ls-narrow);
+  color: var(--muted);
+  transition: color var(--dur-page) var(--ease-out);
+}
+.prose-block.is-active { color: var(--ink); }
+
+@media (max-width: 860px) {
+  .prose-split { grid-template-columns: 1fr; }
+  .prose-split__media { position: static; order: -1; max-width: 320px; margin-inline: auto; }
+}
+
+/* ---- About: split card (personal / yoga) ----
+   Same visual weight as a home work-card — a rounded media frame roughly
+   half the row, paired with a short text column, not a full-bleed video. */
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) 1fr;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: center;
+}
+.section-split__media .frame { border-radius: 20px; aspect-ratio: 4 / 5; width: 100%; }
+@media (max-width: 700px) {
+  .section-split { grid-template-columns: 1fr; }
+}
+
+/* ---- Quote / pull (used on case pages and the About travel section) ---- */
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.1rem + 1vw, 1.9rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-narrow);
+  line-height: 1.3;
+  max-width: 24ch;
+  padding-left: 24px;
+  border-left: 2px solid var(--ink);
+  margin-top: 24px;
+}
+
+/* ---- Media + text pair (about intro, personal, teasers) ----
+   A small fixed-width photo/video next to flowing copy, with a tight,
+   controlled gap — not a 12-col grid span, which reads as too much empty
+   space between the two. */
+.media-pair {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 40px);
+}
+.media-pair__media { flex: 0 0 auto; }
+.media-pair__text { flex: 1 1 320px; min-width: 280px; }
+
+/* ---- Cut-out portrait ----
+   A background-removed PNG/WebP that sits directly on the page background
+   with no frame, border or crop — the silhouette itself is the shape. Height
+   is capped rather than width, because the source is very tall and a
+   width-driven size would tower over the copy beside it. */
+.cutout { display: flex; justify-content: center; align-items: flex-end; }
+.cutout img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: clamp(340px, 46vw, 560px);
+  display: block;
+}
+
+/* ---- Portrait / media frames ---- */
+.frame { overflow: hidden; border-radius: 4px; background: var(--line); }
+.frame img, .frame video { width: 100%; height: 100%; object-fit: cover; }
+.frame--parallax img, .frame--parallax video { transform: scale(1.12); will-change: transform; }
+
+/* ---- Preloader ---- */
+.preloader {
+  position: fixed; inset: 0;
+  z-index: 10000;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  transition: opacity var(--dur-page) var(--ease-io), visibility var(--dur-page) var(--ease-io);
+}
+.preloader.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 1rem + 3vw, 2.6rem);
+  letter-spacing: var(--ls-narrow);
+}
+.preloader__count {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.preloader__bar {
+  width: min(280px, 60vw);
+  height: 1px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.preloader__bar span {
+  position: absolute; inset: 0;
+  width: 0%;
+  background: var(--ink);
+  transition: width 120ms linear;
+}
+
+/* ---- Scroll progress (case pages) ---- */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--ink);
+  z-index: 200;
+  width: 0%;
+  transform-origin: left;
+}
