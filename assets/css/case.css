@@ -159,6 +159,9 @@
   left: 2px;
   color: var(--muted);
 }
+.decomp-item__list--roomy { gap: 20px; }
+.decomp-item__list--roomy li { line-height: 1.5; }
+.decomp-item__list li strong { color: var(--ink); font-weight: 700; }
 .decomp-item__text { color: var(--ink-mid); font-size: var(--fs-body); }
 .decomp-list.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 32px); }
 @media (max-width: 640px) {
@@ -190,6 +193,12 @@
 @media (max-width: 760px) {
   .split-block { grid-template-columns: 1fr; }
 }
+.split-block--reverse { grid-template-columns: 1fr minmax(200px, 300px); }
+.split-block--reverse .split-block__media { order: 2; }
+@media (max-width: 760px) {
+  .split-block--reverse .split-block__media { order: 0; }
+}
+.split-block--center { align-items: center; }
 
 /* ---- Width cap (used to shrink a block without stretching full-width) ---- */
 .width-cap-70 { max-width: 70%; }
@@ -267,6 +276,516 @@
   font-size: var(--fs-body);
 }
 .jtbd-item strong { color: var(--ink); font-weight: 600; }
+
+/* ---- Filmstrip (real screens, horizontal scroll) ----
+   Real app screens read better as a strip you scrub through than as a
+   boxes-and-arrows diagram — the actual UI is the evidence. */
+.filmstrip {
+  margin-top: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.filmstrip__track { display: flex; gap: clamp(6px, 1.2vw, 10px); width: max-content; }
+.filmstrip__step {
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.2vw, 10px);
+  flex-shrink: 0;
+}
+.filmstrip__frame { display: flex; flex-direction: column; gap: 10px; scroll-snap-align: start; }
+.filmstrip__frame .frame {
+  width: clamp(140px, 15vw, 190px);
+  aspect-ratio: 584 / 1264;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+}
+.filmstrip__frame .frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.filmstrip__caption {
+  font-size: var(--fs-meta);
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.35;
+}
+.filmstrip__arrow {
+  flex-shrink: 0;
+  color: var(--line-strong);
+  align-self: center;
+  margin-bottom: 26px;
+}
+
+
+/* ---- Insight cards (numbered, soft) ----
+   Нумерация вместо повторяющейся иконки: три одинаковых эмодзи в столбик
+   читаются как шум, а номер задаёт порядок чтения. */
+.insight-cards { display: flex; flex-direction: column; gap: 12px; margin-top: 22px; }
+.insight-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(16px, 2.5vw, 26px);
+  align-items: start;
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 18px;
+  padding: clamp(20px, 3vw, 26px) clamp(20px, 3vw, 30px);
+  transition: background var(--dur-micro) var(--ease-out);
+}
+.insight-card:hover { background: rgba(0, 0, 0, 0.055); }
+.insight-card__num {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+.insight-card__text { color: var(--ink-mid); line-height: 1.5; }
+
+/* ---- Problem / task pair ----
+   Two labelled cards side by side. The site is monochrome, so the label
+   carries the colour and the card stays a soft neutral tint. */
+.pt-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 28px;
+}
+.pt-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pt-item--problem .pt-label { color: #d98324; }
+.pt-item--task .pt-label { color: #2f9e5f; }
+/* Карточки тянутся на всю высоту ячейки, чтобы пара была ровной
+   независимо от длины текста. */
+.pt-item { display: flex; flex-direction: column; }
+.pt-card {
+  flex: 1;
+  border-radius: 20px;
+  padding: clamp(22px, 3vw, 32px);
+  color: var(--ink-mid);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+.pt-item--problem .pt-card { background: rgba(217, 131, 36, 0.10); }
+.pt-item--task .pt-card { background: rgba(47, 158, 95, 0.12); }
+
+@media (max-width: 700px) {
+  .pt-pair { grid-template-columns: 1fr; }
+}
+
+/* ---- Hypothesis cards (hover to highlight) ----
+   Both cards sit neutral by default; hovering one fills it with the accent
+   green and pushes the copy to full opacity, so the reader compares them
+   one at a time instead of skimming two walls of text at once. */
+.hypo-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2vw, 20px);
+  margin-top: 28px;
+}
+.hypo-card {
+  border-radius: 20px;
+  padding: clamp(22px, 3vw, 32px);
+  background: rgba(0, 0, 0, 0.035);
+  transition: background var(--dur-base) var(--ease-out);
+}
+.hypo-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+  letter-spacing: var(--ls-narrow);
+  color: var(--ink);
+  margin-bottom: 16px;
+  white-space: nowrap;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.hypo-card__text {
+  color: var(--muted);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.hypo-card:hover { background: #23a55b; }
+.hypo-card:hover .hypo-card__title,
+.hypo-card:hover .hypo-card__text { color: #fff; }
+
+@media (max-width: 700px) {
+  .hypo-cards { grid-template-columns: 1fr; }
+  .hypo-card__title { white-space: normal; }
+}
+
+/* ---- Filmstrip, wide variant (survey question screenshots) ----
+   Same scrubbable strip as the screen flow, but for landscape ~4:3
+   screenshots instead of phone frames. */
+.filmstrip__frame--wide .frame {
+  width: clamp(340px, 46vw, 620px);
+  aspect-ratio: 101 / 71;
+  border-radius: 12px;
+}
+.filmstrip__frame--wide .frame img { object-fit: contain; object-position: center; background: var(--surface); }
+
+/* ---- Survey results (numbered rows, colour-coded) ---- */
+.survey-results { margin-top: 22px; display: flex; flex-direction: column; }
+.survey-result {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 28px);
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--line);
+}
+.survey-result:first-child { padding-top: 4px; }
+.survey-result:last-child { border-bottom: none; }
+.survey-result__body {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 18px);
+}
+.survey-result__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  flex-shrink: 0;
+}
+.survey-result--green .survey-result__num { background: #2f9e5f; }
+.survey-result--amber .survey-result__num { background: #d98324; }
+.survey-result__text { color: var(--ink-mid); font-size: var(--fs-body); line-height: 1.4; }
+.survey-result__pct {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+  font-variant-numeric: tabular-nums;
+}
+.survey-result--green .survey-result__pct { color: #2f9e5f; }
+.survey-result--amber .survey-result__pct { color: #d98324; }
+
+/* ---- Context table (user / business / audience / success) ----
+   A calmer take on the classic 4-column brief table: one soft card, thin
+   dividers instead of a solid colour header, and a short accent rule under
+   each label to carry the colour instead of painting the whole row. */
+.context-table {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.context-col {
+  padding: clamp(20px, 2.6vw, 30px) clamp(18px, 2.4vw, 26px);
+  border-left: 1px solid var(--line);
+}
+.context-col:first-child { border-left: none; }
+.context-col__head {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid #2f9e5f;
+}
+.context-col__item {
+  color: var(--ink-mid);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.context-col__item:first-of-type { padding-top: 0; border-top: none; }
+
+@media (max-width: 820px) {
+  .context-table { grid-template-columns: 1fr; }
+  .context-col { border-left: none; border-top: 1px solid var(--line); }
+  .context-col:first-child { border-top: none; }
+}
+
+/* ---- Competitor cards (tap/hover a screen to zoom into the hotspot) ----
+   Real screenshots, cropped to the relevant area, with a marked spot the
+   reader can zoom into instead of a static circle-and-blur video. */
+.competitors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2.5vw, 24px);
+  margin-top: 28px;
+}
+.competitor-card {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 20px;
+  padding: clamp(20px, 2.6vw, 28px);
+}
+.competitor-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.25rem);
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.competitor-shots { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 18px; }
+.competitor-shot {
+  flex: 1;
+  min-width: 0;
+  width: clamp(130px, 15vw, 190px);
+  aspect-ratio: 1179 / 2556;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.competitor-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hotspot-frame {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  width: clamp(130px, 15vw, 190px);
+  aspect-ratio: 1179 / 2556;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0;
+  cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.hotspot-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 550ms var(--ease-out);
+  transform-origin: var(--hx, 50%) var(--hy, 50%);
+}
+.hotspot-frame.is-zoomed img { transform: scale(var(--zoom, 2.1)); }
+@media (hover: hover) {
+  .hotspot-frame:hover img { transform: scale(var(--zoom, 2.1)); }
+}
+.hotspot-dot {
+  position: absolute;
+  left: var(--hx, 50%);
+  top: var(--hy, 50%);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #2f9e5f;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 4px rgba(47, 158, 95, 0.28);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: opacity 250ms var(--ease-out);
+  animation: hotspot-pulse 2.2s ease-out infinite;
+}
+.hotspot-frame.is-zoomed .hotspot-dot { opacity: 0; }
+@media (hover: hover) {
+  .hotspot-frame:hover .hotspot-dot { opacity: 0; }
+}
+@keyframes hotspot-pulse {
+  0%, 60%, 100% { box-shadow: 0 0 0 4px rgba(47, 158, 95, 0.28); }
+  30% { box-shadow: 0 0 0 9px rgba(47, 158, 95, 0.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-dot { animation: none; }
+}
+
+/* ---- Callout (pinned note) ---- */
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.035);
+  border-radius: 18px;
+  padding: clamp(20px, 2.8vw, 26px);
+  margin-top: 24px;
+}
+.callout__icon { font-size: 1.25rem; line-height: 1; flex-shrink: 0; }
+.callout__text { color: var(--ink); font-size: var(--fs-body); line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .competitors-grid { grid-template-columns: 1fr; }
+}
+
+/* ---- Hero hotspot (full-width diagram, zoom into one marked area) ---- */
+.hotspot-frame--hero {
+  width: 100%;
+  aspect-ratio: 7118 / 2544;
+  border-radius: 20px;
+  margin-top: 28px;
+}
+.hotspot-frame--hero .hotspot-dot { width: 14px; height: 14px; }
+
+/* ---- Reorder before/after (image + was/now columns aligned to it) ---- */
+.reorder-compare { margin-top: 28px; }
+.reorder-compare__image {
+  width: 100%;
+  max-width: 70%;
+  margin-inline: auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.reorder-compare__image img { display: block; width: 100%; height: auto; }
+.reorder-compare__labels {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr;
+  margin-top: 24px;
+}
+.reorder-label__head {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  border-bottom: 2px solid currentColor;
+}
+.reorder-label--was .reorder-label__head { color: #d98324; }
+.reorder-label--now .reorder-label__head { color: #2f9e5f; }
+.reorder-label__text { color: var(--ink-mid); font-size: var(--fs-body); line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .reorder-compare__image { max-width: 100%; }
+  .reorder-compare__labels { grid-template-columns: 1fr; max-width: 100%; gap: 24px; }
+  .reorder-compare__labels > .reorder-spacer { display: none; }
+}
+
+/* ---- Subheading with a trailing "+" mark ---- */
+.subheading-plus {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  margin-top: 40px;
+}
+.subheading-plus__mark { color: #2f9e5f; }
+
+/* ---- Wide static image (no zoom, just a rounded frame) ---- */
+.static-frame {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+.static-frame img { display: block; width: 100%; height: auto; }
+.static-frame--sm { max-width: 65%; margin-inline: auto; }
+@media (max-width: 700px) {
+  .static-frame--sm { max-width: 100%; }
+}
+
+/* ---- Usability note (caption + one screen, centred as a unit) ---- */
+.usability-note {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) minmax(200px, 300px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-top: 36px;
+}
+.usability-note__text { color: var(--ink); font-size: var(--fs-body); line-height: 1.5; }
+.usability-note__media .frame { aspect-ratio: 962 / 1762; border-radius: 26px; background: none; }
+@media (max-width: 760px) {
+  .usability-note { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 20px; }
+  .usability-note__media { width: 60%; }
+}
+
+/* ---- Caption row (numbered labels under an illustration) ---- */
+.caption-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 32px);
+  margin-top: 18px;
+}
+.caption-row__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+.caption-row__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #2f9e5f;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.caption-note {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  color: var(--ink);
+  margin-top: 18px;
+}
+
+/* ---- Finding list (usability-test results, one verdict per row) ---- */
+.finding-list { display: flex; flex-direction: column; margin-top: 28px; }
+.finding-item {
+  display: grid;
+  grid-template-columns: 276px 1fr;
+  gap: clamp(20px, 3vw, 32px);
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.finding-item__verdict + .finding-item__verdict { margin-top: 20px; }
+.finding-item:first-child { border-top: none; padding-top: 4px; }
+.finding-item__shot {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.finding-item__shot img { display: block; width: 100%; height: auto; }
+.finding-item__shots { display: flex; flex-direction: column; gap: 8px; }
+.finding-item--wide { align-items: center; }
+@media (max-width: 640px) {
+  .finding-item--wide { grid-template-columns: 1fr; }
+}
+.finding-item__head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.finding-item__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.finding-item__badge svg { width: 12px; height: 12px; }
+.finding-item--positive .finding-item__badge { background: #2f9e5f; }
+.finding-item--negative .finding-item__badge { background: #d98324; }
+.finding-item__label { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-small); }
+.finding-item--positive .finding-item__label { color: #2f9e5f; }
+.finding-item--negative .finding-item__label { color: #d98324; }
+.finding-item__text { color: var(--ink-mid); font-size: var(--fs-body); line-height: 1.5; }
+.finding-item__text strong { color: var(--ink); }
+@media (max-width: 640px) {
+  .finding-item { grid-template-columns: 1fr; }
+  .finding-item__shot { max-width: 240px; }
+}
 
 /* ---- Risk grid (soft cards, 2x2) ---- */
 .risk-grid {
@@ -407,6 +926,24 @@
 
 @media (max-width: 760px) {
   .stat-row { grid-template-columns: 1fr; }
+}
+
+/* ---- Metric forecast (underlined label + reasoning, like reorder-label) ---- */
+.metric-list { display: flex; flex-direction: column; gap: 28px; margin-top: 28px; }
+.metric-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 40px); }
+.metric-item__head {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+  color: #2f9e5f;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid currentColor;
+}
+.metric-item__text { color: var(--ink-mid); font-size: var(--fs-body); line-height: 1.5; }
+@media (max-width: 700px) {
+  .metric-row { grid-template-columns: 1fr; gap: 24px; }
 }
 
 /* ---- Next case ---- */

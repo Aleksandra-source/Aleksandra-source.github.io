@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ВкусВилл · Евсеенкова Александра</title>
-<meta name="description" content="Кейс в работе — скоро здесь появится описание проекта." />
-<meta property="og:title" content="ВкусВилл — скоро" />
+<title>Быстрое добавление в корзину — ВкусВилл · Евсеенкова Александра</title>
+<meta name="description" content="Концепт-проект: как добавить забытый товар в корзину, не покидая её." />
+<meta property="og:title" content="Быстрое добавление в корзину — ВкусВилл" />
 <meta property="og:type" content="article" />
 
 <script>
@@ -70,19 +70,721 @@
 <main id="main">
 
   <!-- ============ COVER ============ -->
-  <section class="case-cover case-cover--placeholder">
+  <section class="case-cover">
     <div class="wrap">
       <a class="case-cover__back" href="../index.html#work" data-cursor="link">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M12 4L4 12M4 12H11M4 12V5" stroke="currentColor" stroke-width="1.4"/></svg>
         <span data-lang="ru">На главную</span><span data-lang="en">Back home</span>
       </a>
 
-      <div class="case-placeholder" data-reveal="fade-up">
-        <h1 class="case-cover__title"><span data-lang="ru">ВкусВилл</span><span data-lang="en">VkusVill</span></h1>
-        <p class="case-placeholder__text"><span data-lang="ru">Скоро здесь будет кейс</span><span data-lang="en">The case study is coming soon</span></p>
+      <h1 class="case-cover__title" data-reveal="fade-up">
+        <span data-lang="ru">Быстрое добавление в корзину</span>
+        <span data-lang="en">Faster cart additions</span>
+      </h1>
+
+      <dl class="case-cover__facts" data-reveal="fade-up">
+        <div>
+          <dt><span data-lang="ru">Клиент</span><span data-lang="en">Client</span></dt>
+          <dd>ВкусВилл</dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Формат</span><span data-lang="en">Format</span></dt>
+          <dd><span data-lang="ru">Концепт-проект</span><span data-lang="en">Concept project</span></dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Роль</span><span data-lang="en">Role</span></dt>
+          <dd><span data-lang="ru">UX-исследование, дизайн</span><span data-lang="en">UX research, design</span></dd>
+        </div>
+        <div>
+          <dt><span data-lang="ru">Год</span><span data-lang="en">Year</span></dt>
+          <dd>2026</dd>
+        </div>
+      </dl>
+
+      <!-- Без data-parallax: он масштабирует медиа на 1.12 и обрезает высокое
+           видео по нижней границе кадра. -->
+      <div class="frame case-cover__image" data-reveal="fade-up">
+        <video src="../assets/video/vkusvill-prototype.mp4" autoplay muted loop playsinline aria-label="Прототип решения" width="890" height="1798"></video>
       </div>
     </div>
   </section>
+
+  <!-- ============ BODY ============ -->
+  <div class="wrap">
+    <div class="case-body">
+      <nav class="case-toc" aria-label="Содержание кейса">
+        <a href="#problem"><span data-lang="ru">Проблема</span><span data-lang="en">Problem</span></a>
+        <a href="#flow"><span data-lang="ru">Screen Flow</span><span data-lang="en">Screen flow</span></a>
+        <a href="#hypotheses"><span data-lang="ru">Гипотезы</span><span data-lang="en">Hypotheses</span></a>
+        <a href="#survey"><span data-lang="ru">Опрос</span><span data-lang="en">Survey</span></a>
+        <a href="#context"><span data-lang="ru">Контекст и цели</span><span data-lang="en">Context &amp; goals</span></a>
+        <a href="#competitors"><span data-lang="ru">Конкуренты</span><span data-lang="en">Competitors</span></a>
+        <a href="#solution"><span data-lang="ru">Решение и макеты</span><span data-lang="en">Solution &amp; mockups</span></a>
+        <a href="#metrics"><span data-lang="ru">Прогноз эффективности</span><span data-lang="en">Impact forecast</span></a>
+      </nav>
+
+      <div class="case-content">
+
+        <!-- ---- PROBLEM / TASK ---- -->
+        <section class="case-block" id="problem">
+          <p class="meta case-block__label"><span data-lang="ru">01 · Проблема и задача</span><span data-lang="en">01 · Problem &amp; task</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Корзина — тупик</span><span data-lang="en">The cart is a dead end</span></h2>
+
+          <div class="pt-pair" data-reveal="fade-up">
+            <div class="pt-item pt-item--problem">
+              <p class="pt-label"><span data-lang="ru">Проблема</span><span data-lang="en">Problem</span></p>
+              <p class="pt-card">
+                <span data-lang="ru">Корзина в&nbsp;её текущем виде — это тупик. Она отрезает пользователя от&nbsp;всего ассортимента в&nbsp;самый ответственный момент, создавая барьер для&nbsp;спонтанных и&nbsp;«забытых» покупок.</span>
+                <span data-lang="en">The cart as it stands is a dead end. It cuts the user off from the whole catalogue at the most decisive moment, creating a barrier to spontaneous and forgotten purchases.</span>
+              </p>
+            </div>
+            <div class="pt-item pt-item--task">
+              <p class="pt-label"><span data-lang="ru">Задача</span><span data-lang="en">Task</span></p>
+              <p class="pt-card">
+                <span data-lang="ru">Спроектировать и&nbsp;внедрить изменения в&nbsp;интерфейс корзины, которые позволят пользователю добавлять новые товары, не&nbsp;покидая экрана корзины.</span>
+                <span data-lang="en">Design and ship changes to the cart interface that let users add new items without leaving the cart screen.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- SCREEN FLOW ---- -->
+        <section class="case-block" id="flow">
+          <p class="meta case-block__label"><span data-lang="ru">02 · Screen Flow</span><span data-lang="en">02 · Screen flow</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Screen Flow</span><span data-lang="en">Screen Flow</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Для начала рассмотрела весь путь пользователя с помощью Screen Flow: от&nbsp;выбора шаблона прошлого заказа до&nbsp;его оплаты, уделяя особое внимание моменту, когда пользователю нужно добавить к&nbsp;этому списку забытый или новый товар.</span>
+            <span data-lang="en">First I mapped the full user journey with a Screen Flow — from picking a past order template to paying for it — paying close attention to the moment a forgotten or new item needs adding to that list.</span>
+          </p>
+
+          <div class="filmstrip" data-reveal="fade-up">
+            <div class="filmstrip__track">
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-1.png" alt="Главный экран приложения" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Главная</span><span data-lang="en">Home</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-2.png" alt="Информация о бесплатной доставке" loading="lazy" width="584" height="1266" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Доставка</span><span data-lang="en">Delivery info</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-3.png" alt="Профиль, вкладка «Мои заказы»" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Мои заказы</span><span data-lang="en">My orders</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-4.png" alt="Уведомление: товары из заказа добавлены в корзину" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Повторный заказ</span><span data-lang="en">Reorder</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-5.png" alt="Корзина с двумя товарами" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Корзина: 2 товара</span><span data-lang="en">Cart: 2 items</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-6.png" alt="Корзина: промокоды и упаковка заказа" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Промокоды, добавьте в заказ</span><span data-lang="en">Promo codes, add to order</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-7.png" alt="Корзина: оплата и оформление заказа" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Оформление заказа</span><span data-lang="en">Checkout</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-8.png" alt="Каталог товаров" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Каталог</span><span data-lang="en">Catalogue</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-9.png" alt="Поиск товара «Яблоки»" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Поиск товара</span><span data-lang="en">Product search</span></figcaption>
+                </figure>
+                <svg class="filmstrip__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 3L11 8L5 13" stroke="currentColor" stroke-width="1.4"/></svg>
+              </div>
+
+              <div class="filmstrip__step">
+                <figure class="filmstrip__frame">
+                  <div class="frame"><img src="../assets/img/cases/vkusvill/flow-screen-10.png" alt="Корзина с добавленным забытым товаром" loading="lazy" width="584" height="1264" /></div>
+                  <figcaption class="filmstrip__caption"><span data-lang="ru">Товар добавлен</span><span data-lang="en">Item added</span></figcaption>
+                </figure>
+              </div>
+
+            </div>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 36px;">
+            <span data-lang="ru">Ключевые инсайты из Screen Flow</span>
+            <span data-lang="en">Key insights from the screen flow</span>
+          </p>
+          <div class="insight-cards" data-reveal="fade-up">
+            <div class="insight-card">
+              <span class="insight-card__num">01</span>
+              <p class="insight-card__text">
+                <span data-lang="ru">Кнопка корзины на&nbsp;главном экране не&nbsp;ведёт в&nbsp;корзину, если в&nbsp;неё не&nbsp;добавлены продукты. Вместо этого появляется информация о&nbsp;доставке.</span>
+                <span data-lang="en">The cart button on the home screen doesn't open the cart when it's empty — it shows delivery info instead.</span>
+              </p>
+            </div>
+            <div class="insight-card">
+              <span class="insight-card__num">02</span>
+              <p class="insight-card__text">
+                <span data-lang="ru">При повторении прошлого заказа продукты добавляются в&nbsp;корзину, но&nbsp;корзина не&nbsp;открывается — для&nbsp;этого нужно делать дополнительные шаги.</span>
+                <span data-lang="en">Reordering adds the products to the cart, but the cart doesn't open — that takes extra steps.</span>
+              </p>
+            </div>
+            <div class="insight-card">
+              <span class="insight-card__num">03</span>
+              <p class="insight-card__text">
+                <span data-lang="ru">Из корзины нельзя быстро добавить забытый продукт — для&nbsp;этого необходимо вернуться в&nbsp;каталог товаров.</span>
+                <span data-lang="en">You can't quickly add a forgotten product from the cart — you have to go back to the catalogue.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- HYPOTHESES ---- -->
+        <section class="case-block" id="hypotheses">
+          <p class="meta case-block__label"><span data-lang="ru">03 · Гипотезы</span><span data-lang="en">03 · Hypotheses</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Гипотезы</span><span data-lang="en">Hypotheses</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">После аудита приложения я&nbsp;перешла к&nbsp;формулированию гипотез, направленных на&nbsp;улучшение пользовательского взаимодействия с&nbsp;приложением.</span>
+            <span data-lang="en">After auditing the app I moved on to formulating hypotheses aimed at improving how users interact with it.</span>
+          </p>
+
+          <div class="hypo-cards" data-reveal="fade-up">
+            <div class="hypo-card">
+              <p class="hypo-card__title"><span data-lang="ru">Гипотеза №1 · Retention</span><span data-lang="en">Hypothesis No. 1 · Retention</span></p>
+              <p class="hypo-card__text">
+                <span data-lang="ru">Если сократить количество шагов в&nbsp;процессе «Повторного заказа», то это увеличит показатель удержания, поскольку позволит постоянным клиентам оформлять привычные заказы быстрее и&nbsp;с&nbsp;меньшими усилиями.</span>
+                <span data-lang="en">If we cut the number of steps in the &ldquo;Reorder&rdquo; flow, retention will grow — regular customers will place familiar orders faster and with less effort.</span>
+              </p>
+            </div>
+            <div class="hypo-card">
+              <p class="hypo-card__title"><span data-lang="ru">Гипотеза №2 · Средний чек (AOV)</span><span data-lang="en">Hypothesis No. 2 · Average order value (AOV)</span></p>
+              <p class="hypo-card__text">
+                <span data-lang="ru">Если разместить кнопку «Добавить продукты» на&nbsp;экране корзины, то это увеличит средний чек (AOV), так как устранит главное препятствие для&nbsp;быстрого добавления забытых товаров или импульсивных покупок.</span>
+                <span data-lang="en">If we place an &ldquo;Add products&rdquo; button on the cart screen, average order value will grow — it removes the main obstacle to quickly adding forgotten or impulse items.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- SURVEY ---- -->
+        <section class="case-block" id="survey">
+          <p class="meta case-block__label"><span data-lang="ru">04 · Опрос</span><span data-lang="en">04 · Survey</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Опрос респондентов</span><span data-lang="en">Respondent survey</span></h2>
+          <p class="case-block__text">
+            <span data-lang="ru">Далее мне нужно было понять актуальность моих гипотез. Для&nbsp;этого я провела опрос среди пользователей приложений доставки и&nbsp;выявила общие тенденции оформления заказов.</span>
+            <span data-lang="en">Next I needed to check how relevant my hypotheses were. I ran a survey among delivery-app users and found common patterns in how they place orders.</span>
+          </p>
+          <p class="case-block__text" style="color: var(--muted);">
+            <span data-lang="ru">Всего в&nbsp;опросе участвовало 60 человек.</span>
+            <span data-lang="en">60 people took part in the survey.</span>
+          </p>
+          <p class="case-block__text">
+            <span data-lang="ru">Как выглядел опрос респондентов (несколько вопросов) 👇</span>
+            <span data-lang="en">What the survey looked like (a few of the questions) 👇</span>
+          </p>
+
+          <div class="filmstrip" data-reveal="fade-up">
+            <div class="filmstrip__track">
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-1.png" alt="Опрос: как часто вы делаете заказ доставки продуктов на дом" loading="lazy" width="2032" height="1378" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-2.png" alt="Опрос: как часто вы пользуетесь функцией «Повтор прошлого заказа»" loading="lazy" width="2024" height="1390" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-3.png" alt="Опрос: осознаёте ли вы необходимость добавить в корзину дополнительные товары" loading="lazy" width="2028" height="1412" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-4.png" alt="Опрос: как вы поступаете, когда нужно добавить к заказу ещё один товар" loading="lazy" width="2018" height="1420" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-5.png" alt="Опрос: какой способ добавить забытый товар из корзины удобнее всего" loading="lazy" width="2020" height="1416" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-6.png" alt="Опрос: куда должна вести кнопка «Добавить ещё товары» в корзине" loading="lazy" width="2020" height="1422" /></div></figure></div>
+              <div class="filmstrip__step"><figure class="filmstrip__frame filmstrip__frame--wide"><div class="frame"><img src="../assets/img/cases/vkusvill/survey-7.png" alt="Опрос: насколько важно быстро добавлять забытый товар, не покидая корзину" loading="lazy" width="2010" height="1410" /></div></figure></div>
+            </div>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Результаты опроса</span>
+            <span data-lang="en">Survey results</span>
+          </p>
+          <div class="survey-results" data-reveal="fade-up">
+            <div class="survey-result survey-result--green">
+              <div class="survey-result__body">
+                <span class="survey-result__num">1</span>
+                <p class="survey-result__text"><span data-lang="ru">Регулярно заказывают доставку на&nbsp;дом</span><span data-lang="en">Regularly order grocery delivery</span></p>
+              </div>
+              <span class="survey-result__pct">82%</span>
+            </div>
+            <div class="survey-result survey-result--amber">
+              <div class="survey-result__body">
+                <span class="survey-result__num">2</span>
+                <p class="survey-result__text"><span data-lang="ru">Пользуются функцией повторного заказа (часто/иногда)</span><span data-lang="en">Use the reorder feature (often / sometimes)</span></p>
+              </div>
+              <span class="survey-result__pct">35%</span>
+            </div>
+            <div class="survey-result survey-result--green">
+              <div class="survey-result__body">
+                <span class="survey-result__num">3</span>
+                <p class="survey-result__text"><span data-lang="ru">При повторном заказе появляется необходимость дополнительно добавить что‑то в&nbsp;заказ</span><span data-lang="en">Need to add something extra when reordering</span></p>
+              </div>
+              <span class="survey-result__pct">50%</span>
+            </div>
+            <div class="survey-result survey-result--green">
+              <div class="survey-result__body">
+                <span class="survey-result__num">4</span>
+                <p class="survey-result__text"><span data-lang="ru">Выходят из&nbsp;корзины, чтобы найти необходимый товар вручную</span><span data-lang="en">Leave the cart to find a needed item manually</span></p>
+              </div>
+              <span class="survey-result__pct">84%</span>
+            </div>
+            <div class="survey-result survey-result--amber">
+              <div class="survey-result__body">
+                <span class="survey-result__num">5</span>
+                <p class="survey-result__text"><span data-lang="ru">Отметили, что им важно быстро добавлять забытый товар в&nbsp;корзину</span><span data-lang="en">Say it's important to quickly add a forgotten item to the cart</span></p>
+              </div>
+              <span class="survey-result__pct">40%</span>
+            </div>
+          </div>
+
+          <p class="case-block__text" style="font-weight: 600; color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Какие выводы и&nbsp;предположения я сделала после опроса?</span>
+            <span data-lang="en">What conclusions and assumptions did I draw from the survey?</span>
+          </p>
+          <ul class="decomp-item__list decomp-item__list--roomy" style="margin-top: 16px;" data-reveal="fade-up">
+            <li>
+              <span data-lang="ru">82% пользователей <strong>регулярно</strong> заказывают продукты на&nbsp;дом, поэтому, вероятно, в&nbsp;их корзинах часто встречаются товары из&nbsp;предыдущих заказов;</span>
+              <span data-lang="en">82% of users <strong>regularly</strong> order groceries for delivery, so their carts likely often contain items from previous orders;</span>
+            </li>
+            <li>
+              <span data-lang="ru">Пользователю приложения нужна возможность быстро добавить забытый товар в&nbsp;корзину. Следовательно, лучше минимизировать количество шагов, необходимых для&nbsp;этого;</span>
+              <span data-lang="en">Users need to be able to quickly add a forgotten item to the cart — so it's worth minimising the number of steps that takes;</span>
+            </li>
+            <li>
+              <span data-lang="ru">Функция «Повторить заказ» <strong>не&nbsp;является основной</strong> для&nbsp;большинства пользователей. Возможно, следует упростить процесс добавления товаров в&nbsp;корзину для&nbsp;всех сценариев;</span>
+              <span data-lang="en">The &ldquo;Reorder&rdquo; feature <strong>isn't the primary path</strong> for most users — it may be worth simplifying add‑to‑cart across every scenario, not just this one;</span>
+            </li>
+            <li>
+              <span data-lang="ru">Для&nbsp;бизнеса важно <strong>устранить существующие барьеры</strong>, так как они влияют на&nbsp;средний чек заказа и&nbsp;лояльность пользователей к&nbsp;приложению.</span>
+              <span data-lang="en">For the business, it's worth <strong>removing these barriers</strong>, since they affect average order value and user loyalty to the app.</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- ---- CONTEXT / GOAL / SUCCESS ---- -->
+        <section class="case-block" id="context">
+          <p class="meta case-block__label"><span data-lang="ru">05 · Контекст и цели</span><span data-lang="en">05 · Context &amp; goals</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Контекст использования, цель работы<br>и критерий успеха</span><span data-lang="en">Context of use, goal<br>and success criteria</span></h2>
+
+          <div class="context-table" data-reveal="fade-up">
+            <div class="context-col">
+              <p class="context-col__head"><span data-lang="ru">Пользователь</span><span data-lang="en">User</span></p>
+              <p class="context-col__item"><span data-lang="ru">Позволить быстро добавлять забытый товар в&nbsp;корзину в&nbsp;процессе оформления заказа</span><span data-lang="en">Let the user quickly add a forgotten item to the cart during checkout</span></p>
+              <p class="context-col__item"><span data-lang="ru">Сэкономить время и&nbsp;когнитивную нагрузку при взаимодействии с&nbsp;приложением</span><span data-lang="en">Save time and reduce cognitive load when interacting with the app</span></p>
+            </div>
+            <div class="context-col">
+              <p class="context-col__head"><span data-lang="ru">Бизнес</span><span data-lang="en">Business</span></p>
+              <p class="context-col__item"><span data-lang="ru">Повышение лояльности пользователей, улучшение пользовательского опыта</span><span data-lang="en">Higher user loyalty and a better overall experience</span></p>
+              <p class="context-col__item"><span data-lang="ru">Повысить средний чек заказа для&nbsp;увеличения прибыли</span><span data-lang="en">Higher average order value to grow revenue</span></p>
+            </div>
+            <div class="context-col">
+              <p class="context-col__head"><span data-lang="ru">ЦА</span><span data-lang="en">Target audience</span></p>
+              <p class="context-col__item"><span data-lang="ru">Пользователи, которые стремятся сэкономить время при заказе</span><span data-lang="en">Users who want to save time when ordering</span></p>
+              <p class="context-col__item"><span data-lang="ru">Пользователи, которые регулярно заказывают через приложение доставку продуктов</span><span data-lang="en">Users who regularly order grocery delivery through the app</span></p>
+            </div>
+            <div class="context-col">
+              <p class="context-col__head"><span data-lang="ru">Критерий успеха</span><span data-lang="en">Success criteria</span></p>
+              <p class="context-col__item"><span data-lang="ru">Сокращение шагов при добавлении товара в&nbsp;корзину</span><span data-lang="en">Fewer steps to add an item to the cart</span></p>
+              <p class="context-col__item"><span data-lang="ru">Достичь вовлечения в&nbsp;новую функцию как минимум 15% пользователей</span><span data-lang="en">At least 15% of users engage with the new feature</span></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- COMPETITOR ANALYSIS ---- -->
+        <section class="case-block" id="competitors">
+          <p class="meta case-block__label"><span data-lang="ru">06 · Анализ конкурентов</span><span data-lang="en">06 · Competitor analysis</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Анализ конкурентов</span><span data-lang="en">Competitor analysis</span></h2>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Для решения задачи имело смысл посмотреть, как конкуренты в&nbsp;сфере доставки продуктов решают вопрос с&nbsp;быстрым добавлением товаров в&nbsp;корзину. И&nbsp;решают ли они его вообще?</span>
+            <span data-lang="en">It made sense to look at how competitors in grocery delivery solve the problem of quickly adding items to the cart — and whether they solve it at all.</span>
+          </p>
+
+          <div class="competitors-grid" data-reveal="fade-up">
+
+            <div class="competitor-card">
+              <p class="competitor-card__name">Яндекс Доставка</p>
+              <div class="competitor-shots">
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-yandex-1-full.png" alt="Яндекс Доставка: корзина с блоком «Порадовать себя»" loading="lazy" width="1179" height="2556" />
+                </div>
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-yandex-2-full.png" alt="Яндекс Доставка: страница поиска по каталогу" loading="lazy" width="1179" height="2556" />
+                </div>
+              </div>
+              <ol class="decomp-item__list decomp-item__list--roomy">
+                <li><span data-lang="ru">В корзине есть функция «Поиск», открывающая страницу для&nbsp;поиска по&nbsp;каталогу</span><span data-lang="en">The cart has a &ldquo;Search&rdquo; feature that opens a catalogue search page</span></li>
+                <li><span data-lang="ru">Есть чипсы с&nbsp;определёнными товарами (принцип выдачи не&nbsp;понятен)</span><span data-lang="en">There are quick-add chips for specific products (the selection logic isn't clear)</span></li>
+                <li><span data-lang="ru">В корзине есть подборка предложениями «Подобрали для&nbsp;вас»</span><span data-lang="en">The cart has a &ldquo;Picked for you&rdquo; recommendations block</span></li>
+              </ol>
+            </div>
+
+            <div class="competitor-card">
+              <p class="competitor-card__name">Лента (Доставка)</p>
+              <div class="competitor-shots">
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-lenta-1-full.png" alt="Лента: корзина без способа быстро добавить товар" loading="lazy" width="1179" height="2556" />
+                </div>
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-lenta-2-full.png" alt="Лента: блок «Добавьте к заказу»" loading="lazy" width="1179" height="2556" />
+                </div>
+              </div>
+              <ol class="decomp-item__list decomp-item__list--roomy">
+                <li><span data-lang="ru">В корзине нет никакого способа быстро добавить товар в&nbsp;корзину</span><span data-lang="en">The cart has no way at all to quickly add an item</span></li>
+                <li><span data-lang="ru">Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</span><span data-lang="en">There's an &ldquo;Add to order&rdquo; offer with a set of different products</span></li>
+              </ol>
+            </div>
+
+            <div class="competitor-card">
+              <p class="competitor-card__name">Самокат</p>
+              <div class="competitor-shots">
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-samokat-1-full.png" alt="Самокат: корзина без способа быстро добавить товар" loading="lazy" width="1179" height="2556" />
+                </div>
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-samokat-2-full.png" alt="Самокат: блок «Добавить к заказу?»" loading="lazy" width="1179" height="2556" />
+                </div>
+              </div>
+              <ol class="decomp-item__list decomp-item__list--roomy">
+                <li><span data-lang="ru">В корзине нет никакого способа быстро добавить товар в&nbsp;корзину</span><span data-lang="en">The cart has no way at all to quickly add an item</span></li>
+                <li><span data-lang="ru">Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</span><span data-lang="en">There's an &ldquo;Add to order&rdquo; offer with a set of different products</span></li>
+              </ol>
+            </div>
+
+            <div class="competitor-card">
+              <p class="competitor-card__name">Перекрёсток</p>
+              <div class="competitor-shots">
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-perekrestok-1-full.png" alt="Перекрёсток: блок «Вам может быть интересно»" loading="lazy" width="1179" height="2556" />
+                </div>
+                <div class="competitor-shot">
+                  <img src="../assets/img/cases/vkusvill/competitor-perekrestok-2-full.png" alt="Перекрёсток: страница поиска по каталогу" loading="lazy" width="1179" height="2556" />
+                </div>
+              </div>
+              <ol class="decomp-item__list decomp-item__list--roomy">
+                <li><span data-lang="ru">В корзине есть функция «Поиск», открывающая страницу для&nbsp;поиска по&nbsp;каталогу</span><span data-lang="en">The cart has a &ldquo;Search&rdquo; feature that opens a catalogue search page</span></li>
+                <li><span data-lang="ru">В поиске нет никаких рекомендаций по&nbsp;предпочтениям или предыдущим заказам</span><span data-lang="en">Search shows no recommendations based on preferences or past orders</span></li>
+                <li><span data-lang="ru">В корзине есть подборка предложениями «Вам может быть интересно»</span><span data-lang="en">The cart has a &ldquo;You might like&rdquo; recommendations block</span></li>
+              </ol>
+            </div>
+
+          </div>
+
+          <p class="case-block__text" style="margin-top: 32px; max-width: none;">
+            <span data-lang="ru">Во&nbsp;всех исследуемых приложениях уже реализована функция по&nbsp;типу «Возможно, вам также понадобится». Она формируется на&nbsp;основе предпочтений пользователя, истории заказов или иных критериев. Это эффективно решает задачу бизнеса по&nbsp;увеличению среднего чека, а&nbsp;следовательно, и&nbsp;прибыли.</span>
+            <span data-lang="en">Every app I looked at already has some version of a &ldquo;You might also need&rdquo; block. It's built from user preferences, order history or other criteria — and it works well for the business goal of raising average order value, and with it, profit.</span>
+          </p>
+
+          <div class="callout" data-reveal="fade-up">
+            <span class="callout__icon" aria-hidden="true">📌</span>
+            <p class="callout__text">
+              <span data-lang="ru">Однако возможность быстро добавить конкретный, заранее известный товар есть не&nbsp;везде. А&nbsp;как уже показало исследование, эта функция важна для&nbsp;пользователей.</span>
+              <span data-lang="en">Still, not every app lets you quickly add a specific, already-known item. And as the research showed, that's something users care about.</span>
+            </p>
+          </div>
+        </section>
+
+        <!-- ---- SOLUTION & MOCKUPS ---- -->
+        <section class="case-block" id="solution">
+          <p class="meta case-block__label"><span data-lang="ru">07 · Решение и макеты</span><span data-lang="en">07 · Solution &amp; mockups</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Решение и макеты</span><span data-lang="en">Solution &amp; mockups</span></h2>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Поскольку изменения были направлены на&nbsp;сценарий, когда пользователь уже находится в&nbsp;корзине, я&nbsp;начала разработку макетов именно с&nbsp;этого этапа.</span>
+            <span data-lang="en">Since the changes targeted the moment the user is already in the cart, I started designing the mockups from exactly that step.</span>
+          </p>
+
+          <button type="button" class="hotspot-frame hotspot-frame--hero" style="--hx:66%; --hy:40%; --zoom:1.75;" data-reveal="fade-up">
+            <img src="../assets/img/cases/vkusvill/userflow-detail.png" alt="User flow: добавленная логика быстрого поиска в корзине" loading="lazy" width="7118" height="2544" />
+            <span class="hotspot-dot" aria-hidden="true"></span>
+          </button>
+
+          <p class="case-block__text" style="font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Повторный заказ</span>
+            <span data-lang="en">Reordering</span>
+          </p>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Анализ текущего user flow показал, что путь к&nbsp;повторному заказу через раздел «Профиль» уже является достаточно коротким, поэтому его решено было сохранить. Однако я&nbsp;внесла одно ключевое улучшение в&nbsp;логику процесса.</span>
+            <span data-lang="en">The current user flow analysis showed that the path to reordering through the &ldquo;Profile&rdquo; tab is already short enough, so I kept it as is. Still, I made one key improvement to the process logic.</span>
+          </p>
+
+          <div class="reorder-compare" data-reveal="fade-up">
+            <div class="reorder-compare__image">
+              <img src="../assets/img/cases/vkusvill/reorder-before-after.png" alt="Повторный заказ: было и стало" loading="lazy" width="2196" height="1762" />
+            </div>
+            <div class="reorder-compare__labels">
+              <div class="reorder-label reorder-label--was">
+                <p class="reorder-label__head"><span data-lang="ru">Было:</span><span data-lang="en">Before:</span></p>
+                <p class="reorder-label__text">
+                  <span data-lang="ru">При нажатии «Повторить заказ» товары добавлялись в&nbsp;корзину, но пользователь оставался на&nbsp;той же странице профиля, что могло приводить к&nbsp;непониманию, был ли&nbsp;заказ повторён.</span>
+                  <span data-lang="en">Tapping &ldquo;Reorder&rdquo; added the items to the cart, but the user stayed on the same profile page — leaving it unclear whether the order actually went through.</span>
+                </p>
+              </div>
+              <div class="reorder-spacer" aria-hidden="true"></div>
+              <div class="reorder-label reorder-label--now">
+                <p class="reorder-label__head"><span data-lang="ru">Стало:</span><span data-lang="en">After:</span></p>
+                <p class="reorder-label__text">
+                  <span data-lang="ru">При нажатии «Повторить заказ» товары моментально добавляются в&nbsp;корзину, а&nbsp;пользователь перенаправляется на&nbsp;страницу корзины для&nbsp;подтверждения и&nbsp;оформления.</span>
+                  <span data-lang="en">Tapping &ldquo;Reorder&rdquo; now instantly adds the items to the cart, and the user is taken straight to the cart page to confirm and check out.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p class="subheading-plus">
+            <span data-lang="ru">Расположение кнопки «Добавить товары»</span><span data-lang="en">Placing the &ldquo;Add products&rdquo; button</span>
+          </p>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Для быстрого добавления товара в&nbsp;корзину я&nbsp;рассмотрела несколько вариантов её размещения:</span>
+            <span data-lang="en">To let users quickly add an item to the cart, I considered a few placement options for the button:</span>
+          </p>
+
+          <div class="static-frame" data-reveal="fade-up">
+            <img src="../assets/img/cases/vkusvill/button-placement-options.png" alt="Три варианта расположения кнопки «Добавить товары» в корзине" loading="lazy" width="2812" height="1762" />
+          </div>
+
+          <div class="usability-note" data-reveal="fade-up">
+            <p class="usability-note__text">
+              <span data-lang="ru">Для юзабилити-теста было принято<br>оставить два варианта, чтобы определить,<br>какой из них более заметен пользователю</span>
+              <span data-lang="en">For the usability test, I kept two variants —<br>to see which one users<br>would notice more easily</span>
+            </p>
+            <div class="usability-note__media">
+              <div class="frame">
+                <img src="../assets/img/cases/vkusvill/button-placement-usability.png" alt="Вариант с иконкой поиска в шапке корзины, выбранный для теста" loading="lazy" width="962" height="1762" />
+              </div>
+            </div>
+          </div>
+
+          <div class="split-block split-block--center" data-reveal="fade-up">
+            <div class="split-block__media">
+              <div class="frame">
+                <img src="../assets/img/cases/vkusvill/empty-cart.png" alt="Экран пустой корзины с кнопкой «Добавить продукты в корзину»" loading="lazy" width="962" height="1762" />
+              </div>
+            </div>
+            <div>
+              <p class="split-block__title"><span data-lang="ru">А ещё…</span><span data-lang="en">One more thing…</span></p>
+              <p class="case-block__text">
+                <span data-lang="ru">Разработана страница пустой корзины, так как в&nbsp;действующем приложении пользователь не&nbsp;может попасть в&nbsp;корзину, не&nbsp;добавив туда хотя бы один товар.</span>
+                <span data-lang="en">I also designed an empty-cart screen, since in the live app a user can't reach the cart at all without first adding at least one item.</span>
+              </p>
+              <p class="case-block__text" style="margin-top: 16px;">
+                <span data-lang="ru">Здесь же&nbsp;пользователь впервые видит кнопку «Добавить продукты в&nbsp;корзину». Это стратегическое решение — <strong>расширение точек входа в&nbsp;каталог</strong>. В&nbsp;ходе тестирования можно будет оценить заметность и&nbsp;эффективность этого нового пути.</span>
+                <span data-lang="en">This is also where the user first sees the &ldquo;Add products to cart&rdquo; button — a deliberate move to <strong>widen the entry points into the catalogue</strong>. Testing will show how noticeable and effective this new path really is.</span>
+              </p>
+            </div>
+          </div>
+
+          <p class="case-block__text" style="font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Как попасть в каталог?</span>
+            <span data-lang="en">How do you reach the catalogue?</span>
+          </p>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Помимо самой корзины важно было продумать и&nbsp;путь к&nbsp;каталогу — вот три сценария, которые я&nbsp;заложила в&nbsp;макеты.</span>
+            <span data-lang="en">Beyond the cart itself, it was worth designing the path to the catalogue too — here are three scenarios I built into the mockups.</span>
+          </p>
+
+          <div class="static-frame static-frame--sm" data-reveal="fade-up">
+            <img src="../assets/img/cases/vkusvill/catalog-search.png" alt="Каталог: поиск товара по названию" loading="lazy" width="2670" height="2348" />
+          </div>
+
+          <div class="static-frame static-frame--sm" data-reveal="fade-up">
+            <img src="../assets/img/cases/vkusvill/catalog-quick-access.png" alt="Каталог: подборка «Уже покупали» и поиск по разделам" loading="lazy" width="2652" height="2754" />
+          </div>
+
+          <p class="case-block__text" style="font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Юзабилити-тест</span>
+            <span data-lang="en">Usability testing</span>
+          </p>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Для проведения юзабилити-теста был разработан прототип и&nbsp;составлена легенда, по&nbsp;которой пользователь проходил новый флоу.</span>
+            <span data-lang="en">To run the usability test, I built a prototype and wrote a script that walked participants through the new flow.</span>
+          </p>
+          <p class="case-block__text">
+            <span data-lang="ru">В тестировании участвовало 6 человек. Запись теста можно <a href="https://drive.google.com/drive/folders/1Gkw-UM8iIaN5DXC5Hb_8i53IAt4-H3FV" target="_blank" rel="noopener" style="color: #2f9e5f; text-decoration: underline;" data-cursor="link">посмотреть тут</a>.</span>
+            <span data-lang="en">6 people took part in the test. You can watch the recording <a href="https://drive.google.com/drive/folders/1Gkw-UM8iIaN5DXC5Hb_8i53IAt4-H3FV" target="_blank" rel="noopener" style="color: #2f9e5f; text-decoration: underline;" data-cursor="link">here</a>.</span>
+          </p>
+
+          <div class="static-frame" data-reveal="fade-up">
+            <img src="../assets/img/cases/vkusvill/usability-flow.png" alt="Флоу юзабилити-теста с траекториями участников" loading="lazy" width="1660" height="1404" />
+          </div>
+
+          <p class="case-block__text" style="font-family: var(--font-display); font-weight: 600; font-size: var(--fs-h3); color: var(--ink); margin-top: 40px;">
+            <span data-lang="ru">Что показал юзабилити-тест</span>
+            <span data-lang="en">What the usability test showed</span>
+          </p>
+
+          <div class="finding-list" data-reveal="fade-up">
+
+            <div class="finding-item finding-item--negative">
+              <div class="finding-item__shot">
+                <img src="../assets/img/cases/vkusvill/finding-navbar.png" alt="Иконка корзины в нижней панели навигации" loading="lazy" width="842" height="270" />
+              </div>
+              <div>
+                <div class="finding-item__head">
+                  <span class="finding-item__badge" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  <span class="finding-item__label"><span data-lang="ru">Не сработало</span><span data-lang="en">Didn't work</span></span>
+                </div>
+                <p class="finding-item__text">
+                  <span data-lang="ru">Эксперимент с&nbsp;иконкой корзины в&nbsp;панели навигации не&nbsp;дал ожидаемого эффекта — пользователи её игнорировали и&nbsp;продолжали пользоваться привычным путём в&nbsp;корзину.</span>
+                  <span data-lang="en">The experiment with a cart icon in the bottom nav didn't have the expected effect — users ignored it and kept using their usual path to the cart.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="finding-item finding-item--positive">
+              <div class="finding-item__shot">
+                <img src="../assets/img/cases/vkusvill/finding-empty-cart.png" alt="Экран пустой корзины с кнопкой «Добавить продукты в корзину»" loading="lazy" width="502" height="516" />
+              </div>
+              <div>
+                <div class="finding-item__head">
+                  <span class="finding-item__badge" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="finding-item__label"><span data-lang="ru">Сработало</span><span data-lang="en">Worked</span></span>
+                </div>
+                <p class="finding-item__text">
+                  <span data-lang="ru">Сценарий быстрого добавления товаров подтвердился: 4 из&nbsp;6 пользователей (66,6%) сразу заметили целевую кнопку и&nbsp;использовали её по&nbsp;назначению.</span>
+                  <span data-lang="en">The quick-add scenario was confirmed: 4 of 6 users (66.6%) immediately noticed the target button and used it as intended.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="finding-item finding-item--positive">
+              <div class="finding-item__shot">
+                <img src="../assets/img/cases/vkusvill/finding-tags.png" alt="Быстрые фильтры «Уже брали», «По скидке», «Популярное»" loading="lazy" width="842" height="216" />
+              </div>
+              <div>
+                <div class="finding-item__head">
+                  <span class="finding-item__badge" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="finding-item__label"><span data-lang="ru">Сработало</span><span data-lang="en">Worked</span></span>
+                </div>
+                <p class="finding-item__text">
+                  <span data-lang="ru">Функция «Уже брали» оказалась полезной: две трети пользователей (66,6%) использовали её, чтобы быстро добавить в&nbsp;корзину товары из&nbsp;истории заказов.</span>
+                  <span data-lang="en">The &ldquo;Already bought&rdquo; filter proved useful: two-thirds of users (66.6%) used it to quickly re-add items from their order history.</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="finding-item">
+              <div class="finding-item__shot">
+                <img src="../assets/img/cases/vkusvill/finding-cart-buttons.png" alt="Корзина: кнопка «Добавить ещё товары» и значок поиска в шапке" loading="lazy" width="742" height="1016" />
+              </div>
+              <div>
+                <div class="finding-item__verdict">
+                  <div class="finding-item__head">
+                    <span class="finding-item__badge" style="background: #2f9e5f;" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                    <span class="finding-item__label" style="color: #2f9e5f;"><span data-lang="ru">Сработало</span><span data-lang="en">Worked</span></span>
+                  </div>
+                  <p class="finding-item__text">
+                    <span data-lang="ru">Кнопку «Добавить ещё товары» заметили и&nbsp;использовали все участники теста (100%).</span>
+                    <span data-lang="en">The &ldquo;Add more items&rdquo; button was noticed and used by every participant (100%).</span>
+                  </p>
+                </div>
+                <div class="finding-item__verdict">
+                  <div class="finding-item__head">
+                    <span class="finding-item__badge" style="background: #d98324;" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+                    <span class="finding-item__label" style="color: #d98324;"><span data-lang="ru">Не сработало</span><span data-lang="en">Didn't work</span></span>
+                  </div>
+                  <p class="finding-item__text">
+                    <span data-lang="ru">Значок поиска (лупа) в&nbsp;шапке корзины остался практически незамеченным — им ни&nbsp;разу не&nbsp;воспользовались спонтанно.</span>
+                    <span data-lang="en">The search icon in the cart header went almost unnoticed — nobody used it spontaneously.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="finding-item finding-item--positive finding-item--wide">
+              <div class="finding-item__shots">
+                <div class="finding-item__shot">
+                  <img src="../assets/img/cases/vkusvill/finding-catalog-cards.png" alt="Категории каталога" loading="lazy" width="884" height="352" />
+                </div>
+                <div class="finding-item__shot">
+                  <img src="../assets/img/cases/vkusvill/finding-catalog-tags.png" alt="Быстрые фильтры внутри категории «Фрукты»" loading="lazy" width="776" height="486" />
+                </div>
+              </div>
+              <div>
+                <div class="finding-item__head">
+                  <span class="finding-item__badge" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span class="finding-item__label"><span data-lang="ru">Сработало</span><span data-lang="en">Worked</span></span>
+                </div>
+                <p class="finding-item__text">
+                  <span data-lang="ru">Категории каталога оказались интуитивно понятны всем пользователям. Более того, 5 из&nbsp;6 респондентов самостоятельно применяли быстрые фильтры, чтобы уточнить поиск.</span>
+                  <span data-lang="en">The catalogue categories were intuitive for everyone. Moreover, 5 of 6 participants used the quick filters on their own to narrow their search.</span>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ---- IMPACT FORECAST ---- -->
+        <section class="case-block" id="metrics">
+          <p class="meta case-block__label"><span data-lang="ru">08 · Прогноз эффективности</span><span data-lang="en">08 · Impact forecast</span></p>
+          <h2 class="case-block__title"><span data-lang="ru">Прогноз эффективности</span><span data-lang="en">Impact forecast</span></h2>
+          <p class="case-block__text" style="max-width: none;">
+            <span data-lang="ru">Ниже — не&nbsp;измеренный результат, а&nbsp;направление эффекта: как предложенные изменения должны повлиять на&nbsp;ключевые метрики продукта, исходя из&nbsp;логики самих решений.</span>
+            <span data-lang="en">What follows isn't a measured result — it's the direction of the effect: how these changes should move the product's key metrics, based on the logic of the solutions themselves.</span>
+          </p>
+
+          <div class="metric-list" data-reveal="fade-up">
+            <div class="metric-item">
+              <p class="metric-item__head"><span data-lang="ru">Лояльность и удержание (Retention)</span><span data-lang="en">Loyalty &amp; retention</span></p>
+              <p class="metric-item__text">
+                <span data-lang="ru">Сокращение количества шагов и&nbsp;точек фрустрации в&nbsp;ключевом сценарии и&nbsp;в&nbsp;сценарии повторного заказа делает сервис удобнее — а&nbsp;значит, повышает вероятность, что пользователь вернётся снова.</span>
+                <span data-lang="en">Fewer steps and less friction in the core scenario and the reorder scenario make the service more convenient — which raises the odds a user comes back.</span>
+              </p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric-item">
+                <p class="metric-item__head"><span data-lang="ru">AOV (Средний чек)</span><span data-lang="en">AOV (average order value)</span></p>
+                <p class="metric-item__text">
+                  <span data-lang="ru">Устранение барьера для&nbsp;добавления забытых и&nbsp;импульсных товаров напрямую увеличивает количество позиций в&nbsp;корзине — а&nbsp;вместе с&nbsp;ним и&nbsp;сумму заказа.</span>
+                  <span data-lang="en">Removing the barrier to adding forgotten or impulse items directly increases the number of items in the cart — and with it, the order total.</span>
+                </p>
+              </div>
+              <div class="metric-item">
+                <p class="metric-item__head"><span data-lang="ru">LTV (Долгосрочная ценность)</span><span data-lang="en">LTV (customer lifetime value)</span></p>
+                <p class="metric-item__text">
+                  <span data-lang="ru">Рост Retention и&nbsp;AOV в&nbsp;совокупности повышает долгосрочную ценность каждого клиента.</span>
+                  <span data-lang="en">Combined growth in retention and AOV raises the long-term value of each customer.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
 
 </main>
 
@@ -129,6 +831,7 @@
 <script src="../assets/js/i18n.js" defer></script>
 <script src="../assets/js/cursor.js" defer></script>
 <script src="../assets/js/scroll.js" defer></script>
+<script src="../assets/js/hotspot-zoom.js" defer></script>
 <script src="../assets/js/reveal.js" defer></script>
 <script src="../assets/js/main.js" defer></script>
 </body>
