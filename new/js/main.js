@@ -176,6 +176,38 @@
     measure();
   }
 
+  /* ---------- Animated flow diagram: plays once when scrolled to, can be replayed ---------- */
+  doc.querySelectorAll("[data-flowanim]").forEach(function (box) {
+    var stage = box.querySelector(".stage");
+    var replay = box.querySelector(".s-flow__replay");
+    var timers = [];
+    var reset = function () {
+      timers.forEach(clearTimeout); timers = [];
+      box.classList.remove("is-s1", "is-s2", "is-s3", "is-done");
+      stage.style.transform = "";
+    };
+    var play = function () {
+      reset();
+      void box.getBoundingClientRect();
+      box.classList.add("is-s1");
+      timers.push(setTimeout(function () { box.classList.add("is-s2"); }, 4400));
+      timers.push(setTimeout(function () {
+        box.classList.add("is-s3");
+        stage.style.transform = "translate(-945px,-114.75px) scale(1.5)";
+      }, 7300));
+      timers.push(setTimeout(function () { box.classList.add("is-done"); }, 9700));
+    };
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      box.classList.add("no-motion", "is-s1", "is-s2", "is-s3", "is-done");
+      return;
+    }
+    var fio = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { play(); fio.disconnect(); }
+    }, { threshold: 0.5 });
+    fio.observe(box);
+    if (replay) replay.addEventListener("click", play);
+  });
+
   /* ---------- Story pages: horizontal strips (drag / scroll) and tabs ---------- */
   doc.querySelectorAll("[data-strip]").forEach(function (strip) {
     var track = strip.nextElementSibling;
