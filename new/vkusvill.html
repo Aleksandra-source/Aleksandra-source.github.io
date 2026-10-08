@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ВкусВилл — быстрое добавление в корзину · Евсеенкова Александра</title>
+  <meta name="description" content="Кейс: корзина ВкусВилл не как финальная точка, а как начало нового сценария добавления товаров. Концепт-проект с юзабилити-тестом.">
+  <link rel="preload" href="fonts/GolosText.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="page-story page-vv">
+<!-- email-label: Email -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 20 20 4M8.4 4H20v11.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 26"><rect x="1.4" y="8" width="15.4" height="15.4" rx="1.8" fill="none" stroke="currentColor"/><path d="M7 4.4V3.6A1.8 1.8 0 0 1 8.8 1.8H21.2A1.8 1.8 0 0 1 23 3.6V16.4A1.8 1.8 0 0 1 21.2 18.2H20.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+<a class="skip-link" href="#main">К содержанию</a>
+<header class="header">
+  <nav class="nav" aria-label="Основная навигация">
+    <a href="index.html" data-nav="home">Главная</a>
+    <a href="about.html" data-nav="about">Обо мне</a>
+    <a href="index.html#works" data-nav="works">Работы</a>
+    <a href="contacts.html" data-nav="contacts">Контакты</a>
+  </nav>
+  <div class="clock" aria-hidden="true">
+    <span>Saint Petersburg</span><i></i><span data-clock-time>09:45:55</span><i></i><span data-clock-day>Tuesday</span>
+  </div>
+</header>
+
+<main id="main" class="page canvas">
+
+  <!-- Шапка кейса -->
+  <header class="s-head">
+    <h1 class="s-title s-r"><img src="img/logo-vkusvill.png" alt="ВкусВилл" width="283" height="36"></h1>
+    <p class="s-sub s-r">Сделала корзину не&nbsp;финальной точкой, а&nbsp;началом нового<br class="br-d"> сценария добавления товаров. Проверила решение через<br class="br-d"> юзабилити-тест</p>
+    <dl class="s-meta s-r">
+      <div><dt>Сервис</dt><dd>Доставка продуктов</dd></div>
+      <div><dt>Сегмент</dt><dd>Mobile app, E-commerce</dd></div>
+      <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+      <div><dt>Формат</dt><dd>Концепт-проект</dd></div>
+    </dl>
+  </header>
+
+  <div class="s-hero s-r s-r--scale" data-player data-early>
+    <video src="video/vv-prototype.mp4" muted loop playsinline preload="metadata" tabindex="-1" aria-label="Прототип: быстрое добавление товаров из корзины"></video>
+  </div>
+
+  <!-- Контекст -->
+  <section class="s-sec">
+    <h2 class="c-h s-h s-r">Контекст</h2>
+    <p class="s-p s-r">Корзина в&nbsp;приложении ВкусВилл ведёт себя как тупик:<br class="br-d"> пользователь отрезан от&nbsp;ассортимента в&nbsp;самый ответственный<br class="br-d"> момент заказа.</p>
+    <div class="s-two">
+      <div class="s-r"><h3 class="s-tag s-tag--problem">Проблема</h3><p class="s-tp">Корзина в&nbsp;её текущем виде — это тупик. Она отрезает пользователя от&nbsp;всего ассортимента в&nbsp;самый ответственный момент, создавая барьер для&nbsp;спонтанных и&nbsp;«забытых» покупок</p></div>
+      <div class="s-r"><h3 class="s-tag s-tag--task">Задача</h3><p class="s-tp">Спроектировать изменения в&nbsp;интерфейсе корзины, которые позволят пользователю добавлять новые товары, не&nbsp;покидая экрана корзины</p></div>
+    </div>
+  </section>
+
+  <!-- Screen Flow -->
+  <section class="s-sec" id="flow">
+    <h2 class="c-h s-h s-r">Screen Flow</h2>
+    <p class="s-p s-r">Для начала рассмотрела весь путь пользователя с&nbsp;помощью Screen Flow: от&nbsp;выбора шаблона прошлого заказа до&nbsp;его оплаты, уделяя особое внимание моменту, когда нужно добавить к&nbsp;списку забытый или новый товар.</p>
+    <div class="s-strip s-r" data-strip>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-1.webp" width="262" height="567" alt="Главный экран приложения" loading="lazy"><figcaption>Главная</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-2.webp" width="262" height="568" alt="Информация о бесплатной доставке" loading="lazy"><figcaption>Доставка</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-3.webp" width="262" height="567" alt="Профиль, вкладка «Мои заказы»" loading="lazy"><figcaption>Мои заказы</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-4.webp" width="262" height="567" alt="Уведомление: товары из заказа добавлены в корзину" loading="lazy"><figcaption>Повторный заказ</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-5.webp" width="262" height="567" alt="Корзина с двумя товарами" loading="lazy"><figcaption>Корзина: 2 товара</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-6.webp" width="262" height="567" alt="Корзина: промокоды и упаковка заказа" loading="lazy"><figcaption>Промокоды, добавьте в заказ</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-7.webp" width="262" height="567" alt="Корзина: оплата и оформление заказа" loading="lazy"><figcaption>Оформление заказа</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-8.webp" width="262" height="567" alt="Каталог товаров" loading="lazy"><figcaption>Каталог</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-9.webp" width="262" height="567" alt="Поиск товара «Яблоки»" loading="lazy"><figcaption>Поиск товара</figcaption></figure>
+      <figure class="s-step"><img class="s-screen" src="img/vv/flow-10.webp" width="262" height="567" alt="Корзина с добавленным забытым товаром" loading="lazy"><figcaption>Товар добавлен</figcaption></figure>
+    </div>
+    <div class="s-track s-r" aria-hidden="true"><i></i></div>
+    <p class="s-lead s-r">Ключевые инсайты из Screen Flow</p>
+    <ol class="s-rows s-group">
+      <li class="s-row s-r"><span class="s-row__n">01</span>Кнопка корзины на&nbsp;главном экране не&nbsp;ведёт в&nbsp;корзину, если в&nbsp;неё не&nbsp;добавлены продукты. Вместо этого появляется информация о&nbsp;доставке.</li>
+      <li class="s-row s-r"><span class="s-row__n">02</span>При повторении прошлого заказа продукты добавляются в&nbsp;корзину, но&nbsp;корзина не&nbsp;открывается — для&nbsp;этого нужно делать дополнительные шаги.</li>
+      <li class="s-row s-r"><span class="s-row__n">03</span>Из корзины нельзя быстро добавить забытый продукт — для&nbsp;этого необходимо вернуться в&nbsp;каталог товаров.</li>
+    </ol>
+  </section>
+
+  <!-- Гипотезы -->
+  <section class="s-sec" id="hypotheses">
+    <h2 class="c-h s-h s-r">Гипотезы</h2>
+    <p class="s-p s-r">После аудита приложения я&nbsp;перешла к&nbsp;формулированию гипотез, направленных на&nbsp;улучшение пользовательского взаимодействия.</p>
+    <div class="s-cards s-cards--2 s-group">
+      <article class="s-card s-r s-r--scale"><h3>Гипотеза 1 · Retention</h3><p>Если сократить количество шагов в&nbsp;процессе «Повторного заказа», это увеличит удержание: постоянные клиенты смогут оформлять привычные заказы быстрее и&nbsp;с&nbsp;меньшими усилиями</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Гипотеза 2 · Средний чек</h3><p>Если разместить кнопку «Добавить продукты» на&nbsp;экране корзины, это увеличит средний чек (AOV): исчезнет главное препятствие для&nbsp;быстрого добавления забытых товаров и&nbsp;импульсных покупок</p></article>
+    </div>
+  </section>
+
+  <!-- Опрос -->
+  <section class="s-sec" id="survey">
+    <h2 class="c-h s-h s-r">Опрос респондентов</h2>
+    <p class="s-p s-r">Далее мне нужно было понять актуальность гипотез. Для&nbsp;этого я&nbsp;провела опрос среди пользователей приложений доставки и&nbsp;выявила общие тенденции оформления заказов.</p>
+    <p class="s-p s-p--grey s-r">Всего в&nbsp;опросе участвовало <span class="accent">60&nbsp;человек</span>. Так выглядели некоторые вопросы:</p>
+    <div class="s-strip s-r" data-strip>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-1.webp" width="640" height="434" alt="Опрос: как часто вы делаете заказ доставки продуктов на дом" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-2.webp" width="640" height="440" alt="Опрос: как часто вы пользуетесь функцией «Повтор прошлого заказа»" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-3.webp" width="640" height="446" alt="Опрос: осознаёте ли вы необходимость добавить в корзину дополнительные товары" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-4.webp" width="640" height="450" alt="Опрос: как вы поступаете, когда нужно добавить к заказу ещё один товар" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-5.webp" width="640" height="448" alt="Опрос: какой способ добавить забытый товар из корзины удобнее всего" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-6.webp" width="640" height="450" alt="Опрос: куда должна вести кнопка «Добавить ещё товары» в корзине" loading="lazy"></figure>
+      <figure class="s-step s-step--wide"><img src="img/vv/survey-7.webp" width="640" height="449" alt="Опрос: насколько важно быстро добавлять забытый товар, не покидая корзину" loading="lazy"></figure>
+    </div>
+    <div class="s-track s-r" aria-hidden="true"><i></i></div>
+
+    <p class="s-lead s-r">Результаты опроса</p>
+    <div class="s-results">
+      <div class="s-res s-r" style="--v:82%"><span class="s-res__n">1</span><p class="s-res__t">Регулярно заказывают доставку на&nbsp;дом</p><p class="s-res__v"><span data-count="82">82</span>%</p><span class="s-res__bar"><i></i></span></div>
+      <div class="s-res s-res--mid s-r" style="--v:35%"><span class="s-res__n">2</span><p class="s-res__t">Пользуются функцией повторного заказа (часто/иногда)</p><p class="s-res__v"><span data-count="35">35</span>%</p><span class="s-res__bar"><i></i></span></div>
+      <div class="s-res s-r" style="--v:50%"><span class="s-res__n">3</span><p class="s-res__t">При повторном заказе появляется необходимость дополнительно добавить что-то в&nbsp;заказ</p><p class="s-res__v"><span data-count="50">50</span>%</p><span class="s-res__bar"><i></i></span></div>
+      <div class="s-res s-r" style="--v:84%"><span class="s-res__n">4</span><p class="s-res__t">Выходят из&nbsp;корзины, чтобы найти необходимый товар вручную</p><p class="s-res__v"><span data-count="84">84</span>%</p><span class="s-res__bar"><i></i></span></div>
+      <div class="s-res s-res--mid s-r" style="--v:40%"><span class="s-res__n">5</span><p class="s-res__t">Отметили, что им важно быстро добавлять забытый товар в&nbsp;корзину</p><p class="s-res__v"><span data-count="40">40</span>%</p><span class="s-res__bar"><i></i></span></div>
+    </div>
+
+    <p class="s-lead s-r">Какие выводы я сделала после опроса</p>
+    <ul class="s-list s-group">
+      <li class="s-r"><b>82% пользователей регулярно</b> заказывают продукты на&nbsp;дом, поэтому в&nbsp;их корзинах, вероятно, часто встречаются товары из&nbsp;предыдущих заказов;</li>
+      <li class="s-r">пользователю нужна возможность быстро добавить забытый товар в&nbsp;корзину, значит, лучше минимизировать количество шагов для&nbsp;этого;</li>
+      <li class="s-r">функция «Повторить заказ» <b>не&nbsp;является основной</b> для&nbsp;большинства пользователей. Возможно, стоит упростить процесс добавления товаров для&nbsp;всех сценариев;</li>
+      <li class="s-r">для бизнеса важно <b>устранить существующие барьеры</b>: они влияют на&nbsp;средний чек заказа и&nbsp;лояльность пользователей к&nbsp;приложению.</li>
+    </ul>
+  </section>
+
+  <!-- Контекст и цели -->
+  <section class="s-sec" id="goals">
+    <h2 class="c-h s-h s-r">Контекст, цель и критерий успеха</h2>
+    <div class="s-ctx s-group">
+      <div class="s-r s-r--scale"><h3>Пользователь</h3><p>Быстро добавлять забытый товар в&nbsp;корзину в&nbsp;процессе оформления заказа</p><p>Сэкономить время и&nbsp;когнитивную нагрузку при взаимодействии с&nbsp;приложением</p></div>
+      <div class="s-r s-r--scale"><h3>Бизнес</h3><p>Повысить лояльность пользователей, улучшить пользовательский опыт</p><p>Повысить средний чек заказа для&nbsp;увеличения прибыли</p></div>
+      <div class="s-r s-r--scale"><h3>ЦА</h3><p>Пользователи, которые стремятся сэкономить время при заказе</p><p>Пользователи, которые регулярно заказывают через приложение доставку продуктов</p></div>
+      <div class="s-r s-r--scale"><h3>Успех</h3><p>Сокращение шагов при добавлении товара в&nbsp;корзину</p><p>Вовлечение в&nbsp;новую функцию как минимум 15% пользователей</p></div>
+    </div>
+  </section>
+
+  <!-- Конкуренты -->
+  <section class="s-sec" id="competitors">
+    <h2 class="c-h s-h s-r">Анализ конкурентов</h2>
+    <p class="s-p s-r">Для решения задачи имело смысл посмотреть, как конкуренты в&nbsp;доставке продуктов решают вопрос быстрого добавления товаров в&nbsp;корзину. И&nbsp;решают&nbsp;ли они его вообще?</p>
+    <div class="s-comp s-group">
+      <article class="s-comp__card s-r s-r--scale">
+        <h3>Яндекс Доставка</h3>
+        <div class="s-comp__shots"><img src="img/vv/comp-yandex-1.webp" width="230" height="499" alt="Яндекс Доставка: корзина с блоком «Порадовать себя»" loading="lazy"><img src="img/vv/comp-yandex-2.webp" width="230" height="499" alt="Яндекс Доставка: страница поиска по каталогу" loading="lazy"></div>
+        <ol><li>В&nbsp;корзине есть функция «Поиск», открывающая страницу для&nbsp;поиска по&nbsp;каталогу</li><li>Есть чипсы с&nbsp;определёнными товарами (принцип выдачи не&nbsp;понятен)</li><li>В&nbsp;корзине есть подборка «Подобрали для&nbsp;вас»</li></ol>
+      </article>
+      <article class="s-comp__card s-r s-r--scale">
+        <h3>Лента (Доставка)</h3>
+        <div class="s-comp__shots"><img src="img/vv/comp-lenta-1.webp" width="230" height="499" alt="Лента: корзина без способа быстро добавить товар" loading="lazy"><img src="img/vv/comp-lenta-2.webp" width="230" height="499" alt="Лента: блок «Добавьте к заказу»" loading="lazy"></div>
+        <ol><li>В&nbsp;корзине нет никакого способа быстро добавить товар</li><li>Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</li></ol>
+      </article>
+      <article class="s-comp__card s-r s-r--scale">
+        <h3>Самокат</h3>
+        <div class="s-comp__shots"><img src="img/vv/comp-samokat-1.webp" width="230" height="499" alt="Самокат: корзина без способа быстро добавить товар" loading="lazy"><img src="img/vv/comp-samokat-2.webp" width="230" height="499" alt="Самокат: блок «Добавить к заказу?»" loading="lazy"></div>
+        <ol><li>В&nbsp;корзине нет никакого способа быстро добавить товар</li><li>Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</li></ol>
+      </article>
+      <article class="s-comp__card s-r s-r--scale">
+        <h3>Перекрёсток</h3>
+        <div class="s-comp__shots"><img src="img/vv/comp-perekrestok-1.webp" width="230" height="499" alt="Перекрёсток: блок «Вам может быть интересно»" loading="lazy"><img src="img/vv/comp-perekrestok-2.webp" width="230" height="499" alt="Перекрёсток: страница поиска по каталогу" loading="lazy"></div>
+        <ol><li>В&nbsp;корзине есть функция «Поиск», открывающая страницу для&nbsp;поиска по&nbsp;каталогу</li><li>В&nbsp;поиске нет рекомендаций по&nbsp;предпочтениям или предыдущим заказам</li><li>В&nbsp;корзине есть подборка «Вам может быть интересно»</li></ol>
+      </article>
+    </div>
+    <p class="s-p s-r" style="margin-top:56px">Во&nbsp;всех приложениях уже есть функция вроде «Возможно, вам также понадобится». Она строится на&nbsp;предпочтениях, истории заказов или других критериях и&nbsp;эффективно решает задачу бизнеса — увеличить средний чек, а&nbsp;значит, и&nbsp;прибыль.</p>
+    <p class="s-note s-r">Однако возможность быстро добавить конкретный, заранее известный товар есть не&nbsp;везде. А&nbsp;как показало исследование, эта функция важна для&nbsp;пользователей.</p>
+  </section>
+
+  <!-- Решение и макеты -->
+  <section class="s-sec" id="solution">
+    <h2 class="c-h s-h s-r">Решение и макеты</h2>
+    <p class="s-p s-r">Изменения направлены на&nbsp;сценарий, когда пользователь уже находится в&nbsp;корзине, поэтому разработку макетов я&nbsp;начала именно с&nbsp;этого этапа.</p>
+    <figure class="s-fig s-fig--wide s-fig--round s-r s-r--scale"><img src="img/vv/userflow.webp" width="1340" height="479" alt="User flow: добавленная логика быстрого поиска в корзине" loading="lazy"></figure>
+
+    <h3 class="s-sub-h s-r">Повторный заказ</h3>
+    <p class="s-p s-r">Анализ текущего user flow показал, что путь к&nbsp;повторному заказу через раздел «Профиль» уже достаточно короткий, поэтому я&nbsp;его сохранила. Но&nbsp;внесла одно ключевое улучшение в&nbsp;логику процесса.</p>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/vv/reorder.webp" width="1040" height="835" alt="Повторный заказ: было и стало" loading="lazy"></figure>
+    <div class="s-ba s-group">
+      <div class="is-was s-r"><h3>Было</h3><p>При нажатии «Повторить заказ» товары добавлялись в&nbsp;корзину, но&nbsp;пользователь оставался на&nbsp;той же странице профиля — было непонятно, повторился&nbsp;ли заказ.</p></div>
+      <div class="is-now s-r"><h3>Стало</h3><p>При нажатии «Повторить заказ» товары моментально добавляются в&nbsp;корзину, а&nbsp;пользователь попадает на&nbsp;страницу корзины для&nbsp;подтверждения и&nbsp;оформления.</p></div>
+    </div>
+
+    <h3 class="s-sub-h s-r">Расположение кнопки «Добавить товары»</h3>
+    <p class="s-p s-r">Для быстрого добавления товара в&nbsp;корзину я&nbsp;рассмотрела несколько вариантов размещения кнопки:</p>
+    <figure class="s-fig s-fig--wide s-r s-r--scale"><img src="img/vv/placement.webp" width="1340" height="840" alt="Три варианта расположения кнопки «Добавить товары» в корзине" loading="lazy"></figure>
+    <div class="s-split s-r">
+      <div class="s-split__media"><img src="img/vv/placement-test.webp" width="300" height="550" alt="Вариант с иконкой поиска в шапке корзины, выбранный для теста" loading="lazy"></div>
+      <div class="s-split__body"><h3>Для юзабилити-теста</h3><p>Оставила два варианта, чтобы понять, какой из&nbsp;них пользователь замечает лучше.</p></div>
+    </div>
+
+    <div class="s-split s-r">
+      <div class="s-split__body"><h3>А ещё…</h3><p>Разработала страницу пустой корзины: в&nbsp;действующем приложении в&nbsp;корзину нельзя попасть, не&nbsp;добавив туда хотя бы один товар.</p><p>Здесь пользователь впервые видит кнопку «Добавить продукты в&nbsp;корзину». Это стратегическое решение — <b>расширение точек входа в&nbsp;каталог</b>. Тест поможет оценить заметность и&nbsp;эффективность этого пути.</p></div>
+      <div class="s-split__media"><img src="img/vv/empty-cart.webp" width="300" height="550" alt="Экран пустой корзины с кнопкой «Добавить продукты в корзину»" loading="lazy"></div>
+    </div>
+
+    <h3 class="s-sub-h s-r">Как попасть в каталог</h3>
+    <p class="s-p s-r">Помимо самой корзины важно было продумать путь к&nbsp;каталогу — вот три сценария, которые я&nbsp;заложила в&nbsp;макеты.</p>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/vv/catalog-search.webp" width="1040" height="915" alt="Каталог: поиск товара по названию" loading="lazy"></figure>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/vv/catalog-quick.webp" width="1040" height="1080" alt="Каталог: подборка «Уже покупали» и поиск по разделам" loading="lazy"></figure>
+
+    <h3 class="s-sub-h s-r">Юзабилити-тест</h3>
+    <p class="s-p s-r">Для теста я&nbsp;собрала прототип и&nbsp;составила легенду, по&nbsp;которой пользователь проходил новый флоу.</p>
+    <p class="s-p s-r">В&nbsp;тестировании участвовало <span class="accent">6&nbsp;человек</span>. Запись теста можно <a href="https://drive.google.com/drive/folders/1Gkw-UM8iIaN5DXC5Hb_8i53IAt4-H3FV" target="_blank" rel="noopener">посмотреть тут</a>.</p>
+    <figure class="s-fig s-fig--wide s-r s-r--scale"><img src="img/vv/usability-flow.webp" width="1340" height="1134" alt="Флоу юзабилити-теста с траекториями участников" loading="lazy"></figure>
+
+    <h3 class="s-sub-h s-r">Что показал тест</h3>
+    <div class="s-finds s-group">
+      <article class="s-find s-r"><div class="s-find__shots"><img src="img/vv/find-navbar.webp" width="330" height="106" alt="Иконка корзины в нижней панели навигации" loading="lazy"></div>
+        <div><p class="s-find__k s-find__k--no">Не сработало</p><p class="s-find__t">Эксперимент с&nbsp;иконкой корзины в&nbsp;панели навигации не&nbsp;дал ожидаемого эффекта: пользователи её игнорировали и&nbsp;шли в&nbsp;корзину привычным путём.</p></div></article>
+      <article class="s-find s-r"><div class="s-find__shots"><img src="img/vv/find-empty.webp" width="250" height="257" alt="Экран пустой корзины с кнопкой «Добавить продукты в корзину»" loading="lazy"></div>
+        <div><p class="s-find__k s-find__k--ok">Сработало</p><p class="s-find__t">Сценарий быстрого добавления товаров подтвердился: <b>4 из&nbsp;6 пользователей (66,6%)</b> сразу заметили целевую кнопку и&nbsp;использовали её по&nbsp;назначению.</p></div></article>
+      <article class="s-find s-r"><div class="s-find__shots"><img src="img/vv/find-tags.webp" width="330" height="85" alt="Быстрые фильтры «Уже брали», «По скидке», «Популярное»" loading="lazy"></div>
+        <div><p class="s-find__k s-find__k--ok">Сработало</p><p class="s-find__t">Функция «Уже брали» оказалась полезной: <b>две трети пользователей (66,6%)</b> использовали её, чтобы быстро добавить в&nbsp;корзину товары из&nbsp;истории заказов.</p></div></article>
+      <article class="s-find s-r"><div class="s-find__shots"><img src="img/vv/find-cart.webp" width="260" height="356" alt="Корзина: кнопка «Добавить ещё товары» и значок поиска в шапке" loading="lazy"></div>
+        <div><div class="s-find__v"><p class="s-find__k s-find__k--ok">Сработало</p><p class="s-find__t">Кнопку «Добавить ещё товары» заметили и&nbsp;использовали <b>все участники теста (100%)</b>.</p></div>
+        <div class="s-find__v"><p class="s-find__k s-find__k--no">Не сработало</p><p class="s-find__t">Значок поиска (лупа) в&nbsp;шапке корзины остался почти незамеченным — им ни&nbsp;разу не&nbsp;воспользовались спонтанно.</p></div></div></article>
+      <article class="s-find s-r"><div class="s-find__shots"><img src="img/vv/find-cards.webp" width="330" height="131" alt="Категории каталога" loading="lazy"><img src="img/vv/find-ctags.webp" width="300" height="188" alt="Быстрые фильтры внутри категории «Фрукты»" loading="lazy"></div>
+        <div><p class="s-find__k s-find__k--ok">Сработало</p><p class="s-find__t">Категории каталога оказались интуитивно понятны всем. Более того, <b>5 из&nbsp;6 респондентов</b> сами применяли быстрые фильтры, чтобы уточнить поиск.</p></div></article>
+    </div>
+  </section>
+
+  <!-- Прогноз -->
+  <section class="s-sec" id="forecast">
+    <h2 class="c-h s-h s-r">Прогноз эффективности</h2>
+    <p class="s-p s-r">Это не&nbsp;измеренный результат, а&nbsp;направление эффекта: как предложенные изменения должны повлиять на&nbsp;ключевые метрики продукта, исходя из&nbsp;логики самих решений.</p>
+    <div class="s-cards s-cards--3 s-group">
+      <article class="s-card s-r s-r--scale"><h3>Retention</h3><p>Лояльность и удержание</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Меньше шагов и&nbsp;точек фрустрации в&nbsp;ключевом сценарии и&nbsp;повторном заказе — сервис удобнее, пользователь вернётся снова</p></article>
+      <article class="s-card s-r s-r--scale"><h3>AOV</h3><p>Средний чек</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Устранён барьер для&nbsp;добавления забытых и&nbsp;импульсных товаров — в&nbsp;корзине больше позиций, а&nbsp;вместе с&nbsp;ними и&nbsp;сумма заказа</p></article>
+      <article class="s-card s-r s-r--scale"><h3>LTV</h3><p>Долгосрочная ценность</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Рост Retention и&nbsp;AOV в&nbsp;совокупности повышает долгосрочную ценность каждого клиента</p></article>
+    </div>
+  </section>
+
+  <nav class="s-next s-r" aria-label="Другие кейсы">
+    <p class="s-next__k">Другие кейсы</p>
+    <a href="bspb.html" data-cursor="Открыть"><span>Банк Санкт-Петербург</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </nav>
+
+</main>
+<footer class="footer">
+  <div class="canvas footer__in">
+    <p class="footer__role">Продуктовый дизайнер</p>
+    <p class="footer__name">Evseenkova Aleksandra</p>
+    <nav class="footer__col footer__col--nav" aria-label="Разделы">
+      <p class="footer__label">Разделы</p>
+      <a href="index.html">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="footer__col footer__col--contact">
+      <p class="footer__label">Связаться со мной</p>
+      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram<svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="https://www.instagram.com/a_evseenkova_a/" target="_blank" rel="noopener">Instagram<svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="mailto:sasha.evseenkova@list.ru">Email<svg class="ico"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

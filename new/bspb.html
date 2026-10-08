@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Банк Санкт-Петербург — приватность баланса · Евсеенкова Александра</title>
+  <meta name="description" content="Кейс: приватность баланса в мобильном приложении Банка Санкт-Петербург — настройки видимости и скрытие встряхиванием телефона. Концепт-проект.">
+  <link rel="preload" href="fonts/GolosText.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
+</head>
+<body class="page-story page-bs">
+<!-- email-label: Email -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 20 20 4M8.4 4H20v11.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 26"><rect x="1.4" y="8" width="15.4" height="15.4" rx="1.8" fill="none" stroke="currentColor"/><path d="M7 4.4V3.6A1.8 1.8 0 0 1 8.8 1.8H21.2A1.8 1.8 0 0 1 23 3.6V16.4A1.8 1.8 0 0 1 21.2 18.2H20.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+<a class="skip-link" href="#main">К содержанию</a>
+<header class="header">
+  <nav class="nav" aria-label="Основная навигация">
+    <a href="index.html" data-nav="home">Главная</a>
+    <a href="about.html" data-nav="about">Обо мне</a>
+    <a href="index.html#works" data-nav="works">Работы</a>
+    <a href="contacts.html" data-nav="contacts">Контакты</a>
+  </nav>
+  <div class="clock" aria-hidden="true">
+    <span>Saint Petersburg</span><i></i><span data-clock-time>09:45:55</span><i></i><span data-clock-day>Tuesday</span>
+  </div>
+</header>
+
+<main id="main" class="page canvas">
+
+  <!-- Шапка кейса -->
+  <header class="s-head">
+    <h1 class="s-title s-r"><img src="img/logo-bspb.png" alt="Банк Санкт-Петербург" width="435" height="36"></h1>
+    <p class="s-sub s-r">Разработала решение для&nbsp;сохранения приватности баланса<br class="br-d"> в&nbsp;общественных местах: настройки видимости и&nbsp;скрытие<br class="br-d"> встряхиванием телефона</p>
+    <dl class="s-meta s-r">
+      <div><dt>Сервис</dt><dd>Мобильное приложение банка</dd></div>
+      <div><dt>Сегмент</dt><dd>Mobile app, Fintech</dd></div>
+      <div><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
+      <div><dt>Формат</dt><dd>Концепт-проект</dd></div>
+    </dl>
+  </header>
+
+  <div class="s-hero s-r s-r--scale" data-player data-early>
+    <video src="video/bs-prototype.mp4" muted loop playsinline preload="metadata" tabindex="-1" aria-label="Прототип: скрытие баланса на главном экране"></video>
+  </div>
+
+  <!-- Контекст -->
+  <section class="s-sec">
+    <h2 class="c-h s-h s-r">Контекст</h2>
+    <p class="s-p s-r">Баланс виден сразу — и&nbsp;это проблема. В&nbsp;общественном месте<br class="br-d"> достаточно открыть приложение, чтобы кто-то рядом увидел<br class="br-d"> все ваши деньги.</p>
+    <div class="s-two">
+      <div class="s-r"><h3 class="s-tag s-tag--problem">Проблема</h3><p class="s-tp">При входе в&nbsp;приложение пользователь сразу видит совокупный баланс всех счетов и&nbsp;вкладов на&nbsp;видном месте</p></div>
+      <div class="s-r"><h3 class="s-tag s-tag--task">Задача</h3><p class="s-tp">Изменить логику отображения балансов на&nbsp;главном экране: скрыть общую сумму по&nbsp;умолчанию и&nbsp;добавить гибкие настройки видимости счетов и&nbsp;разделов</p></div>
+    </div>
+  </section>
+
+  <!-- UX-аудит -->
+  <section class="s-sec" id="audit">
+    <h2 class="c-h s-h s-r">UX-аудит</h2>
+    <p class="s-p s-r">Для начала я&nbsp;провела аудит текущего интерфейса: как приложение показывает баланс и&nbsp;что можно настроить.</p>
+    <div class="s-tabs s-r" data-tabs>
+      <div class="s-tabs__nav" role="tablist" aria-label="Экраны аудита">
+        <button class="s-tab" role="tab" type="button" aria-selected="true">Баланс на главной</button>
+        <button class="s-tab" role="tab" type="button" aria-selected="false">Настройки главной</button>
+        <button class="s-tab" role="tab" type="button" aria-selected="false">Раздел настроек</button>
+      </div>
+      <div class="s-tabs__view">
+        <figure class="is-on"><img src="img/bs/audit-1.webp" width="1340" height="811" alt="UX-аудит: отражение общего баланса на главном экране" loading="lazy"></figure>
+        <figure><img src="img/bs/audit-2.webp" width="1340" height="811" alt="UX-аудит: настройки главного экрана" loading="lazy"></figure>
+        <figure><img src="img/bs/audit-3.webp" width="1340" height="816" alt="UX-аудит: раздел настроек приложения" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Интервью -->
+  <section class="s-sec" id="interviews">
+    <h2 class="c-h s-h s-r">Интервью</h2>
+    <p class="s-p s-r">Я&nbsp;провела интервью с&nbsp;<span class="accent">7&nbsp;пользователями</span> приложения, проанализировала результаты и&nbsp;выделила ключевые моменты.</p>
+    <div class="s-split s-split--top s-r">
+      <div class="s-split__media"><img src="img/bs/interview.webp" width="340" height="623" alt="Главный экран с видимым балансом" loading="lazy"></div>
+      <div class="s-split__body"><h3>Почему общий баланс на&nbsp;главной — проблема</h3>
+        <ul>
+          <li>Люди избегают использовать приложение в&nbsp;общественных местах</li>
+          <li>Пользователям редко нужна общая сумма по&nbsp;всем счетам</li>
+          <li>Настройки «скрытого глаза» слетают при следующем входе</li>
+          <li>Часть пользователей «уносит» деньги в&nbsp;другой банк, а&nbsp;здесь только получает зарплату</li>
+          <li>Неудобно: «есть ощущение, что это свободные деньги, хотя большая часть лежит на&nbsp;вкладе»</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="s-sec" id="reviews">
+    <h2 class="c-h s-h s-r">Анализ отзывов</h2>
+    <p class="s-p s-r">Я&nbsp;решила собрать больше информации о&nbsp;том, на&nbsp;что жалуются пользователи, и&nbsp;проверить, встречается&nbsp;ли эта проблема в&nbsp;отзывах в&nbsp;интернете. Всего просмотрела <span class="accent">более 100&nbsp;отзывов</span>.</p>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/bs/reviews.webp" width="1040" height="606" alt="Анализ отзывов пользователей" loading="lazy"></figure>
+    <p class="s-note s-r">Отзывы подтвердили: пользователям действительно неудобно, когда баланс всех счетов виден на&nbsp;главном экране.</p>
+    <p class="s-lead s-r">К чему может привести игнорирование проблемы</p>
+    <div class="s-cards s-cards--4 s-group">
+      <article class="s-card s-r s-r--scale"><h3>Потеря клиентов</h3><p>Если пользоваться приложением неудобно, человек может уйти в&nbsp;другой банк</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Меньше активности</h3><p>Из-за страха, что кто-то увидит баланс, люди реже заходят в&nbsp;приложение в&nbsp;общественных местах</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Негативные отзывы</h3><p>Чтобы привлечь внимание разработчиков, активные пользователи могут оставлять негативные отзывы</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Барьер для продуктов</h3><p>Люди могут открывать вклады в&nbsp;других банках, чтобы суммы вкладов не&nbsp;было видно</p></article>
+    </div>
+  </section>
+
+  <!-- Бенчмаркинг -->
+  <section class="s-sec" id="benchmark">
+    <h2 class="c-h s-h s-r">Бенчмаркинг</h2>
+    <p class="s-p s-r">Проанализировала интерфейсы Сбера, Т-Банка, Альфа-Банка, ВТБ и&nbsp;Совкомбанка и&nbsp;свела результаты в&nbsp;единую таблицу.</p>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/bs/benchmark.webp" width="1040" height="747" alt="Таблица бенчмаркинга банков" loading="lazy"></figure>
+    <p class="s-lead s-r">Выводы по результатам бенчмаркинга</p>
+    <ul class="s-list s-group">
+      <li class="s-r">В&nbsp;<b>4 из&nbsp;6</b> банков не&nbsp;показывают совокупный баланс (общую сумму всех средств);</li>
+      <li class="s-r"><b>5 из&nbsp;6</b> банков позволяют скрыть баланс счетов по&nbsp;отдельности и&nbsp;сохраняют эти настройки при повторном входе;</li>
+      <li class="s-r">Т-Банк предусмотрел возможность быстро скрывать баланс при входе в&nbsp;приложение жестом;</li>
+      <li class="s-r">крупные игроки предусмотрели кастомизацию интерфейса и&nbsp;быстрый доступ к&nbsp;настройкам приватности.</li>
+    </ul>
+  </section>
+
+  <!-- Гипотезы -->
+  <section class="s-sec" id="hypotheses">
+    <h2 class="c-h s-h s-r">Гипотезы</h2>
+    <p class="s-p s-r">Гипотезы я&nbsp;формулировала <b>на&nbsp;основе JTBD</b> (Jobs To Be Done).</p>
+    <ol class="s-rows s-group">
+      <li class="s-row s-r"><span class="s-row__n">1</span>Когда я&nbsp;захожу в&nbsp;приложение, <b>я&nbsp;не&nbsp;хочу видеть общую сумму по&nbsp;всем счетам</b> — мне нужны только те&nbsp;<b>деньги, которые доступны прямо сейчас</b> (не&nbsp;на&nbsp;вкладе), чтобы понимать, чем я&nbsp;реально могу распоряжаться.</li>
+      <li class="s-row s-r"><span class="s-row__n">2</span>Когда я&nbsp;в&nbsp;общественном месте и&nbsp;<b>не&nbsp;помню, скрыт&nbsp;ли баланс</b>, я&nbsp;хочу <b>быстро скрыть все суммы</b>, чтобы не&nbsp;переживать, что кто-то заглянет в&nbsp;экран.</li>
+      <li class="s-row s-r"><span class="s-row__n">3</span>Когда я&nbsp;нахожусь в&nbsp;<b>общественном месте</b>, я&nbsp;хочу быть уверена, что <b>никто случайно не&nbsp;увидит мои балансы</b>, чтобы чувствовать себя спокойно и&nbsp;не&nbsp;привлекать внимание.</li>
+      <li class="s-row s-r"><span class="s-row__n">4</span>Когда я&nbsp;один раз <b>настроила скрытие баланса</b>, я&nbsp;хочу, чтобы оно <b>сохранялось при следующих входах</b>, чтобы не&nbsp;повторять одно и&nbsp;то&nbsp;же действие каждый раз.</li>
+      <li class="s-row s-r"><span class="s-row__n">5</span>Когда я&nbsp;<b>показываю телефон другому человеку</b>, я&nbsp;хочу <b>быстро скрыть балансы некоторых счетов</b>, чтобы он не&nbsp;увидел все мои деньги.</li>
+    </ol>
+  </section>
+
+  <!-- Решение -->
+  <section class="s-sec" id="solution">
+    <h2 class="c-h s-h s-r">Макеты и решение</h2>
+    <p class="s-p s-r">В&nbsp;решении я&nbsp;рассмотрела два контекста использования приложения:</p>
+    <div class="s-cards s-cards--2 s-group">
+      <article class="s-card s-r s-r--scale"><h3>Плановое использование</h3><p>Пользователь один раз настраивает приложение «под себя» и&nbsp;пользуется им в&nbsp;комфортной обстановке</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Экстренная ситуация</h3><p>Пользователь оказался в&nbsp;публичном месте, и&nbsp;ему нужно мгновенно скрыть баланс всех счетов</p></article>
+    </div>
+
+    <h3 class="s-sub-h s-r">1. Плановое использование</h3>
+    <p class="s-p s-r">Для этого сценария я&nbsp;добавила постоянные настройки главного экрана: пользователь управляет видимостью всех элементов — счетов, разделов и&nbsp;балансов.</p>
+    <figure class="s-fig s-fig--mid s-r s-r--scale"><img src="img/bs/solution.webp" width="1040" height="1345" alt="Решение: плановое использование, настройки видимости главного экрана" loading="lazy"></figure>
+
+    <h3 class="s-sub-h s-r">2. Экстренная ситуация</h3>
+    <p class="s-p s-r">Через встряхивание телефона на&nbsp;экране ввода пин-кода пользователь может скрыть баланс на&nbsp;всех счетах.</p>
+    <div class="s-videos s-group">
+      <div class="s-video s-video--shot s-r s-r--scale" data-player><video src="video/bs-shake.mp4" muted loop playsinline preload="metadata" tabindex="-1" aria-label="Прототип: встряхивание на экране пин-кода"></video></div>
+      <figure class="s-video s-video--diag s-r s-r--scale" data-player><video src="video/bs-shake-diagram.mp4" muted loop playsinline preload="metadata" tabindex="-1" aria-label="Как работает встряхивание"></video><figcaption>Как работает встряхивание</figcaption></figure>
+      <div class="s-videos__text s-r s-r--scale"><h3>Почему именно встряхивание</h3>
+        <ul>
+          <li>Это естественный жест для человека, который не&nbsp;хочет, чтобы кто-то заглядывал в&nbsp;его телефон в&nbsp;общественном месте</li>
+          <li>Жест знаком пользователям: встряхивание уже используется в&nbsp;iOS (отмена действий), ранее — «Shake to update» у&nbsp;Samsung</li>
+          <li>Управление жестом уже применяют крупные компании (Т-Банк, Газпромбанк, Яндекс Банк)</li>
+        </ul></div>
+    </div>
+  </section>
+
+  <!-- Метрики -->
+  <section class="s-sec" id="metrics">
+    <h2 class="c-h s-h s-r">Метрики</h2>
+    <p class="s-p s-r">Проект реализован как личный кейс и&nbsp;не&nbsp;запускался, но&nbsp;при проектировании я&nbsp;опиралась на&nbsp;реальные продуктовые метрики. Вот показатели, на&nbsp;которые может повлиять это решение:</p>
+    <div class="s-cards s-cards--3 s-group">
+      <article class="s-card s-r s-r--scale"><h3>Метрика 1</h3><p>Retention</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Рост retention среди пользователей, которые часто пользуются приложением вне дома</p><p class="s-card__k">Почему</p><p>Чувство безопасности в&nbsp;публичных местах снижает тревожность и&nbsp;повышает желание возвращаться</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Метрика 2</h3><p>CSAT и&nbsp;NPS</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Рост активных пользователей</p><p class="s-card__k">Почему</p><p>Функция вызывает позитивную реакцию и&nbsp;благодарность к&nbsp;продукту в&nbsp;«неудобных» обстоятельствах</p></article>
+      <article class="s-card s-r s-r--scale"><h3>Метрика 3</h3><p>Частота использования</p><hr class="s-card__rule"><p class="s-card__k">Эффект</p><p>Рост частоты использования приложения в&nbsp;дневное и&nbsp;вечернее время</p><p class="s-card__k">Почему</p><p>Снимается барьер «проверю баланс, когда буду дома»: это можно сделать сразу</p></article>
+    </div>
+  </section>
+
+  <nav class="s-next s-r" aria-label="Другие кейсы">
+    <p class="s-next__k">Другие кейсы</p>
+    <a href="vkusvill.html"><span>ВкусВилл</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+  </nav>
+
+</main>
+<footer class="footer">
+  <div class="canvas footer__in">
+    <p class="footer__role">Продуктовый дизайнер</p>
+    <p class="footer__name">Evseenkova Aleksandra</p>
+    <nav class="footer__col footer__col--nav" aria-label="Разделы">
+      <p class="footer__label">Разделы</p>
+      <a href="index.html">Главная</a>
+      <a href="about.html">Обо мне</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="footer__col footer__col--contact">
+      <p class="footer__label">Связаться со мной</p>
+      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram<svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="https://www.instagram.com/a_evseenkova_a/" target="_blank" rel="noopener">Instagram<svg class="ico"><use href="#i-arrow"/></svg></a>
+      <a href="mailto:sasha.evseenkova@list.ru">Email<svg class="ico"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
