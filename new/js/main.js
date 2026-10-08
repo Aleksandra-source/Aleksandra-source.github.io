@@ -98,6 +98,20 @@
     io.observe(box);
   });
 
+  /* ---------- Case videos: start downloading well before they are scrolled to ---------- */
+  var warmBoxes = doc.querySelectorAll("[data-player]");
+  if (warmBoxes.length && "IntersectionObserver" in window) {
+    var warm = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var v = e.target.querySelector("video");
+        if (v && v.preload !== "auto") { v.preload = "auto"; v.load(); }
+        warm.unobserve(e.target);
+      });
+    }, { rootMargin: "1800px 0px" });
+    warmBoxes.forEach(function (b) { warm.observe(b); });
+  }
+
   /* ---------- Case page: reveal on scroll, progress, parallax ---------- */
   var isStory = body.classList.contains("page-story");
   if (body.classList.contains("page-case") || isStory) {

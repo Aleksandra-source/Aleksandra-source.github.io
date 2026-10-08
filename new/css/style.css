@@ -546,6 +546,14 @@ html:not(.js) .s-flow__chip { opacity: 1; translate: 0 0; }
 html:not(.js) .s-flow .hl { opacity: 1; }
 .s-flow.no-motion *, .s-flow.no-motion { transition: none !important; }
 
+/* prototype videos: soften the very edge so a slightly different background tone never shows as a box */
+.s-hero video, .s-video--shot video {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent), linear-gradient(to bottom, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent), linear-gradient(to bottom, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+  mask-composite: intersect;
+}
+
 /* ---------- Case videos: look like part of the page, no player chrome ---------- */
 .player { position: absolute; margin: 0; }
 .player video { width: 100%; height: auto; display: block; pointer-events: none; }
