@@ -292,7 +292,7 @@
     pick();
   }
 
-  /* ---------- Home: interactive cursor + magnetic buttons ---------- */
+  /* ---------- Home: interactive cursor ---------- */
   if (body.hasAttribute("data-has-cursor") && finePointer && !reduceMotion && wide()) {
     var root = doc.documentElement;
     root.classList.add("has-cursor");
@@ -340,14 +340,5 @@
       lab.style.left = lx + "px"; lab.style.top = ly + "px";
       requestAnimationFrame(loop);
     })();
-
-    doc.querySelectorAll(".hero__links a").forEach(function (a) {
-      a.addEventListener("mousemove", function (e) {
-        var r = a.getBoundingClientRect();
-        var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
-        a.style.transform = "translate(" + (dx * 0.28).toFixed(1) + "px," + (dy * 0.5).toFixed(1) + "px)";
-      });
-      a.addEventListener("mouseleave", function () { a.style.transform = ""; });
-    });
   }
 })();
