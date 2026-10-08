@@ -295,7 +295,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    Design px against the 1440 frame; text column starts at 19.4375rem, wide figures use 83.75rem.
    ========================================================================== */
 .page-story { --accent: #23a55b; }
-.page-bs { --accent: #f10d30; }
+.page-bs { --accent: #2a5c8a; }
 .page-story .page { padding-bottom: 10.625rem; }
 
 /* ---------- Head ---------- */
@@ -342,6 +342,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .s-fig--wide { width: 83.75rem; }
 .s-fig--mid { width: 65rem; }
 .s-fig--narrow { width: 52.5rem; }
+.s-fig--sm1 { width: 56.25rem; }
+.s-fig--sm2 { width: 50rem; }
+.s-fig--sm3 { width: 47.5rem; }
 .s-panel { background: var(--panel); border-radius: 2.5rem; overflow: hidden; }
 .s-panel--pad { padding: 2.5rem; }
 .s-fig + .s-fig { margin-top: 1.75rem; }
@@ -452,7 +455,7 @@ html:not(.js) .s-res__bar i { width: var(--v); }
 
 /* ---------- Usability findings ---------- */
 .s-finds { margin: 3.5rem 0 0 15.625rem; width: 58.75rem; display: grid; gap: 1.25rem; }
-.s-find { background: var(--panel); border-radius: 1.875rem; padding: 1.75rem; display: grid; grid-template-columns: 20.625rem 1fr; gap: 2.25rem; align-items: center; transition: transform 1s cubic-bezier(.22,1,.36,1), box-shadow 1s cubic-bezier(.22,1,.36,1), background-color .7s ease; }
+.s-find { background: var(--panel); border-radius: 1.875rem; padding: 1.75rem; display: grid; grid-template-columns: 17.5rem 1fr; gap: 2.25rem; align-items: center; transition: transform 1s cubic-bezier(.22,1,.36,1), box-shadow 1s cubic-bezier(.22,1,.36,1), background-color .7s ease; }
 .s-find:hover { transform: translateY(-0.25rem); box-shadow: 0 1.375rem 2.875rem rgba(28, 26, 23, .055); background-color: #f4f6f6; }
 .s-find__shots { display: grid; gap: 0.875rem; justify-items: center; }
 .s-find__shots img { max-width: 100%; height: auto; border-radius: 1rem; }
@@ -466,6 +469,7 @@ html:not(.js) .s-res__bar i { width: var(--v); }
 
 /* ---------- Tabs ---------- */
 .s-tabs { margin: 3.5rem 0 0 3.125rem; width: 83.75rem; }
+.s-tabs--sm { margin-left: 14.375rem; width: 61.25rem; }
 .s-tabs__nav { display: flex; gap: 0.625rem; justify-content: center; }
 .s-tab { height: 2.75rem; padding: 0 1.375rem; border-radius: 62.4375rem; background: var(--panel); font-size: 1.125rem; line-height: 2.75rem; transition: background-color .4s, color .4s; }
 .s-tab:hover { background: #eef0f0; }
@@ -696,7 +700,7 @@ html:not(.js) .s-res__bar i { width: var(--v); }
   .s-tag { font-size: 1.25rem; }
   .s-tp { font-size: 1.125rem; line-height: 1.4; }
   .s-fig { margin-top: 1.75rem; }
-  .s-fig--wide, .s-fig--mid, .s-fig--narrow { width: auto; }
+  .s-fig--wide, .s-fig--mid, .s-fig--narrow, .s-fig--sm1, .s-fig--sm2, .s-fig--sm3 { width: auto; }
   .s-cards, .s-ctx, .s-comp, .s-ba, .s-finds { margin-top: 1.75rem; }
   .s-cards--2, .s-cards--3, .s-cards--4, .s-ctx, .s-comp, .s-ba { grid-template-columns: 1fr; }
   .s-card, .s-cards--3 .s-card { font-size: 1.125rem; line-height: 1.4; border-radius: 1.5rem; }
@@ -723,7 +727,7 @@ html:not(.js) .s-res__bar i { width: var(--v); }
   .s-split__body, .s-split__body h3 { font-size: 1.125rem; line-height: 1.4; }
   .s-find { grid-template-columns: 1fr; gap: 1.125rem; padding: 1.25rem; border-radius: 1.5rem; }
   .s-find__t { font-size: 1.125rem; line-height: 1.4; }
-  .s-tabs { margin-top: 1.75rem; }
+  .s-tabs, .s-tabs--sm { margin-top: 1.75rem; margin-left: 0; width: auto; }
   .s-tabs__nav { flex-wrap: wrap; justify-content: flex-start; }
   .s-tab { height: 2.375rem; padding: 0 1rem; font-size: 0.9375rem; line-height: 2.375rem; }
   .s-videos { margin-top: 1.75rem; flex-direction: column; }
