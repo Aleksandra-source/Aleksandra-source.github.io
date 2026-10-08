@@ -151,11 +151,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .work--vkusvill .work__brand img { width: 10.3313rem; height: 1.3125rem; }
 .work--bspb .work__brand img { width: 21.4187rem; height: 1.7688rem; }
 
-/* VkusVill and BSPB: three flat screens in a row */
-.work__img--s1, .work__img--s2, .work__img--s3 { width: 15.375rem; }
-.work--vkusvill .work__img--s1, .work--vkusvill .work__img--s2, .work--vkusvill .work__img--s3 { top: 2.875rem; height: 33.3125rem; }
-.work--bspb .work__img--s1, .work--bspb .work__img--s2, .work--bspb .work__img--s3 { top: -0.4375rem; height: 31.75rem; }
-.work__img--s1 { left: 33.25rem; } .work__img--s2 { left: 50.125rem; } .work__img--s3 { left: 67rem; }
+/* VkusVill and BSPB: three flat screens in a row, separated from the white page by a soft shadow */
+.work__shots { position: absolute; left: 33.25rem; width: 49.125rem; transition: transform .8s cubic-bezier(.22,1,.36,1); }
+.work--vkusvill .work__shots { top: 2.875rem; height: 33.3125rem; }
+.work--bspb .work__shots { top: -0.4375rem; height: 31.75rem; }
+.work__shots .work__img { top: 0; width: 15.375rem; transition: none; filter: drop-shadow(0 0.5rem 1.375rem rgba(28, 26, 23, .06)) drop-shadow(0 0.0625rem 0.1875rem rgba(28, 26, 23, .05)); }
+.work--vkusvill .work__shots .work__img { height: 33.3125rem; }
+.work--bspb .work__shots .work__img { height: 31.75rem; }
+.work__shots .work__img--s1 { left: 0; } .work__shots .work__img--s2 { left: 16.875rem; } .work__shots .work__img--s3 { left: 33.75rem; }
 
 /* ==========================================================================
    About
@@ -350,6 +353,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .work, .work__facts dt, .work__facts .row { transition: opacity .45s ease, color .35s ease, border-color .35s ease; }
 .work:hover .work__text { transform: translateY(-0.3125rem); }
 .work:hover .work__img { transform: translateY(-0.3125rem) scale(1.012); }
+.work:hover .work__shots { transform: translateY(-0.3125rem); }
+.work:hover .work__shots .work__img { transform: none; }
 .work:hover .work__facts dt { color: var(--ink); }
 .work:hover .work__facts .row { border-color: #b9b9b9; }
 .works:hover .work:not(:hover) { opacity: .5; }
@@ -390,8 +395,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .work__facts dd { white-space: normal; }
   .work__facts .row { width: auto; margin-left: 0; padding-left: 0; }
   .work__img, .work__img--y-front { position: static; width: 100%; height: auto; margin-top: 1.25rem; }
-  .work__shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1.25rem; }
-  .work__shots .work__img { margin-top: 0; }
+  .work__shots, .work--vkusvill .work__shots, .work--bspb .work__shots { position: static; width: auto; height: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1.25rem; padding: 0; }
+  .work__shots .work__img, .work--vkusvill .work__shots .work__img, .work--bspb .work__shots .work__img { position: static; width: 100%; height: auto; margin-top: 0; }
   .work--vkusvill .work__brand img, .work--bspb .work__brand img { width: auto; max-width: 100%; height: 1.375rem; }
   .work--yandex .work__img--y-back { display: none; }
   .more { height: auto; margin-top: 3.5rem; }
