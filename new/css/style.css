@@ -160,6 +160,16 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .work--bspb .work__shots .work__img { height: 31.75rem; }
 .work__shots .work__img--s1 { left: 0; } .work__shots .work__img--s2 { left: 16.875rem; } .work__shots .work__img--s3 { left: 33.75rem; }
 
+/* The photo videos sit on a white page: pull the near-white of the video to pure white and soften the edge of its box,
+   so no frame is ever visible around the picture on any screen / colour profile. */
+.hero__media, .about__media {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 1.75rem, #000 calc(100% - 1.75rem), transparent), linear-gradient(to bottom, transparent, #000 1.75rem, #000 calc(100% - 1.75rem), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 1.75rem, #000 calc(100% - 1.75rem), transparent), linear-gradient(to bottom, transparent, #000 1.75rem, #000 calc(100% - 1.75rem), transparent);
+  mask-composite: intersect;
+}
+.hero__media video, .about__media video { filter: brightness(1.018); }
+
 /* ==========================================================================
    About
    ========================================================================== */
