@@ -13,13 +13,26 @@
     var tz = "Europe/Moscow";
     var fTime = new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
     var fDay = new Intl.DateTimeFormat("en-US", { timeZone: tz, weekday: "long" });
+    // The visitor's own clock can be wrong (a mis-set time zone shifts it by hours), so the true time is taken from the server's Date header.
+    var skew = 0;
     var tick = function () {
-      var now = new Date();
+      var now = new Date(Date.now() + skew);
       timeEl.textContent = fTime.format(now);
       dayEl.textContent = fDay.format(now);
     };
     tick();
     setInterval(tick, 1000);
+    if (window.fetch) {
+      var t0 = Date.now();
+      fetch(location.pathname + "?t=" + t0, { method: "HEAD", cache: "no-store" }).then(function (r) {
+        var d = r.headers.get("Date");
+        if (!d) return;
+        var server = new Date(d).getTime();
+        if (isNaN(server)) return;
+        skew = server - (t0 + (Date.now() - t0) / 2);
+        tick();
+      }).catch(function () {});
+    }
   }
 
   /* ---------- Current page in the navigation ---------- */
