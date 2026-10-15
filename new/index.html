@@ -2,139 +2,89 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Евсеенкова Александра — продуктовый дизайнер</title>
   <meta name="description" content="Продуктовый дизайнер с опытом в банкинге и Web3. Кейсы: Яндекс 360, ВкусВилл, Банк Санкт-Петербург.">
-  <link rel="preload" href="fonts/GolosText.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="img/hero-portrait-poster.jpg" as="image" fetchpriority="high">
-  <link rel="preload" href="video/hero-portrait.mp4" as="video" type="video/mp4">
+  <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add("js")</script>
 </head>
-<body class="page-home" data-has-cursor>
-<!-- email-label: Email -->
-<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 20 20 4M8.4 4H20v11.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-copy" viewBox="0 0 24 26"><rect x="1.4" y="8" width="15.4" height="15.4" rx="1.8" fill="none" stroke="currentColor"/><path d="M7 4.4V3.6A1.8 1.8 0 0 1 8.8 1.8H21.2A1.8 1.8 0 0 1 23 3.6V16.4A1.8 1.8 0 0 1 21.2 18.2H20.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  </defs>
-</svg>
-<a class="skip-link" href="#main">К содержанию</a>
-<header class="header">
-  <nav class="nav" aria-label="Основная навигация">
-    <a href="index.html" data-nav="home">Главная</a>
-    <a href="about.html" data-nav="about">Обо мне</a>
-    <a href="index.html#works" data-nav="works">Работы</a>
-    <a href="contacts.html" data-nav="contacts">Контакты</a>
-  </nav>
-  <div class="clock" aria-hidden="true">
-    <span>Saint Petersburg</span><i></i><span data-clock-time>09:45:55</span><i></i><span data-clock-day>Tuesday</span>
-  </div>
-</header>
+<body>
+<div class="page">
 
-<main id="main" class="page canvas">
-
-  <section class="hero">
-    <div class="hero__media">
-      <video autoplay muted loop playsinline preload="auto" poster="img/hero-portrait-poster.jpg" aria-label="Портрет Александры Евсеенковой">
-        <source src="video/hero-portrait.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="hero__text">
-      <h1 class="hero__name">Евсеенкова Александра</h1>
-      <p class="hero__lead">Продуктовый дизайнер с&nbsp;опытом в&nbsp;банкинге и&nbsp;Web3.<br><span class="muted">Сейчас работаю над&nbsp;MVP-сервисом электронного меню<br class="br-d"> с&nbsp;AI/ML-рекомендациями блюд.</span></p>
-    </div>
-    <div class="hero__links">
-      <a href="cv-evseenkova-aleksandra-2026.pdf" target="_blank" rel="noopener">Resume</a>
-      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram</a>
-      <a href="mailto:sasha.evseenkova@list.ru">E-mail</a>
-    </div>
-  </section>
-
-  <section class="works" id="works" aria-label="Работы">
-
-    <article class="work work--yandex" data-cursor="Смотреть">
-      <a class="work__link" href="yandex-360.html" aria-label="Кейс Яндекс 360"></a>
-      <div class="work__text">
-        <h2 class="work__brand work__brand--yandex"><img src="img/logo-yandex-icon.png" alt="" width="28" height="28"><span>Yandex 360</span></h2>
-        <p class="work__about">Экосистема облачных сервисов от&nbsp;Яндекса<br class="br-d"> для работы, учёбы и&nbsp;повседневных задач.</p>
-        <dl class="work__facts">
-          <div class="row row--first"><dt>Results</dt><dd>Спроектировала единую панель<br class="br-d"> саппорта, которая упрощает<br class="br-d"> работу с&nbsp;большим количеством<br class="br-d"> информации и&nbsp;сокращает<br class="br-d"> переходы между админками.</dd></div>
-          <div class="row"><dt>Product</dt><dd>B2B</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product designer</dd></div>
-          <div class="row"><dt>Tools</dt><dd>Benchmarking, UX audit, user<br class="br-d"> flow, prototype</dd></div>
-        </dl>
-      </div>
-      <img class="work__img work__img--y-back" src="img/cover-yandex-back.webp" width="712" height="438" alt="" decoding="async">
-      <img class="work__img work__img--y-front" fetchpriority="low" src="img/cover-yandex-front.webp" width="823.7" height="505.7" alt="Единая панель саппорта Яндекс 360" decoding="async">
-    </article>
-
-    <article class="work work--vkusvill" data-cursor="Смотреть">
-      <a class="work__link" href="vkusvill.html" aria-label="Кейс ВкусВилл"></a>
-      <div class="work__text">
-        <h2 class="work__brand"><img src="img/logo-vkusvill.png" alt="ВкусВилл" width="165.3" height="21"></h2>
-        <p class="work__about">Сеть продуктовых магазинов и&nbsp;сервис<br class="br-d"> доставки продуктов на&nbsp;дом</p>
-        <dl class="work__facts">
-          <div class="row row--first"><dt>Results</dt><dd>Сделала корзину не&nbsp;финальной<br class="br-d"> точкой, а&nbsp;началом нового<br class="br-d"> сценария добавления товаров.<br class="br-d"> Проверила решение через<br class="br-d"> юзабилити-тест, который<br class="br-d"> подтвердил его эффективность</dd></div>
-          <div class="row"><dt>Product</dt><dd>Mobile app, E-commerce</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product designer</dd></div>
-          <div class="row"><dt>Tools</dt><dd>UX audit, screen flow, benchmarking,<br class="br-d"> Usability testing, prototype</dd></div>
-        </dl>
-      </div>
-      <div class="work__shots">
-        <img class="work__img work__img--s1" src="img/screen-vkusvill-1.webp" width="246" height="533" alt="ВкусВилл: каталог" decoding="async">
-        <img class="work__img work__img--s2" src="img/screen-vkusvill-2.webp" width="246" height="533" alt="ВкусВилл: пустая корзина с кнопкой добавления товаров" decoding="async">
-        <img class="work__img work__img--s3" src="img/screen-vkusvill-3.webp" width="246" height="533" alt="ВкусВилл: корзина с товарами" decoding="async">
-      </div>
-    </article>
-
-    <article class="work work--bspb" data-cursor="Смотреть">
-      <a class="work__link" href="bspb.html" aria-label="Кейс Банк Санкт-Петербург"></a>
-      <div class="work__text">
-        <h2 class="work__brand"><img src="img/logo-bspb.png" alt="Bank Saint Petersburg" width="342.7" height="28.3"></h2>
-        <p class="work__about">Крупнейший частный банк России</p>
-        <dl class="work__facts">
-          <div class="row row--first"><dt>Results</dt><dd>Разработала решение для<br class="br-d"> сохранения приватности баланса<br class="br-d"> в&nbsp;общественных местах:<br class="br-d"> настройки видимости и&nbsp;скрытие<br class="br-d"> встряхиванием телефона.</dd></div>
-          <div class="row"><dt>Product</dt><dd>Mobile app, Fintech</dd></div>
-          <div class="row"><dt>Role</dt><dd>Product designer</dd></div>
-          <div class="row"><dt>Tools</dt><dd>UX audit, interviews, benchmarking,<br class="br-d"> Usability testing, prototype</dd></div>
-        </dl>
-      </div>
-      <div class="work__shots">
-        <img class="work__img work__img--s1" src="img/screen-bspb-1.webp" width="246" height="508" alt="Банк Санкт-Петербург: главный экран" decoding="async">
-        <img class="work__img work__img--s2" src="img/screen-bspb-2.webp" width="246" height="508" alt="Банк Санкт-Петербург: настройка главной" decoding="async">
-        <img class="work__img work__img--s3" src="img/screen-bspb-3.webp" width="246" height="508" alt="Банк Санкт-Петербург: скрытие балансов" decoding="async">
-      </div>
-    </article>
-
-  </section>
-
-  <section class="more">
-    <p class="more__label">Чтобы узнать</p>
-    <a class="more__link" href="about.html" data-cursor="Открыть"><span>Больше обо мне и&nbsp;моём опыте</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-  </section>
-
-</main>
-<footer class="footer">
-  <div class="canvas footer__in">
-    <p class="footer__role">Продуктовый дизайнер</p>
-    <p class="footer__name">Evseenkova Aleksandra</p>
-    <nav class="footer__col footer__col--nav" aria-label="Разделы">
-      <p class="footer__label">Разделы</p>
-      <a href="index.html">Главная</a>
-      <a href="about.html">Обо мне</a>
-      <a href="contacts.html">Контакты</a>
+  <header class="col header">
+    <a class="header__name" href="index.html" data-type="aleksandra evseenkova" data-initials="ae">aleksandra evseenkova</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html" aria-current="page">кейсы</a>
+      <a href="about.html">обо мне</a>
     </nav>
-    <div class="footer__col footer__col--contact">
-      <p class="footer__label">Связаться со мной</p>
-      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram<svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="https://www.instagram.com/a_evseenkova_a/" target="_blank" rel="noopener">Instagram<svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="mailto:sasha.evseenkova@list.ru">Email<svg class="ico"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</footer>
+  </header>
 
+  <main class="col">
+    <section class="hero">
+      <div class="hero__media">
+        <video width="640" height="640" data-autoplay muted loop playsinline preload="auto" poster="img/avatar-poster.jpg" aria-label="Портрет Александры Евсеенковой">
+          <source src="video/avatar.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero__text">
+        <h1 class="hero__name">Евсеенкова Александра</h1>
+        <p>Продуктовый дизайнер с&nbsp;опытом в&nbsp;банкинге и&nbsp;Web3. <span class="muted">Сейчас работаю над MVP-сервисом электронного меню с&nbsp;AI/ML рекомендациями.</span></p>
+        <p class="status">открыта к&nbsp;предложениям</p>
+        <div class="links">
+          <a class="btn" href="cv-evseenkova-aleksandra-2026.pdf" target="_blank" rel="noopener">CV</a>
+          <a class="btn" href="mailto:sasha.evseenkova@list.ru">E-mail</a>
+          <a class="btn" href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <article class="win">
+      <a class="win__link" href="vkusvill.html" aria-label="Кейс ВкусВилл: корзина">
+        <div class="win__bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__file">cases/vkusvill/cart.fig</span></div>
+        <div class="win__head"><p>Сделала корзину не&nbsp;финальной точкой,<br> а&nbsp;началом нового сценария добавления товаров</p><span class="tag">ВкусВилл</span></div>
+        <div class="phones" aria-label="Прототип: каталог и корзина ВкусВилла">
+          <div class="phone" data-proto="vv-catalog"><div class="phone__screen"><span class="phone__island"></span></div></div>
+          <div class="phone" data-proto="vv-cart"><div class="phone__screen"><span class="phone__island"></span></div></div>
+        </div>
+        <p class="win__more">Смотреть кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17M14 5.5 20.5 12 14 18.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      </a>
+    </article>
+
+    <article class="win">
+      <a class="win__link" href="bspb.html" aria-label="Кейс Банк Санкт-Петербург: скрытие баланса">
+        <div class="win__bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__file">cases/bspb/hide-balance.fig</span></div>
+        <div class="win__head"><p>Придумала как сохранить приватность<br> баланса в&nbsp;общественных местах</p><span class="tag">Банк Санкт-Петербург</span></div>
+        <div class="phones" aria-label="Прототип: скрытие балансов в приложении банка">
+          <div class="phone" data-proto="bs-eye"><div class="phone__screen"><span class="phone__island"></span></div></div>
+          <div class="phone" data-proto="bs-settings"><div class="phone__screen"><span class="phone__island"></span></div></div>
+        </div>
+        <p class="win__more">Смотреть кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17M14 5.5 20.5 12 14 18.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+      </a>
+    </article>
+  </main>
+
+  <article class="win win--wide">
+    <a class="win__link" href="yandex-360.html" aria-label="Кейс Яндекс 360: панель поддержки">
+      <div class="win__bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__file">cases/yandex-360/support-admin.fig</span></div>
+      <div class="win__head"><p>Сократила переходы между админками и&nbsp;упростила поддержке<br> работу с&nbsp;большим объёмом информации</p><span class="tag">Яндекс 360</span></div>
+      <div class="desk">
+        <video data-autoplay muted loop playsinline preload="metadata" poster="img/yandex-proto.jpg" aria-label="Прототип единой панели поддержки Яндекс 360">
+          <source src="video/yandex-proto.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="win__more">Смотреть кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17M14 5.5 20.5 12 14 18.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+    </a>
+  </article>
+
+  <footer class="col col--wide footer">
+    <div class="footer__main">
+      <p data-type="давайте поработаем вместе" data-type-when="visible">давайте поработаем вместе</p>
+      <a class="btn-tg" href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+    <a class="footer__up" href="#">наверх<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5.5 10.5 12 4l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </footer>
+
+</div>
 <script src="js/main.js" defer></script>
 </body>
 </html>

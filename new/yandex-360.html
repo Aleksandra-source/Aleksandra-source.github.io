@@ -2,186 +2,87 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="robots" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Яндекс 360 — единая панель саппорта · Евсеенкова Александра</title>
-  <meta name="description" content="Кейс: единая панель саппорта Яндекс 360 — меньше переходов между админками и быстрее работа сотрудника.">
-  <link rel="preload" href="fonts/GolosText.woff2" as="font" type="font/woff2" crossorigin>
+  <title>Яндекс 360: единая панель поддержки — Евсеенкова Александра</title>
+  <meta name="description" content="Кейс Яндекс 360: сократила переходы между админками и упростила поддержке работу с большим объёмом информации.">
+  <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
-  <script>document.documentElement.classList.add("js")</script>
 </head>
-<body class="page-case">
-<!-- email-label: Email -->
-<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
-  <defs>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 20 20 4M8.4 4H20v11.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-copy" viewBox="0 0 24 26"><rect x="1.4" y="8" width="15.4" height="15.4" rx="1.8" fill="none" stroke="currentColor"/><path d="M7 4.4V3.6A1.8 1.8 0 0 1 8.8 1.8H21.2A1.8 1.8 0 0 1 23 3.6V16.4A1.8 1.8 0 0 1 21.2 18.2H20.4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  </defs>
-</svg>
-<a class="skip-link" href="#main">К содержанию</a>
-<header class="header">
-  <nav class="nav" aria-label="Основная навигация">
-    <a href="index.html" data-nav="home">Главная</a>
-    <a href="about.html" data-nav="about">Обо мне</a>
-    <a href="index.html#works" data-nav="works">Работы</a>
-    <a href="contacts.html" data-nav="contacts">Контакты</a>
-  </nav>
-  <div class="clock" aria-hidden="true">
-    <span>Saint Petersburg</span><i></i><span data-clock-time>09:45:55</span><i></i><span data-clock-day>Tuesday</span>
-  </div>
-</header>
+<body>
+<div class="page">
 
-<main id="main" class="page canvas">
-  <!-- Шапка кейса -->
-  <h1 class="c-title"><img src="img/logo-yandex-icon.png" alt="" width="44" height="44.3"><span>Yandex 360</span></h1>
-  <p class="c-sub">Спроектировала единую панель саппорта Яндекс 360, которая сокращает<br class="br-d"> переходы между админками и ускоряет работу сотрудника</p>
-  <dl class="c-meta">
-    <div class="c-meta__a"><dt>Сервис</dt><dd>Облачная экосистема для работы</dd></div>
-    <div class="c-meta__b"><dt>Сегмент</dt><dd>B2B</dd></div>
-    <div class="c-meta__c"><dt>Роль</dt><dd>Продуктовый дизайнер</dd></div>
-  </dl>
-
-  <div class="c-hero">
-    <img src="img/yandex-hero-screen.webp" fetchpriority="high" width="1330" height="787" alt="Единая панель саппорта Яндекс 360: карточка пользователя и список сервисов">
-  </div>
-
-  <!-- Контекст -->
-  <h2 class="c-h c-context__h">Контекст</h2>
-  <p class="c-p c-context__p">У продукта есть собственная служба поддержки, которая<br class="br-d"> помогает пользователям решать вопросы, связанные<br class="br-d"> с телемостом, почтой, мессенджером и другими сервисами.<br class="br-d"> Для обработки обращений у команды есть отдельная панель.</p>
-
-  <h3 class="c-tag c-tag--problem">Проблема</h3>
-  <p class="c-tp c-tp--problem">Чтобы обработать одно обращение,<br class="br-d"> сотруднику поддержки приходится<br class="br-d"> переключаться сразу между<br class="br-d"> несколькими административными<br class="br-d"> панелями. Это замедляет работу<br class="br-d"> и увеличивает время ответа<br class="br-d"> пользователю</p>
-  <h3 class="c-tag c-tag--task">Задача</h3>
-  <p class="c-tp c-tp--task">Спроектировать единую<br class="br-d"> административную панель<br class="br-d"> по пользователю, которая<br class="br-d"> поможет сотруднику быстро<br class="br-d"> получить общую<br class="br-d"> информацию о пользователе<br class="br-d"> по сервисам Яндекс 360</p>
-
-  <img class="c-tiles" src="img/yandex-brand-tiles.webp" width="850" height="431" alt="Сервисы Яндекс 360: почта, облако, телемост, календарь, документы, чат" loading="lazy">
-
-
-  <!-- UX-аудит -->
-  <h2 class="c-h c-audit__h">UX-аудит</h2>
-  <p class="c-p c-audit__p">Для начала я провела анализ текущей административной<br class="br-d"> панели, чтобы понять где саппорт теряет время.</p>
-
-  <div class="c-card c-findings">
-    <p class="c-findings__h">Выводы:</p>
-    <ul class="c-findings__list">
-      <li>сейчас для поиска информации, необходимой для решения<br class="br-d"> проблемы саппорту приходится сделать минимум<br class="br-d"> 5 шагов (если он знает где её искать)</li>
-      <li>информация по сервисам пользователя находится<br class="br-d"> в разных местах</li>
-      <li>не сразу видно полезную информацию о статусе и тарифе<br class="br-d"> пользователя</li>
-    </ul>
-  </div>
-
-  <figure class="player player--ux" data-player>
-    <video src="video/ux-audit.mp4" poster="img/poster/ux-audit.jpg" muted loop playsinline preload="metadata" tabindex="-1" aria-label="UX-аудит текущей админ-панели: анимация выводов"></video>
-  </figure>
-
-  <!-- User flow -->
-  <h2 class="c-h c-flow__h">User flow</h2>
-  <p class="c-p c-flow__p">На этом этапе я предположила, из каких шагов состоит работа<br class="br-d"> с запросом и что важно для быстрого решения.</p>
-  <figure class="player player--flow" data-player>
-    <video src="video/user-flow.mp4" poster="img/poster/user-flow.jpg" muted loop playsinline preload="metadata" tabindex="-1" aria-label="Флоу сотрудника поддержки: от поступления запроса до коммуникации с пользователем"></video>
-  </figure>
-
-
-  <!-- Гипотезы -->
-  <p class="c-p c-hyp__intro">Это позволило сформулировать несколько гипотез для<br class="br-d"> решения задачи.</p>
-  <div class="hyp hyp--1">
-    <article class="hyp__card hyp__card--a"><h3>Гипотеза 1</h3><p>Если сократить переходы<br class="br-d"> между админками,<br class="br-d"> это позволит ускорить<br class="br-d"> обработку обращений</p></article>
-    <article class="hyp__card hyp__card--b"><h3>Гипотеза 2</h3><p>Если собрать данные из<br class="br-d"> разных сервисов в одной<br class="br-d"> панели, сотруднику не<br class="br-d"> придётся переключаться<br class="br-d"> между ними — работа<br class="br-d"> саппорта упростится</p></article>
-    <article class="hyp__card hyp__card--c"><h3>Гипотеза 3</h3><p>Если показывать<br class="br-d"> информацию о тарифе<br class="br-d"> и сервисах, это позволит<br class="br-d"> сотруднику быстрее<br class="br-d"> выявлять проблему<br class="br-d"> пользователя</p></article>
-  </div>
-
-  <!-- Бенчмаркинг -->
-  <h2 class="c-h c-bench__h">Бенчмаркинг</h2>
-  <ul class="c-bench__logos" aria-label="Изученные продукты">
-    <li><img src="img/bench-1.png" width="71" height="71" alt="Intercom" loading="lazy"></li>
-    <li><img src="img/bench-2.png" width="71" height="71" alt="Salesforce" loading="lazy"></li>
-    <li><img src="img/bench-3.png" width="71" height="71" alt="HubSpot" loading="lazy"></li>
-    <li><img src="img/bench-4.png" width="71" height="71" alt="СберБизнес" loading="lazy"></li>
-  </ul>
-  <p class="c-p c-bench__p">Посмотрела различные CRM системы, чтобы посмотреть, как<br class="br-d"> они организуют большое количество информации.<br><br>Отсюда выросло ещё несколько гипотез.</p>
-  <div class="hyp hyp--2">
-    <article class="hyp__card hyp__card--a"><h3>Гипотеза 4</h3><p>Размещение ключевой<br class="br-d"> информации о пользователе<br class="br-d"> рядом с чатом позволит<br class="br-d"> быстрее идентифицировать<br class="br-d"> пользователя</p></article>
-    <article class="hyp__card hyp__card--b"><h3>Гипотеза 5</h3><p>Группировка информации<br class="br-d"> по сервисам в отдельных<br class="br-d"> вкладках поможет быстрее<br class="br-d"> находить нужные данные<br class="br-d"> по пользователю</p></article>
-    <article class="hyp__card hyp__card--c"><h3>Гипотеза 6</h3><p>Добавление истории<br class="br-d"> обращений поможет быстрее<br class="br-d"> понять контекст проблемы<br class="br-d"> и избежать повторной<br class="br-d"> проверки фактов</p></article>
-  </div>
-
-  <!-- Приоритизация -->
-  <h2 class="c-h c-prio__h">Приоритизация</h2>
-  <p class="c-p c-prio__p">Для приоритизации гипотез я использовала метод ICE (Impact,<br class="br-d"> Confidence, Ease)</p>
-  <figure class="player player--prio" data-player data-once>
-    <video src="video/prioritization.mp4" poster="img/poster/prioritization.jpg" muted playsinline preload="metadata" tabindex="-1" aria-label="Приоритизация гипотез методом ICE"></video>
-  </figure>
-
-
-  <!-- Юзабилити-тест -->
-  <h2 class="c-h c-test__h">Юзабилити-тест</h2>
-  <p class="c-p c-test__p">Я провела юзабилити-тест с 8 участниками: каждый искал<br class="br-d"> заданную информацию в старой и новой версиях админ-<br class="br-d">панели.<br><br>После переработки количество шагов сократилось в <span class="accent">2 раза.</span></p>
-  <figure class="player player--proto" data-player data-once>
-    <video src="video/prototype.mp4" poster="img/poster/prototype.jpg" muted playsinline preload="metadata" tabindex="-1" aria-label="Прототип новой админ-панели"></video>
-  </figure>
-
-  <!-- Результаты -->
-  <h2 class="c-h c-res__h">Результаты</h2>
-  <p class="c-p c-res__lead">Что удалось сделать:</p>
-  <ul class="c-p c-res__list">
-    <li>Устранить необходимость переключаться между<br class="br-d"> админками при работе с обращением;</li>
-    <li>Сократить количество шагов для получения ключевой<br class="br-d"> информации о пользователе;</li>
-    <li>Собрать данные из разных сервисов в одном окне, что<br class="br-d"> упрощает восприятие и снижает когнитивную нагрузку<br class="br-d"> на сотрудника.</li>
-  </ul>
-
-  <h2 class="c-h c-next__h">Следующие шаги</h2>
-  <p class="c-p c-next__p">Так как любое решение на практике подтверждается не только<br class="br-d"> удачным юзабилити-тестом, но и улучшением целевых метрик,<br class="br-d"> которые закладываются в начале работы, то в этом случае<br class="br-d"> мной были определены метрики успеха.</p>
-
-  <div class="metrics">
-    <article class="metric metric--1">
-      <h3 class="metric__n">Метрика 1</h3>
-      <p class="metric__name">Число переходов между<br class="br-d"> админками на одно<br class="br-d"> обращение</p>
-      <hr class="metric__rule">
-      <p class="metric__k">Цель</p>
-      <p class="metric__v">Сокращение количества<br class="br-d"> переходов между<br class="br-d"> админками</p>
-      <p class="metric__k metric__k--done">Срок проверки</p>
-      <p class="metric__v">Подтверждено<br class="br-d"> юзабилити-тестом</p>
-    </article>
-    <article class="metric metric--2">
-      <h3 class="metric__n">Метрика 2</h3>
-      <p class="metric__name">Time to Resolution (TTR)</p>
-      <hr class="metric__rule">
-      <p class="metric__k">Цель</p>
-      <p class="metric__v">Уменьшение времени<br class="br-d"> обработки одного<br class="br-d"> обращения</p>
-      <p class="metric__k">Срок проверки</p>
-      <p class="metric__v">2–4 недели</p>
-    </article>
-    <article class="metric metric--3">
-      <h3 class="metric__n">Метрика 3</h3>
-      <p class="metric__name">Closed Conversations<br class="br-d"> на сотрудника за смену</p>
-      <hr class="metric__rule">
-      <p class="metric__k">Цель</p>
-      <p class="metric__v">Увеличение объёма<br class="br-d"> обработанных обращений</p>
-      <p class="metric__k">Срок проверки</p>
-      <p class="metric__v">1 месяц</p>
-    </article>
-  </div>
-
-</main>
-<footer class="footer">
-  <div class="canvas footer__in">
-    <p class="footer__role">Продуктовый дизайнер</p>
-    <p class="footer__name">Evseenkova Aleksandra</p>
-    <nav class="footer__col footer__col--nav" aria-label="Разделы">
-      <p class="footer__label">Разделы</p>
-      <a href="index.html">Главная</a>
-      <a href="about.html">Обо мне</a>
-      <a href="contacts.html">Контакты</a>
+  <header class="col header">
+    <a class="header__name" href="index.html" data-type="aleksandra evseenkova" data-initials="ae">aleksandra evseenkova</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html">кейсы</a>
+      <a href="about.html">обо мне</a>
     </nav>
-    <div class="footer__col footer__col--contact">
-      <p class="footer__label">Связаться со мной</p>
-      <a href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram<svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="https://www.instagram.com/a_evseenkova_a/" target="_blank" rel="noopener">Instagram<svg class="ico"><use href="#i-arrow"/></svg></a>
-      <a href="mailto:sasha.evseenkova@list.ru">Email<svg class="ico"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</footer>
+  </header>
 
+  <main class="col col--wide" id="top">
+    <section class="case-sec case-sec--first">
+      <div class="case-head"><h1>Яндекс 360</h1><p>Сократила переходы между админками и&nbsp;упростила поддержке работу с&nbsp;большим объёмом информации</p></div>
+      <div class="shot"><video width="1620" height="912" data-autoplay muted loop playsinline preload="auto" poster="img/yandex-proto.jpg" aria-label="Прототип новой панели поддержки: переходы между сервисами, обращением и карточкой пользователя"><source src="video/yandex-proto.mp4" type="video/mp4"></video></div>
+      <div class="cards">
+        <div class="card"><h3>Контекст</h3><p>У&nbsp;продукта есть собственная служба поддержки, которая помогает пользователям решать вопросы, связанные с&nbsp;телемостом, почтой, мессенджером и&nbsp;другими сервисами Яндекс 360</p></div>
+        <div class="card card--red"><h3>Проблема</h3><p>Чтобы обработать одно обращение, сотруднику поддержки приходится переключаться сразу между несколькими административными панелями. Это замедляет работу и&nbsp;увеличивает время ответа пользователю</p></div>
+        <div class="card card--green"><h3>Задача</h3><p>Спроектировать единую административную панель по&nbsp;пользователю, которая поможет сотруднику быстро получить общую информацию о&nbsp;пользователе по&nbsp;сервисам Яндекс 360</p></div>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>UX-аудит</h2><p>Провела анализ текущей административной панели, чтобы понять где саппорт теряет время</p></div>
+      <div class="media"><video width="1880" height="840" data-autoplay muted loop playsinline preload="metadata" poster="img/ux-audit.jpg" aria-label="UX-аудит текущей админ-панели: проблемные места с комментариями"><source src="video/ux-audit.mp4" type="video/mp4"></video></div>
+      <div class="note">
+        <h3>Выводы</h3>
+        <ul>
+          <li>сейчас для поиска информации, необходимой для решения проблемы саппорту приходится сделать минимум 5&nbsp;шагов (если он знает где ее искать);</li>
+          <li>информация по&nbsp;сервисам пользователя находится в&nbsp;разных местах;</li>
+          <li>не&nbsp;сразу видно полезную информацию о&nbsp;статусе и&nbsp;тарифе пользователя</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>User&nbsp;flow</h2><p>Предположила, из&nbsp;каких шагов состоит работа с&nbsp;запросом и&nbsp;что важно для быстрого решения, что позволило сформулировать несколько гипотез</p></div>
+      <div class="media"><video width="1880" height="910" data-autoplay muted loop playsinline preload="metadata" poster="img/user-flow.jpg" aria-label="Флоу сотрудника поддержки: от поступления запроса до коммуникации с пользователем"><source src="video/user-flow.mp4" type="video/mp4"></video></div>
+      <ol class="hyp">
+        <li><b>H1</b><span>Если сократить переходы между админками, это позволит ускорить обработку обращений</span></li>
+        <li><b>H2</b><span>Если собрать данные из&nbsp;разных сервисов в&nbsp;одной панели, сотруднику не&nbsp;придётся переключаться между ними&nbsp;— работа саппорта упростится</span></li>
+        <li><b>H3</b><span>Если показывать информацию о&nbsp;тарифе и&nbsp;сервисах, это позволит сотруднику быстрее выявлять проблему пользователя</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Бенчмаркинг</h2><p>Проанализировала, как CRM-системы структурируют большие объёмы данных, и&nbsp;на&nbsp;этой основе сформулировала новые гипотезы</p></div>
+      <div class="media media--bench"><video width="1336" height="728" data-autoplay muted loop playsinline preload="metadata" poster="img/bench-carousel.jpg" aria-label="CRM-системы из бенчмаркинга: Intercom, Salesforce, HubSpot, Сбер"><source src="video/bench-carousel.mp4" type="video/mp4"></video></div>
+      <ol class="hyp">
+        <li><b>H4</b><span>Размещение ключевой информации о&nbsp;пользователе рядом с&nbsp;чатом позволит быстрее идентифицировать пользователя</span></li>
+        <li><b>H5</b><span>Группировка информации по&nbsp;сервисам в&nbsp;отдельных вкладках поможет быстрее находить нужные данные по&nbsp;пользователю</span></li>
+        <li><b>H6</b><span>Добавление истории обращений поможет быстрее понять контекст проблемы и&nbsp;избежать повторной проверки фактов</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Юзабилити-тест</h2><p>Я&nbsp;провела юзабилити-тест с&nbsp;8&nbsp;участниками: каждый искал заданную информацию в&nbsp;старой и&nbsp;новой версиях админ-панели</p></div>
+      <div class="shot"><img src="img/yandex-chat.webp" width="1920" height="1082" alt="Новая панель поддержки, которую проверяли на юзабилити-тесте: обращение, чат и карточка пользователя рядом" loading="lazy"></div>
+      <div class="note note--big">
+        <h3>Результат</h3>
+        <ul>
+          <li>в&nbsp;новом интерфейсе количество шагов сократилось в&nbsp;<b>2&nbsp;раза</b></li>
+          <li>вся информация о&nbsp;пользователе теперь находится в&nbsp;одном окне</li>
+          <li>7&nbsp;из&nbsp;8&nbsp;участников справились быстрее, чем в&nbsp;старой версии</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="end" aria-label="Дальше">
+      <a href="vkusvill.html">смотреть другой кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M8.5 6H18v9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#">наверх<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5.5 10.5 12 4l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+  </main>
+
+</div>
 <script src="js/main.js" defer></script>
 </body>
 </html>

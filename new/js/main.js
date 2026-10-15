@@ -1,357 +1,313 @@
-(function () {
-  "use strict";
-  var doc = document;
-  var body = doc.body;
-  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var finePointer = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  var wide = function () { return window.innerWidth >= 900; };
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  /* ---------- Live clock (Saint Petersburg) ---------- */
-  var timeEl = doc.querySelector("[data-clock-time]");
-  var dayEl = doc.querySelector("[data-clock-day]");
-  if (timeEl && dayEl && window.Intl) {
-    var tz = "Europe/Moscow";
-    var fTime = new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
-    var fDay = new Intl.DateTimeFormat("en-US", { timeZone: tz, weekday: "long" });
-    // The visitor's own clock can be wrong (a mis-set time zone shifts it by hours), so the true time is taken from the server's Date header.
-    var skew = 0;
-    var tick = function () {
-      var now = new Date(Date.now() + skew);
-      timeEl.textContent = fTime.format(now);
-      dayEl.textContent = fDay.format(now);
+  /* ---------- фон: плотное поле серых символов, еле заметное; пятна чуть темнее медленно плывут, символы не мигают ---------- */
+  function codeBackground() {
+    const cv = document.createElement("canvas");
+    cv.className = "code-bg";
+    cv.setAttribute("aria-hidden", "true");
+    document.body.prepend(cv);
+    const ctx = cv.getContext("2d");
+    const base = document.createElement("canvas");
+    const bctx = base.getContext("2d");
+    const CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const FONT = 13, CW = FONT * 0.6, CH = 14;
+    const RGB = "28,26,23";
+    const BASE_A = 0.035, PEAK_A = 0.05;
+    let cols = 0, rows = 0, grid = [], dpr = 1, colL = 0, colR = 0;
+    const pick = () => CHARS[(Math.random() * CHARS.length) | 0];
+
+    // value noise: x, y, t -> 0..1
+    const P = new Uint8Array(512);
+    { const p = [...Array(256).keys()].sort(() => Math.random() - 0.5); for (let i = 0; i < 512; i++) P[i] = p[i & 255]; }
+    const fade = (t) => t * t * (3 - 2 * t);
+    const h3 = (x, y, z) => P[(P[(P[x & 255] + y) & 255] + z) & 255] / 255;
+    function noise(x, y, z) {
+      const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+      const u = fade(x - xi), v = fade(y - yi), w = fade(z - zi);
+      const l = (a, b, t) => a + (b - a) * t;
+      return l(
+        l(l(h3(xi, yi, zi), h3(xi + 1, yi, zi), u), l(h3(xi, yi + 1, zi), h3(xi + 1, yi + 1, zi), u), v),
+        l(l(h3(xi, yi, zi + 1), h3(xi + 1, yi, zi + 1), u), l(h3(xi, yi + 1, zi + 1), h3(xi + 1, yi + 1, zi + 1), u), v), w);
+    }
+    const font = () => `${FONT}px "Plex Mono", ui-monospace, monospace`;
+    const fadeAt = (x) => { // буквы почти гаснут за колонкой с текстом
+      const e = Math.min(x + CW - colL, colR - x);
+      return e > 0 ? Math.max(0, 1 - e / 60) : 1;   // за колонкой букв нет совсем
     };
-    tick();
-    setInterval(tick, 1000);
-    if (window.fetch) {
-      var t0 = Date.now();
-      fetch(location.pathname + "?t=" + t0, { method: "HEAD", cache: "no-store" }).then(function (r) {
-        var d = r.headers.get("Date");
-        if (!d) return;
-        var server = new Date(d).getTime();
-        if (isNaN(server)) return;
-        skew = server - (t0 + (Date.now() - t0) / 2);
-        tick();
-      }).catch(function () {});
-    }
-  }
 
-  /* ---------- Current page in the navigation ---------- */
-  var map = { "page-home": "home", "page-about": "about", "page-contacts": "contacts" };
-  Object.keys(map).forEach(function (cls) {
-    if (body.classList.contains(cls)) {
-      var a = doc.querySelector('.nav a[data-nav="' + map[cls] + '"]');
-      if (a) a.setAttribute("aria-current", "page");
+    function drawBase() {
+      bctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      bctx.clearRect(0, 0, innerWidth, innerHeight);
+      bctx.font = font();
+      bctx.textBaseline = "top";
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        const x = c * CW;
+        bctx.fillStyle = `rgba(${RGB},${(BASE_A * fadeAt(x)).toFixed(3)})`;
+        bctx.fillText(grid[r * cols + c], x, r * CH);
+      }
     }
-  });
-
-  /* ---------- Hero loops ---------- */
-  var heroVideos = doc.querySelectorAll(".hero__media video, .about__media video");
-  heroVideos.forEach(function (v) {
-    if (reduceMotion) { v.removeAttribute("autoplay"); v.pause(); return; }
-    var p = v.play();
-    if (p && p.catch) p.catch(function () {});
-  });
-  doc.addEventListener("visibilitychange", function () {
-    if (doc.visibilityState === "visible" && !reduceMotion) {
-      heroVideos.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+    function resize() {
+      dpr = Math.min(2, devicePixelRatio || 1);
+      for (const c of [cv, base]) { c.width = innerWidth * dpr; c.height = innerHeight * dpr; }
+      cv.style.width = innerWidth + "px"; cv.style.height = innerHeight + "px";
+      cols = Math.ceil(innerWidth / CW); rows = Math.ceil(innerHeight / CH);
+      grid = Array.from({ length: cols * rows }, pick);
+      const m = document.querySelector("main");
+      if (m) { const r = m.getBoundingClientRect(); colL = r.left; colR = r.right; }
+      drawBase();
     }
-  });
-
-  /* ---------- Copy e-mail ---------- */
-  var toast = doc.querySelector("[data-toast]");
-  var toastTimer;
-  doc.querySelectorAll("[data-copy]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var text = btn.getAttribute("data-copy");
-      var done = function () {
-        if (!toast) return;
-        toast.classList.add("is-on");
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () { toast.classList.remove("is-on"); }, 1600);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
-      } else { fallbackCopy(text); done(); }
-    });
-  });
-  function fallbackCopy(text) {
-    var t = doc.createElement("textarea");
-    t.value = text; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
-    doc.body.appendChild(t); t.select();
-    try { doc.execCommand("copy"); } catch (e) {}
-    doc.body.removeChild(t);
-  }
-
-  /* ---------- Case videos: look like the page itself, start when scrolled to ---------- */
-  doc.querySelectorAll("[data-player]").forEach(function (box) {
-    var v = box.querySelector("video");
-    if (!v) return;
-    v.removeAttribute("controls");
-    v.setAttribute("tabindex", "-1");
-    box.setAttribute("role", "img");
-    box.setAttribute("aria-label", v.getAttribute("aria-label") || "");
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      // no motion: show the finished state (last frames) instead of an empty first frame
-      v.pause();
-      v.addEventListener("loadedmetadata", function () { v.currentTime = Math.max(0, v.duration - 0.2); });
-      return;
-    }
-    v.pause();
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          v.currentTime = 0;
-          var p = v.play();
-          if (p && p.catch) p.catch(function () {});
-        } else if (!v.paused) {
-          v.pause();
+    let last = 0;
+    function frame(now) {
+      requestAnimationFrame(frame);
+      if (now - last < 66) return;              // движение очень медленное, 15 кадров в секунду хватает
+      last = now;
+      const t = now / 1000 * 0.06;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      ctx.drawImage(base, 0, 0);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = font();
+      ctx.textBaseline = "top";
+      for (let r = 0; r < rows; r++) {
+        const ny = r / 9;
+        for (let c = 0; c < cols; c++) {
+          // вытянутые по горизонтали пятна, как строки кода
+          const n = noise(c / 26, ny, t) * 0.7 + noise(c / 9, ny * 2.2, t * 1.7 + 40) * 0.3;
+          let k = (n - 0.56) / 0.17;
+          if (k <= 0) continue;
+          k = Math.min(1, k);
+          const i = r * cols + c;
+          const x = c * CW;
+          ctx.fillStyle = `rgba(${RGB},${(PEAK_A * k * fadeAt(x)).toFixed(3)})`;
+          ctx.fillText(grid[i], x, r * CH);
         }
-      });
-    }, { threshold: box.hasAttribute("data-early") ? 0.08 : 0.4 });
-    io.observe(box);
-  });
-
-  /* ---------- Case videos: start downloading well before they are scrolled to ---------- */
-  var warmBoxes = doc.querySelectorAll("[data-player]");
-  if (warmBoxes.length && "IntersectionObserver" in window) {
-    var warm = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var v = e.target.querySelector("video");
-        if (v && v.preload !== "auto") { v.preload = "auto"; v.load(); }
-        warm.unobserve(e.target);
-      });
-    }, { rootMargin: "1800px 0px" });
-    warmBoxes.forEach(function (b) { warm.observe(b); });
+      }
+    }
+    addEventListener("resize", resize);
+    resize();
+    if (document.fonts) document.fonts.ready.then(drawBase);
+    if (reduce) { ctx.drawImage(base, 0, 0); return; }
+    requestAnimationFrame(frame);
   }
 
-  /* ---------- Case page: reveal on scroll, progress, parallax ---------- */
-  var isStory = body.classList.contains("page-story");
-  if (body.classList.contains("page-case") || isStory) {
-    var sel = isStory ? ".s-r" :
-              ".c-title,.c-sub,.c-meta,.c-hero,.c-h,.c-p:not(.c-res__list),.c-tag,.c-tp,.c-tiles,.c-findings,.c-findings__list li," +
-              ".player,.hyp__card,.c-bench__logos li,.c-res__list li,.metric";
-    var items = Array.prototype.slice.call(doc.querySelectorAll(sel));
-    var counters = Array.prototype.slice.call(doc.querySelectorAll(".s-res"));
-    var countUp = function (row) {
-      var n = row.querySelector("[data-count]");
-      if (!n) return;
-      var to = parseFloat(n.getAttribute("data-count")), t0 = null;
-      var step = function (t) {
-        if (t0 === null) t0 = t;
-        var k = Math.min(1, (t - t0) / 1500);
-        n.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
-        if (k < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    };
-    var accents = Array.prototype.slice.call(doc.querySelectorAll(".accent"));
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      accents.forEach(function (a) { a.classList.add("is-in"); });
-      counters.forEach(function (r) { r.classList.add("is-in", "no-motion"); });
-    } else {
-      var groups = new Map();
-      counters.forEach(function (r) { var n = r.querySelector("[data-count]"); if (n) n.textContent = "0"; });
-      items.forEach(function (el) {
-        el.classList.add("reveal");
-        if (el.matches(".c-hero,.c-tiles,.player,.c-findings,.metric,.hyp__card,.s-r--scale")) el.classList.add("reveal--scale");
-        var parent = el.parentElement;
-        if (el.matches(".hyp__card,.metric,.c-bench__logos li,.c-res__list li,.c-findings__list li") || (isStory && parent.classList.contains("s-group"))) {
-          var i = groups.get(parent) || 0;
-          groups.set(parent, i + 1);
-          el.style.setProperty("--d", (i * 0.09) + "s");
+  /* ---------- печать: инициалы «раскрываются» в полное имя, потом стираются обратно ---------- */
+  function makeTyper(el) {
+    const out = document.createElement("span");
+    out.className = "type";
+    out.setAttribute("aria-hidden", "true");
+    const caret = document.createElement("span");
+    caret.className = "caret";
+    caret.setAttribute("aria-hidden", "true");
+    el.textContent = "";
+    el.append(out, caret);
+    const set = (s) => { out.textContent = s; };
+    // пока печатает — курсор горит ровно, на паузах мигает
+    const busy = (on) => caret.classList.toggle("is-busy", on);
+    async function type(from, to) {
+      busy(true);
+      let s = from;
+      for (const ch of to) { s += ch; set(s); await sleep(ch === " " ? 120 : 70 + Math.random() * 60); }
+      busy(false);
+      return s;
+    }
+    async function erase(s, keep) {
+      busy(true);
+      while (s.length > keep) { s = s.slice(0, -1); set(s); await sleep(45); }
+      busy(false);
+      return s;
+    }
+    return { set, type, erase, caret };
+  }
+  async function nameLoop(el) {
+    const full = el.dataset.type, ini = el.dataset.initials || "";
+    el.setAttribute("aria-label", full);
+    const t = makeTyper(el);
+    if (reduce || !ini) { t.set(full); return; }
+    let s = ini;                                         // ae — сразу, чтобы хедер не мигал пустым при переходах
+    t.set(s);
+    for (;;) {
+      await sleep(1500);
+      s = await t.erase(s, 1);                           // a
+      s = await t.type(s, full.slice(1));                // aleksandra evseenkova
+      await sleep(6500);
+      s = await t.erase(s, 1);                           // a
+      s = await t.type(s, ini.slice(1));                 // ae
+    }
+  }
+  async function typeOnce(el) {
+    const full = el.dataset.type;
+    el.setAttribute("aria-label", full);
+    const t = makeTyper(el);
+    if (reduce) { t.set(full); t.caret.classList.add("is-off"); return; }
+    await t.type("", full);
+    await sleep(3000);
+    t.caret.classList.add("is-off");
+  }
+  function typing() {
+    document.querySelectorAll("[data-type]").forEach((el) => {
+      if (el.dataset.typeWhen === "visible") {
+        const full = el.dataset.type;
+        el.setAttribute("aria-label", full);
+        el.innerHTML = '<span class="type" aria-hidden="true"> </span>';  // место под строку, пока не начали
+        const io = new IntersectionObserver((es) => {
+          if (es.some((e) => e.isIntersecting)) { io.disconnect(); typeOnce(el); }
+        }, { threshold: 0.8 });
+        io.observe(el);
+      } else nameLoop(el);
+    });
+  }
+
+  /* ---------- прототипы в телефонах: экраны из макетов, нажатие видно по самой кнопке ---------- */
+  const DIMS = { vv: [1179, 2556], "bs-home": [1125, 4002], "bs-eye": [1125, 4002], "bs-eye-open": [1125, 4002], "bs-settings": [1125, 2436], "bs-hide": [1125, 2436] };
+  const dims = (n) => DIMS[n] || DIMS[n.split("-")[0]];
+  // press: [x, y, w, h, радиус, вид] в пикселях исходного макета; вид: light | green (темнеют) | dark (светлеет)
+  const PROTOS = {
+    "vv-catalog": [
+      { show: "vv-3" }, { wait: 1400 },
+      { press: [48, 480, 336, 110, 45, "light"] }, { go: "vv-4" }, { wait: 1500 },
+      { press: [432, 1590, 312, 78, 39, "green"] }, { go: "vv-5" }, { wait: 2200 },
+      { go: "vv-3" },
+    ],
+    "vv-cart": [
+      { show: "vv-6" }, { wait: 1600 },
+      { press: [60, 1580, 470, 80, 22, "light"] }, { go: "vv-8" }, { wait: 1400 },
+      { press: [60, 1428, 501, 96, 48, "green"] }, { go: "vv-9" }, { wait: 1300 },
+      { press: [0, 2280, 1179, 276, 0, "green"] }, { go: "vv-10" }, { wait: 2200 },
+      { go: "vv-6" },
+    ],
+    "bs-eye": [
+      { show: "bs-home" }, { wait: 1000 },
+      { scroll: 470, dur: 1100 }, { wait: 500 },
+      { go: "bs-eye-open", keep: true, dur: 380 }, { wait: 1000 },
+      { press: [960, 1594, 90, 90, 45, "dark"] }, { go: "bs-eye", keep: true }, { wait: 1900 },
+      { go: "bs-home", keep: true }, { wait: 500 },
+      { scroll: 0, dur: 900 },
+    ],
+    "bs-settings": [
+      { show: "bs-home" }, { wait: 900 },
+      { scroll: 835, dur: 1500 }, { wait: 500 },
+      { press: [589, 3218, 488, 401, 60, "light"] }, { go: "bs-settings", dur: 420 }, { wait: 1200 },
+      { press: [45, 1770, 1035, 158, 40, "light"] }, { go: "bs-hide" }, { wait: 1500 },
+      { press: [49, 1999, 1028, 161, 80, "dark"] }, { go: "bs-home", scrollTo: 835 }, { wait: 500 },
+      { scroll: 0, dur: 1200 }, { wait: 300 },
+    ],
+  };
+  const SRC = (n) => `img/proto/${n}.webp`;
+  const anim = (el, kf, ms, easing = "cubic-bezier(.4,0,.2,1)") => el.animate(kf, { duration: ms, easing, fill: "forwards" }).finished;
+
+  function phone(el) {
+    const steps = PROTOS[el.dataset.proto];
+    const screen = el.querySelector(".phone__screen");
+    let cur = null, y = 0, playing = false, running = false;
+    const px = () => screen.clientWidth / 600;          // прокрутка задана в пикселях экрана шириной 600
+
+    function layer(name, scrollPx = 0) {
+      const s = document.createElement("div");
+      s.className = "scr";
+      s.dataset.name = name;
+      const inner = document.createElement("div");
+      inner.className = "scr__in";
+      inner.style.transform = `translateY(${-scrollPx * px()}px)`;
+      const img = new Image();
+      img.src = SRC(name); img.alt = ""; img.decoding = "async";
+      inner.append(img);
+      s.append(inner);
+      screen.append(s);
+      return s;
+    }
+    // нажатие: кнопка чуть «проседает» и темнеет (тёмная — светлеет), курсора нет
+    async function press([x, y0, w, h, r, kind]) {
+      const name = cur.dataset.name, [W] = dims(name);
+      const k = screen.clientWidth / W;
+      const d = document.createElement("i");
+      d.className = "press";
+      const tint = kind === "dark" ? "rgba(255,255,255,.2)" : kind === "green" ? "rgba(0,0,0,.2)" : "rgba(0,0,0,.085)";
+      Object.assign(d.style, {
+        left: x * k + "px", top: y0 * k + "px", width: w * k + "px", height: h * k + "px", borderRadius: r * k + "px",
+        backgroundImage: `linear-gradient(${tint},${tint}), url(${SRC(name)})`,
+        backgroundSize: `100% 100%, ${screen.clientWidth}px auto`,
+        backgroundPosition: `0 0, ${-x * k}px ${-y0 * k}px`,
+      });
+      cur.querySelector(".scr__in").append(d);
+      await anim(d, [{ opacity: 0, transform: "scale(1)" }, { opacity: 1, transform: "scale(.965)" }], 140);
+      await sleep(260);
+    }
+    async function go(s) {
+      const nextY = s.keep ? y : s.scrollTo || 0;
+      const nx = layer(s.go, nextY);
+      const old = cur;
+      await anim(nx, [{ opacity: 0 }, { opacity: 1 }], s.dur || 320, "ease-in-out");
+      old.remove();
+      cur = nx; y = nextY;
+    }
+    async function scroll(to, dur) {
+      const inner = cur.querySelector(".scr__in");
+      const k = px();
+      await anim(inner, [{ transform: `translateY(${-y * k}px)` }, { transform: `translateY(${-to * k}px)` }], dur);
+      y = to;
+    }
+    async function loop() {
+      if (running) return;
+      running = true;
+      await Promise.all([...new Set(steps.filter((s) => s.show || s.go).map((s) => s.show || s.go))]
+        .map((n) => new Promise((r) => { const i = new Image(); i.onload = i.onerror = r; i.src = SRC(n); })));
+      for (;;) {
+        for (const s of steps) {
+          while (!playing) await sleep(200);
+          if (s.show) { if (cur) cur.remove(); cur = layer(s.show); y = 0; }
+          else if (s.wait) await sleep(s.wait);
+          else if (s.press) await press(s.press);
+          else if (s.go) await go(s);
+          else if (s.scroll !== undefined) await scroll(s.scroll, s.dur || 1000);
         }
-      });
-      var rv = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            if (e.target.classList.contains("s-res")) setTimeout(function () { countUp(e.target); }, 250);
-            rv.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-      items.concat(accents).forEach(function (el) { rv.observe(el); });
+      }
     }
-
-    var bar = doc.createElement("div");
-    bar.className = "progress";
-    bar.setAttribute("aria-hidden", "true");
-    body.appendChild(bar);
-    var heroImg = doc.querySelector(".c-hero img");
-    var targetP = 0, curP = 0, targetY = 0, curY = 0, running = false;
-    var measure = function () {
-      var max = doc.documentElement.scrollHeight - window.innerHeight;
-      targetP = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-      if (heroImg && wide()) {
-        var r = heroImg.parentElement.getBoundingClientRect();
-        var k = (r.top + r.height / 2 - window.innerHeight / 2) / window.innerHeight;
-        targetY = Math.max(-16, Math.min(16, k * -22));
-      }
-      if (!running) { running = true; requestAnimationFrame(frame); }
-    };
-    var frame = function () {
-      curP += (targetP - curP) * 0.14;
-      curY += (targetY - curY) * 0.1;
-      bar.style.transform = "scaleX(" + curP.toFixed(4) + ")";
-      if (heroImg && !reduceMotion) heroImg.style.transform = "translateY(" + curY.toFixed(2) + "px)";
-      if (Math.abs(targetP - curP) > 0.0005 || Math.abs(targetY - curY) > 0.02) requestAnimationFrame(frame);
-      else running = false;
-    };
-    window.addEventListener("scroll", measure, { passive: true });
-    window.addEventListener("resize", measure);
-    measure();
+    cur = layer(steps[0].show);
+    if (reduce) return;
+    new IntersectionObserver((es) => {
+      playing = es[0].isIntersecting;
+      if (playing) loop();
+    }, { threshold: 0.25 }).observe(el);
   }
 
-  /* ---------- Animated flow diagram: plays once when scrolled to, can be replayed ---------- */
-  doc.querySelectorAll("[data-flowanim]").forEach(function (box) {
-    var stage = box.querySelector(".stage");
-    var replay = box.querySelector(".s-flow__replay");
-    var timers = [];
-    var reset = function () {
-      timers.forEach(clearTimeout); timers = [];
-      box.classList.remove("is-s1", "is-s2", "is-s3", "is-done");
-      stage.style.transform = "";
-    };
-    var play = function () {
-      reset();
-      void box.getBoundingClientRect();
-      box.classList.add("is-s1");
-      timers.push(setTimeout(function () { box.classList.add("is-s2"); }, 4400));
-      timers.push(setTimeout(function () {
-        box.classList.add("is-s3");
-        stage.style.transform = "translate(-945px,-114.75px) scale(1.5)";
-      }, 7300));
-      timers.push(setTimeout(function () { box.classList.add("is-done"); }, 9700));
-    };
-    if (reduceMotion || !("IntersectionObserver" in window)) {
-      box.classList.add("no-motion", "is-s1", "is-s2", "is-s3", "is-done");
-      return;
-    }
-    var fio = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) { play(); fio.disconnect(); }
-    }, { threshold: 0.5 });
-    fio.observe(box);
-    if (replay) replay.addEventListener("click", play);
-  });
+  /* ---------- видео играют, только пока видны ---------- */
+  function videos() {
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting && !reduce) v.play().catch(() => {});
+      else v.pause();
+    }), { threshold: 0.3 });
+    document.querySelectorAll("video[data-autoplay]").forEach((v) => io.observe(v));
+  }
 
-  /* ---------- Story pages: horizontal strips (drag / scroll) and tabs ---------- */
-  doc.querySelectorAll("[data-strip]").forEach(function (strip) {
-    var track = strip.nextElementSibling;
-    var thumb = track && track.classList.contains("s-track") ? track.querySelector("i") : null;
-    var upd = function () {
-      if (!thumb) return;
-      var w = strip.scrollWidth, vis = strip.clientWidth;
-      thumb.style.width = Math.min(100, vis / w * 100) + "%";
-      thumb.style.left = (strip.scrollLeft / w * 100) + "%";
+  /* ---------- вкладки опыта ---------- */
+  function tabs() {
+    const box = document.querySelector("[data-tabs]");
+    if (!box) return;
+    const btns = [...box.querySelectorAll('[role="tab"]')];
+    const select = (b, focus) => {
+      btns.forEach((x) => {
+        const on = x === b;
+        x.setAttribute("aria-selected", on);
+        x.tabIndex = on ? 0 : -1;
+        document.getElementById(x.getAttribute("aria-controls")).hidden = !on;
+      });
+      if (focus) b.focus();
     };
-    strip.addEventListener("scroll", upd, { passive: true });
-    window.addEventListener("resize", upd);
-    upd();
-    var down = false, sx = 0, sl = 0, moved = false;
-    strip.addEventListener("pointerdown", function (e) {
-      if (e.pointerType !== "mouse" || e.button !== 0) return;
-      down = true; moved = false; sx = e.clientX; sl = strip.scrollLeft;
-    });
-    window.addEventListener("pointermove", function (e) {
-      if (!down) return;
-      var dx = e.clientX - sx;
-      if (!moved && Math.abs(dx) > 4) { moved = true; strip.classList.add("is-drag"); }
-      if (moved) strip.scrollLeft = sl - dx;
-    });
-    var up = function () { down = false; strip.classList.remove("is-drag"); };
-    window.addEventListener("pointerup", up);
-    window.addEventListener("pointercancel", up);
-  });
-
-  doc.querySelectorAll("[data-tabs]").forEach(function (box) {
-    var tabs = Array.prototype.slice.call(box.querySelectorAll('[role="tab"]'));
-    var figs = Array.prototype.slice.call(box.querySelectorAll(".s-tabs__view figure"));
-    var select = function (i, focus) {
-      tabs.forEach(function (t, k) { t.setAttribute("aria-selected", k === i ? "true" : "false"); t.tabIndex = k === i ? 0 : -1; });
-      figs.forEach(function (f, k) { f.classList.toggle("is-on", k === i); });
-      if (focus) tabs[i].focus();
-    };
-    tabs.forEach(function (t, i) {
-      t.tabIndex = i === 0 ? 0 : -1;
-      t.addEventListener("click", function () { select(i); });
-      t.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowRight") { e.preventDefault(); select((i + 1) % tabs.length, true); }
-        if (e.key === "ArrowLeft") { e.preventDefault(); select((i + tabs.length - 1) % tabs.length, true); }
+    btns.forEach((b, i) => {
+      b.addEventListener("click", () => select(b));
+      b.addEventListener("keydown", (e) => {
+        const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (d) { e.preventDefault(); select(btns[(i + d + btns.length) % btns.length], true); }
       });
     });
-  });
-
-  /* ---------- About: light up the place of work nearest to the middle of the screen ---------- */
-  if (body.classList.contains("page-about") && !reduceMotion) {
-    var tls = Array.prototype.slice.call(doc.querySelectorAll(".tl"));
-    var tickA = false, activeEl = null;
-    var pick = function () {
-      var mid = window.innerHeight * 0.5, best = null, bestD = Infinity;
-      tls.forEach(function (t) {
-        var r = t.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > window.innerHeight) return;
-        var d = Math.abs(r.top + r.height / 2 - mid);
-        if (d < bestD) { bestD = d; best = t; }
-      });
-      if (best && best !== activeEl) {
-        activeEl = best;
-        tls.forEach(function (t) { t.classList.toggle("is-active", t === best); });
-      }
-      tickA = false;
-    };
-    window.addEventListener("scroll", pick, { passive: true });
-    window.addEventListener("resize", pick);
-    pick();
   }
 
-  /* ---------- Home: interactive cursor ---------- */
-  if (body.hasAttribute("data-has-cursor") && finePointer && !reduceMotion && wide()) {
-    var root = doc.documentElement;
-    root.classList.add("has-cursor");
-    var cur = doc.createElement("div");
-    cur.className = "cursor";
-    cur.innerHTML = '<span class="cursor__ring"></span><span class="cursor__dot"></span>';
-    var lab = doc.createElement("div");
-    lab.className = "cursor-label";
-    lab.innerHTML = "<i></i>";
-    body.appendChild(cur);
-    body.appendChild(lab);
-    var ring = cur.querySelector(".cursor__ring");
-    var dot = cur.querySelector(".cursor__dot");
-    var labText = lab.querySelector("i");
-    var mx = -100, my = -100, rx = -100, ry = -100, lx = -100, ly = -100, seen = false;
-
-    window.addEventListener("mousemove", function (e) {
-      mx = e.clientX; my = e.clientY;
-      if (!seen) { rx = lx = mx; ry = ly = my; seen = true; }
-      cur.classList.add("is-on");
-    }, { passive: true });
-    doc.addEventListener("mouseleave", function () { cur.classList.remove("is-on"); lab.classList.remove("is-on"); });
-    window.addEventListener("mousedown", function () { cur.classList.add("is-down"); });
-    window.addEventListener("mouseup", function () { cur.classList.remove("is-down"); });
-    doc.addEventListener("mouseover", function (e) {
-      var t = e.target;
-      var withLabel = t.closest && t.closest("[data-cursor]");
-      var link = t.closest && t.closest("a,button");
-      if (withLabel) {
-        labText.textContent = withLabel.getAttribute("data-cursor");
-        lab.classList.add("is-on");
-        cur.classList.add("is-label");
-        cur.classList.remove("is-link");
-      } else {
-        lab.classList.remove("is-on");
-        cur.classList.remove("is-label");
-        cur.classList.toggle("is-link", !!link);
-      }
-    });
-    (function loop() {
-      rx += (mx - rx) * 0.2; ry += (my - ry) * 0.2;
-      lx += (mx - lx) * 0.26; ly += (my - ly) * 0.26;
-      dot.style.translate = mx + "px " + my + "px";
-      ring.style.translate = rx + "px " + ry + "px";
-      lab.style.left = lx + "px"; lab.style.top = ly + "px";
-      requestAnimationFrame(loop);
-    })();
-  }
+  // codeBackground();   // фон с буквами пока выключен — пробуем просто белый
+  typing();
+  document.querySelectorAll("[data-proto]").forEach(phone);
+  videos();
+  tabs();
 })();
