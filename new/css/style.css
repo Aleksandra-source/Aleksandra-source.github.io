@@ -476,12 +476,13 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
   .diff--cards .diff__shot img { grid-column: auto; }
 }
 
-/* схема флоу ВкусВилла нарисована под ширину колонки — текст реального размера */
-.s-flow .lb { font-size: 13px; }
-.s-flow svg { padding: 18px 10px 6px; }
+/* схема флоу ВкусВилла: прежняя раскладка, но шире колонки и с крупным текстом */
+.s-flow .tx { font-size: 17px; }
+.s-flow .lb { font-size: 22px; }
+.s-flow--wide { position: relative; left: 50%; width: min(1240px, 100vw - 32px); transform: translateX(-50%); }
 @media (max-width: 700px) {
-  .s-flow { overflow-x: auto; }
-  .s-flow svg { min-width: 640px; }
+  .s-flow--wide { overflow-x: auto; }
+  .s-flow--wide svg { min-width: 900px; }
 }
 .s-flow { margin: 28px 0 0; }
 .diff--cards .ok::before, .diff--cards .no::before { content: none; }
