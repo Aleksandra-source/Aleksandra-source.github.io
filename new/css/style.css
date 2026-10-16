@@ -457,3 +457,31 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 .anno-legend { margin-top: 20px; background: #fff; }
 .tab-panel .anno-legend { margin-top: 22px; }
 .fig .anno-legend { margin-top: 24px; }
+
+/* итоги юзабилити-теста — карточки: экран крупно сверху, под ним результат */
+.diff--cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; background: none; border-radius: 0; overflow: visible; }
+.diff--cards li { display: flex; flex-direction: column; gap: 8px; padding: 14px 14px 18px; border-radius: 22px; line-height: 20px; }
+.diff--cards li + li { border-top: 0; }
+.diff--cards li::before { content: none; }
+.diff__shot { display: flex; align-items: center; justify-content: center; height: 240px; margin-bottom: 8px; padding: 16px; border-radius: 14px; background: #fff; }
+.diff--cards .diff__shot img { max-height: 100%; max-width: 100%; width: auto; margin: 0; border-radius: 8px; }
+.diff__k { font-size: 13px; font-weight: 600; letter-spacing: .3px; }
+.diff--cards .ok .diff__k { color: var(--green); }
+.diff--cards .ok .diff__k::before { content: "+ "; }
+.diff--cards .no .diff__k { color: #d4483b; }
+.diff--cards .no .diff__k::before { content: "− "; }
+@media (max-width: 700px) {
+  .diff--cards { grid-template-columns: 1fr; }
+  .diff--cards li { display: flex; }
+  .diff--cards .diff__shot img { grid-column: auto; }
+}
+
+/* схема флоу ВкусВилла нарисована под ширину колонки — текст реального размера */
+.s-flow .lb { font-size: 13px; }
+.s-flow svg { padding: 18px 10px 6px; }
+@media (max-width: 700px) {
+  .s-flow { overflow-x: auto; }
+  .s-flow svg { min-width: 640px; }
+}
+.s-flow { margin: 28px 0 0; }
+.diff--cards .ok::before, .diff--cards .no::before { content: none; }

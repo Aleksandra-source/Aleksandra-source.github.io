@@ -380,7 +380,7 @@
         timers.push(setTimeout(() => box.classList.add("is-s2"), 4400));
         timers.push(setTimeout(() => {
           box.classList.add("is-s3");
-          stage.style.transform = "translate(-945px,-114.75px) scale(1.5)";
+          if (box.dataset.zoom) stage.style.transform = box.dataset.zoom;   // приближение — только если задано у схемы
         }, 7300));
         timers.push(setTimeout(() => box.classList.add("is-done"), 9700));
       };
