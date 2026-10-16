@@ -58,7 +58,7 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
 .nav { display: flex; gap: 6px; }
 .nav a { padding: 7px 13px; border-radius: 12px; transition: background .2s; white-space: nowrap; }
 .nav a:hover { background: rgba(255, 255, 255, .6); }
-.nav a[aria-current="page"] { background: #fff; }
+.nav a[aria-current="page"] { background: #fff; font-weight: 500; }
 .nav a[aria-current="page"]::after { content: "/"; }
 
 /* печатающийся текст */
@@ -83,7 +83,7 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
   mask-composite: intersect;
 }
 .hero__text { display: flex; flex-direction: column; padding-top: 34px; }
-.hero__name { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
+.hero__name { font-size: 16px; font-weight: 600; margin-bottom: 7px; }   /* имя и текст под ним — плотнее, как в обновлённом макете */
 .status { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 13px; color: var(--green); }
 .status::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--dot-green); animation: online 2s ease-out infinite; }
 /* «онлайн»: от точки расходится и гаснет зелёное кольцо */
@@ -94,7 +94,7 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
 }
 @media (prefers-reduced-motion: reduce) { .status::before { animation: none; } }
 .links { display: flex; gap: 16px; margin-top: auto; padding-top: 24px; }
-.btn { display: inline-flex; align-items: center; gap: 10px; height: 32px; padding: 0 12px; border-radius: 12px; background: var(--pill); font-size: 15px; transition: background .2s; }
+.btn { display: inline-flex; align-items: center; gap: 10px; height: 32px; padding: 0 12px; border-radius: 12px; background: var(--pill); font-size: 15px; font-weight: 500; transition: background .2s; }
 .btn:hover { background: var(--title); }
 .hero--about .hero__text { padding-top: 32px; }
 /* за ноутбуком: показываем верхние ~80% кадра — стопы обрезаны, как на прошлой версии; по бокам срезано пустое поле */
@@ -120,7 +120,7 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
 .tag { flex: none; padding: 4px 12px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 12px; font-weight: 500; line-height: 17px; }
 .win__more {
   display: flex; justify-content: space-between; align-items: center;
-  margin: 0 20px; padding: 20px 0 22px; border-top: 1PX solid #e8e8e8; color: var(--orange);
+  margin: 0 20px; padding: 20px 0 22px; border-top: 1PX solid #e8e8e8; color: var(--ink); font-weight: 500;
 }
 .win__more svg { width: 18px; height: 18px; transition: transform .25s; }
 .win:hover .win__more svg { transform: translateX(4px); }
@@ -153,12 +153,13 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
 /* футер */
 .footer { display: flex; gap: 20px; margin-top: 70px; }
 .footer__main {
+  font-weight: 500;
   flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 67px;
   padding: 0 14px 0 20px; border-radius: 22px; background: var(--pill);
 }
-.btn-tg { flex: none; padding: 7px 13px; border-radius: 12px; background: var(--tg-bg); color: var(--tg-ink); transition: filter .2s; white-space: nowrap; }
+.btn-tg { flex: none; font-weight: 500; padding: 7px 13px; border-radius: 12px; background: var(--tg-bg); color: var(--tg-ink); transition: filter .2s; white-space: nowrap; }
 .btn-tg:hover { filter: brightness(.96); }
-.footer__up { flex: none; display: flex; align-items: center; justify-content: center; gap: 14px; width: 150px; border-radius: 22px; background: var(--pill); }
+.footer__up { flex: none; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 14px; width: 150px; border-radius: 22px; background: var(--pill); }
 .footer__up svg, .btn svg { width: 18px; height: 18px; }
 
 /* обо мне: опыт */
