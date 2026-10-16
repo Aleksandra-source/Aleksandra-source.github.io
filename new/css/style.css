@@ -264,11 +264,6 @@ ol { margin: 0; padding: 0; list-style: none; }
 .proto-stage { margin-top: 32px; border-radius: 22px; background: var(--body); }
 .proto-stage .phones { padding: 40px 0 38px; }
 
-/* паспорт кейса — как .md-файл */
-.md-win { margin-top: 24px; border-radius: 22px; background: var(--body); overflow: hidden; }
-.md-win .win__bar { height: 38px; }
-.md-win .code { padding: 18px 20px 18px; font-size: 15px; }
-.md-win .code li { min-height: 24px; line-height: 24px; }
 
 .cards--2 { grid-template-columns: repeat(2, 1fr); }
 .cards--4 { grid-template-columns: repeat(2, 1fr); }
@@ -436,3 +431,22 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
   .shake__btn { align-self: center; }
 }
 .case-head a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* подписи на картинках из макетов — живым текстом шрифта сайта (сами надписи стёрты с картинок) */
+.anno { position: relative; container-type: inline-size; }
+.anno img { width: 100%; max-width: none; }
+.fig--md .anno { max-width: 560px; margin: 0 auto; }
+.fig--sm .anno { max-width: 440px; margin: 0 auto; }
+.anno__t { position: absolute; color: var(--ink); line-height: 1.3; }
+.anno__t--c { transform: translate(-50%, -50%); font-size: 2.5cqw; text-align: center; white-space: nowrap; }
+.anno__t--b { display: flex; align-items: center; font-size: 1.45cqw; }
+.anno--sm .anno__t--b { font-size: 1.25cqw; }
+.fig .anno--sm { max-width: 640px; margin: 0 auto; }
+.anno__t--blue { transform: translateY(-50%); font-size: 1.2cqw; color: #3446d6; white-space: nowrap; }
+
+/* вводные блоки кейса строками: метка слева, текст справа — не вытягиваются в узкие высокие колонки */
+.cards--rows { grid-template-columns: 1fr; gap: 0; border-radius: 22px; background: var(--body); overflow: hidden; }
+.cards--rows .card { display: grid; grid-template-columns: 170px 1fr; gap: 20px; align-items: baseline; padding: 20px 22px; border-radius: 0; background: none; line-height: 20px; }
+.cards--rows .card + .card { border-top: 1.5px solid #efefef; }
+.cards--rows .card h3 { margin: 0; }
+@media (max-width: 700px) { .cards--rows .card { grid-template-columns: 1fr; gap: 10px; } }
