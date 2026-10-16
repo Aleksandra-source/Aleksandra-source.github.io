@@ -504,3 +504,6 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 
 /* комментарии БСПБ — без подложки, просто текст рядом с аватаркой */
 .anno__t--b .anno__bub, .anno--full .anno__t--b .anno__bub { padding: 0; border-radius: 0; background: none; }
+
+/* подпись, которая должна заканчиваться перед линией стрелки */
+.anno__t--blue.anno__t--end { transform: translate(-100%, -50%); }
