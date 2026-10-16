@@ -440,10 +440,11 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 .fig--sm .anno { max-width: 440px; margin: 0 auto; }
 .anno__t { position: absolute; color: var(--ink); line-height: 1.3; }
 .anno__t--c { transform: translate(-50%, -50%); font-size: 2.5cqw; text-align: center; white-space: nowrap; }
-.anno__t--b { display: flex; align-items: center; font-size: 1.45cqw; }
-.anno--sm .anno__t--b { font-size: 1.25cqw; }
+.anno__t--b { display: flex; align-items: center; font-size: 2.6cqw; }
+.anno__t--b b { font-weight: 600; color: var(--h-orange); }   /* в облачке — номер, текст списком под картинкой */
+.anno--sm .anno__t--b { font-size: 2.4cqw; }
 .fig .anno--sm { max-width: 640px; margin: 0 auto; }
-.anno__t--blue { transform: translateY(-50%); font-size: 1.2cqw; color: #3446d6; white-space: nowrap; }
+.anno__t--blue { transform: translateY(-50%); font-size: 1.6cqw; color: #3446d6; white-space: nowrap; }
 
 /* вводные блоки кейса строками: метка слева, текст справа — не вытягиваются в узкие высокие колонки */
 .cards--rows { grid-template-columns: 1fr; gap: 0; border-radius: 22px; background: var(--body); overflow: hidden; }
@@ -451,3 +452,8 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 .cards--rows .card + .card { border-top: 1.5px solid #efefef; }
 .cards--rows .card h3 { margin: 0; }
 @media (max-width: 700px) { .cards--rows .card { grid-template-columns: 1fr; gap: 10px; } }
+
+/* расшифровка номеров из облачков */
+.anno-legend { margin-top: 20px; background: #fff; }
+.tab-panel .anno-legend { margin-top: 22px; }
+.fig .anno-legend { margin-top: 24px; }
