@@ -1,4 +1,5 @@
 (() => {
+  document.documentElement.classList.add("js");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -284,8 +285,9 @@
 
   /* ---------- вкладки опыта ---------- */
   function tabs() {
-    const box = document.querySelector("[data-tabs]");
-    if (!box) return;
+    document.querySelectorAll("[data-tabs]").forEach(tabBox);
+  }
+  function tabBox(box) {
     const btns = [...box.querySelectorAll('[role="tab"]')];
     const select = (b, focus) => {
       btns.forEach((x) => {
@@ -305,9 +307,151 @@
     });
   }
 
+
+  /* ---------- ленты экранов: перетаскивание мышью (палец и колесо работают сами) ---------- */
+  function strips() {
+    document.querySelectorAll("[data-strip]").forEach((el) => {
+      let x0 = 0, s0 = 0, down = false, moved = false;
+      el.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "mouse") return;
+        down = true; moved = false; x0 = e.clientX; s0 = el.scrollLeft;
+      });
+      addEventListener("pointermove", (e) => {
+        if (!down) return;
+        const dx = e.clientX - x0;
+        if (!moved && Math.abs(dx) > 4) { moved = true; el.classList.add("is-drag"); }
+        if (moved) el.scrollLeft = s0 - dx;
+      });
+      addEventListener("pointerup", () => { down = false; el.classList.remove("is-drag"); });
+    });
+  }
+
+  /* ---------- результаты опроса: полоса из символов «заполняется», число считается ---------- */
+  function bars() {
+    // сколько символов влезает в ширину плашки (моноширинный шрифт: ~0.6em + межбуквенный 1px)
+    const cols = (el) => Math.max(10, Math.floor(el.querySelector(".bar__g").clientWidth / (15 * 0.6 + 1)));
+    const draw = (el, v) => {
+      const N = cols(el), k = Math.round((v / 100) * N);
+      el.querySelector(".bar__g").innerHTML = "█".repeat(k) + "<i>" + "░".repeat(N - k) + "</i>";
+      el.querySelector(".bar__v").textContent = Math.round(v) + "%";
+    };
+    const all = [...document.querySelectorAll("[data-bar]")];
+    all.forEach((el) => draw(el, reduce ? +el.dataset.bar : 0));
+    if (reduce) return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const el = e.target, to = +el.dataset.bar, t0 = performance.now(), d = 1100;
+      const step = (now) => {
+        const p = Math.min(1, (now - t0) / d), q = 1 - Math.pow(1 - p, 3);
+        draw(el, to * q);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }), { threshold: 0.6 });
+    all.forEach((el) => io.observe(el));
+  }
+
+  /* ---------- схема флоу (ВкусВилл): проигрывается при прокрутке, можно повторить ---------- */
+  function flowAnim() {
+    document.querySelectorAll("[data-flowanim]").forEach((box) => {
+      const stage = box.querySelector(".stage");
+      const replay = box.querySelector(".s-flow__replay");
+      let timers = [];
+      const reset = () => {
+        timers.forEach(clearTimeout); timers = [];
+        box.classList.remove("is-s1", "is-s2", "is-s3", "is-done");
+        stage.style.transform = "";
+      };
+      const play = () => {
+        reset();
+        void box.getBoundingClientRect();
+        box.classList.add("is-s1");
+        timers.push(setTimeout(() => box.classList.add("is-s2"), 4400));
+        timers.push(setTimeout(() => {
+          box.classList.add("is-s3");
+          stage.style.transform = "translate(-945px,-114.75px) scale(1.5)";
+        }, 7300));
+        timers.push(setTimeout(() => box.classList.add("is-done"), 9700));
+      };
+      if (reduce) { box.classList.add("no-motion", "is-s1", "is-s2", "is-s3", "is-done"); return; }
+      const io = new IntersectionObserver((es) => {
+        if (es[0].isIntersecting) { io.disconnect(); play(); }
+      }, { threshold: 0.5 });
+      io.observe(box);
+      if (replay) replay.addEventListener("click", play);
+    });
+  }
+
+  /* ---------- БСПБ: встряхни телефон на экране пин-кода — балансы скрываются ---------- */
+  function shakeDemo() {
+    document.querySelectorAll("[data-shake]").forEach((box) => {
+      const ph = box.querySelector(".phone");
+      const screen = ph.querySelector(".phone__screen");
+      const btn = box.querySelector(".shake__btn");
+      const mk = (name) => {
+        const s = document.createElement("div");
+        s.className = "scr";
+        const img = new Image(); img.src = SRC(name); img.alt = ""; s.append(img);
+        return s;
+      };
+      const pin = mk("bs-pin");
+      screen.append(pin);
+      const dim = document.createElement("i"); dim.className = "sheet-dim";
+      const sheet = document.createElement("div"); sheet.className = "sheet";
+      sheet.innerHTML = "<span>Скрыть баланс всех счетов при входе</span><i>Отмена</i><i class=\"go\">Скрыть</i>";
+      screen.append(dim, sheet);
+      let state = "pin", busy = false;
+      const run = async () => {
+        if (busy) return;
+        busy = true; btn.disabled = true;
+        if (state === "home") {                        // вернуть исходное состояние
+          screen.querySelector(".scr.home")?.remove();
+          state = "pin"; btn.textContent = "встряхнуть"; busy = false; btn.disabled = false;
+          return;
+        }
+        if (!reduce) { ph.classList.remove("is-shaking"); void ph.offsetWidth; ph.classList.add("is-shaking"); }
+        await sleep(reduce ? 0 : 650);
+        ph.classList.add("is-sheet");
+        await sleep(1100);
+        const go = sheet.querySelector(".go");
+        go.style.transition = "filter .14s"; go.style.filter = "brightness(1.6)";
+        await sleep(260);
+        go.style.filter = "";
+        const home = mk("bs-home"); home.classList.add("home"); home.style.opacity = 0;
+        screen.insertBefore(home, dim);
+        ph.classList.remove("is-sheet");
+        await anim(home, [{ opacity: 0 }, { opacity: 1 }], 380, "ease-in-out");
+        state = "home"; btn.textContent = "ещё раз"; busy = false; btn.disabled = false;
+      };
+      btn.addEventListener("click", async () => {
+        // на iPhone доступ к датчику движения просят по нажатию
+        if (window.DeviceMotionEvent && typeof DeviceMotionEvent.requestPermission === "function" && !box.dataset.asked) {
+          box.dataset.asked = 1;
+          try { await DeviceMotionEvent.requestPermission(); } catch (e) { /* без датчика — просто кнопкой */ }
+        }
+        run();
+      });
+      // настоящее встряхивание телефона, когда демо на экране
+      let visible = false, last = 0;
+      new IntersectionObserver((es) => { visible = es[0].isIntersecting; }, { threshold: 0.5 }).observe(box);
+      addEventListener("devicemotion", (e) => {
+        const a = e.accelerationIncludingGravity;
+        if (!visible || !a || state !== "pin") return;
+        const m = Math.hypot(a.x || 0, a.y || 0, a.z || 0);
+        const now = Date.now();
+        if (m > 24 && now - last > 1500) { last = now; run(); }
+      });
+    });
+  }
+
   // codeBackground();   // фон с буквами пока выключен — пробуем просто белый
   typing();
   document.querySelectorAll("[data-proto]").forEach(phone);
   videos();
   tabs();
+  strips();
+  bars();
+  flowAnim();
+  shakeDemo();
 })();

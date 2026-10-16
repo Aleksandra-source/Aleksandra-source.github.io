@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ВкусВилл: корзина — Евсеенкова Александра</title>
-  <meta name="description" content="Кейс ВкусВилл: скоро будет опубликован.">
-  <meta name="robots" content="noindex">
+  <meta name="description" content="Кейс ВкусВилл: корзина не как финальная точка, а как начало нового сценария добавления товаров. Screen flow, опрос 60 человек, анализ конкурентов, юзабилити-тест.">
   <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,27 +19,197 @@
     </nav>
   </header>
 
-  <main class="col">
-    <article class="win soon">
-      <div class="win__bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__file">cases/vkusvill/cart.fig</span></div>
-      <div class="soon__body">
-        <span class="tag">ВкусВилл</span>
-        <h1 class="soon__title">Сделала корзину не&nbsp;финальной точкой, а&nbsp;началом нового сценария добавления товаров</h1>
-        <p class="soon__text muted">Кейс скоро будет опубликован. Пока можно посмотреть кейс Яндекс&nbsp;360 или написать мне&nbsp;— расскажу подробнее.</p>
-        <div class="links">
-          <a class="btn" href="yandex-360.html">кейс Яндекс 360</a>
-          <a class="btn" href="index.html">все кейсы</a>
+  <main class="col col--wide" id="top">
+    <section class="case-sec case-sec--first">
+      <div class="case-head"><h1>ВкусВилл</h1><p>Сделала корзину не&nbsp;финальной точкой, а&nbsp;началом нового сценария добавления товаров. Проверила решение через юзабилити-тест</p></div>
+      <div class="proto-stage">
+        <div class="phones" aria-label="Прототип: каталог, «Уже брали» и корзина ВкусВилла">
+          <div class="phone" data-proto="vv-catalog"><div class="phone__screen"><span class="phone__island"></span></div></div>
+          <div class="phone" data-proto="vv-cart"><div class="phone__screen"><span class="phone__island"></span></div></div>
         </div>
       </div>
-    </article>
-  </main>
+      <div class="md-win">
+        <div class="win__bar"><span class="lights" aria-hidden="true"><i></i><i></i><i></i></span><span class="win__file">case.md</span></div>
+        <ol class="code">
+          <li data-n="1" class="h1"># ВкусВилл</li>
+          <li data-n="2" class="muted">&gt; доставка продуктов · mobile app · e-commerce</li>
+          <li data-n="3"><span class="h2">## роль</span>&nbsp; продуктовый дизайнер</li>
+          <li data-n="4"><span class="h2">## методы</span>&nbsp; screen flow, опрос, бенчмаркинг, юзабилити-тест</li>
+        </ol>
+      </div>
+      <div class="cards cards--2">
+        <div class="card card--red"><h3>Проблема</h3><p>Корзина в&nbsp;её текущем виде&nbsp;— тупик. Она отрезает пользователя от&nbsp;всего ассортимента в&nbsp;самый ответственный момент, создавая барьер для&nbsp;спонтанных и&nbsp;«забытых» покупок</p></div>
+        <div class="card card--green"><h3>Задача</h3><p>Спроектировать изменения в&nbsp;интерфейсе корзины, которые позволят пользователю добавлять новые товары, не&nbsp;покидая экрана корзины</p></div>
+      </div>
+    </section>
 
-  <footer class="col footer">
-    <div class="footer__main">
-      <p data-type="давайте поработаем вместе" data-type-when="visible">давайте поработаем вместе</p>
-      <a class="btn-tg" href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Написать в Telegram</a>
-    </div>
-  </footer>
+    <section class="case-sec">
+      <div class="case-head"><h2>Screen flow</h2><p>Рассмотрела весь путь пользователя: от&nbsp;выбора шаблона прошлого заказа до&nbsp;оплаты, уделяя особое внимание моменту, когда нужно добавить забытый или новый товар</p></div>
+      <div class="strip strip--screens" data-strip tabindex="0" aria-label="Экраны текущего флоу, листаются по горизонтали">
+        <figure><img src="img/vv/flow-1.webp" width="560" height="1212" alt="Главный экран приложения" loading="lazy" draggable="false"><figcaption><b>01</b>главная</figcaption></figure>
+        <figure><img src="img/vv/flow-2.webp" width="560" height="1212" alt="Информация о бесплатной доставке" loading="lazy" draggable="false"><figcaption><b>02</b>доставка</figcaption></figure>
+        <figure><img src="img/vv/flow-3.webp" width="560" height="1212" alt="Профиль, вкладка «Мои заказы»" loading="lazy" draggable="false"><figcaption><b>03</b>мои заказы</figcaption></figure>
+        <figure><img src="img/vv/flow-4.webp" width="560" height="1212" alt="Уведомление: товары из заказа добавлены в корзину" loading="lazy" draggable="false"><figcaption><b>04</b>повторный заказ</figcaption></figure>
+        <figure><img src="img/vv/flow-5.webp" width="560" height="1212" alt="Корзина с двумя товарами" loading="lazy" draggable="false"><figcaption><b>05</b>корзина: 2 товара</figcaption></figure>
+        <figure><img src="img/vv/flow-6.webp" width="560" height="1212" alt="Корзина: промокоды и упаковка заказа" loading="lazy" draggable="false"><figcaption><b>06</b>промокоды</figcaption></figure>
+        <figure><img src="img/vv/flow-7.webp" width="560" height="1212" alt="Корзина: оплата и оформление заказа" loading="lazy" draggable="false"><figcaption><b>07</b>оформление</figcaption></figure>
+        <figure><img src="img/vv/flow-8.webp" width="560" height="1212" alt="Каталог товаров" loading="lazy" draggable="false"><figcaption><b>08</b>каталог</figcaption></figure>
+        <figure><img src="img/vv/flow-9.webp" width="560" height="1212" alt="Поиск товара «Яблоки»" loading="lazy" draggable="false"><figcaption><b>09</b>поиск товара</figcaption></figure>
+        <figure><img src="img/vv/flow-10b.webp" width="560" height="1212" alt="Корзина с добавленным забытым товаром" loading="lazy" draggable="false"><figcaption><b>10</b>товар добавлен</figcaption></figure>
+      </div>
+      <p class="strip-hint" aria-hidden="true">листай →</p>
+      <ol class="hyp">
+        <li><b>01</b><span>Кнопка корзины на&nbsp;главном экране не&nbsp;ведёт в&nbsp;корзину, если в&nbsp;неё не&nbsp;добавлены продукты&nbsp;— вместо этого появляется информация о&nbsp;доставке</span></li>
+        <li><b>02</b><span>При повторении прошлого заказа продукты добавляются в&nbsp;корзину, но&nbsp;корзина не&nbsp;открывается&nbsp;— нужно делать дополнительные шаги</span></li>
+        <li><b>03</b><span>Из&nbsp;корзины нельзя быстро добавить забытый продукт&nbsp;— для&nbsp;этого нужно вернуться в&nbsp;каталог</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Гипотезы</h2><p>После аудита приложения сформулировала гипотезы, направленные на&nbsp;улучшение пользовательского взаимодействия</p></div>
+      <ol class="hyp">
+        <li><b>H1</b><span><b class="accent" style="font-size:inherit">Retention.</b> Если сократить количество шагов в&nbsp;«Повторном заказе», это увеличит удержание: постоянные клиенты смогут оформлять привычные заказы быстрее и&nbsp;с&nbsp;меньшими усилиями</span></li>
+        <li><b>H2</b><span><b class="accent" style="font-size:inherit">Средний чек.</b> Если разместить кнопку «Добавить продукты» на&nbsp;экране корзины, это увеличит средний чек (AOV): исчезнет главное препятствие для&nbsp;быстрого добавления забытых товаров и&nbsp;импульсных покупок</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Опрос</h2><p>Чтобы понять актуальность гипотез, провела опрос среди пользователей приложений доставки. Всего ответили <span class="accent">60&nbsp;человек</span>&nbsp;— вот некоторые вопросы</p></div>
+      <div class="strip strip--wide" data-strip tabindex="0" aria-label="Вопросы опроса, листаются по горизонтали">
+        <figure><img src="img/vv/survey-1.webp" width="1300" height="900" alt="Вопрос опроса: как часто вы делаете заказ доставки продуктов на дом" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-2.webp" width="1300" height="900" alt="Вопрос опроса: как часто вы пользуетесь функцией «Повтор прошлого заказа»" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-3.webp" width="1300" height="900" alt="Вопрос опроса: осознаёте ли вы необходимость добавить в корзину дополнительные товары" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-4.webp" width="1300" height="900" alt="Вопрос опроса: как вы поступаете, когда нужно добавить к заказу ещё один товар" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-5.webp" width="1300" height="900" alt="Вопрос опроса: какой способ добавить забытый товар из корзины удобнее всего" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-6.webp" width="1300" height="900" alt="Вопрос опроса: куда должна вести кнопка «Добавить ещё товары» в корзине" loading="lazy" draggable="false"></figure>
+        <figure><img src="img/vv/survey-7.webp" width="1300" height="900" alt="Вопрос опроса: насколько важно быстро добавлять забытый товар, не покидая корзину" loading="lazy" draggable="false"></figure>
+      </div>
+      <p class="strip-hint" aria-hidden="true">листай →</p>
+      <h3 class="sub-h">Результаты</h3>
+      <div class="bars">
+        <div class="bar" data-bar="82" role="img" aria-label="регулярно заказывают доставку на дом: 82%"><span class="bar__t">регулярно заказывают доставку на&nbsp;дом</span><span class="bar__v">82%</span><span class="bar__g" aria-hidden="true"></span></div>
+        <div class="bar" data-bar="35" role="img" aria-label="пользуются функцией повторного заказа (часто/иногда): 35%"><span class="bar__t">пользуются функцией повторного заказа (часто/иногда)</span><span class="bar__v">35%</span><span class="bar__g" aria-hidden="true"></span></div>
+        <div class="bar" data-bar="50" role="img" aria-label="при повторном заказе нужно дополнительно что-то добавить: 50%"><span class="bar__t">при повторном заказе нужно дополнительно что-то добавить</span><span class="bar__v">50%</span><span class="bar__g" aria-hidden="true"></span></div>
+        <div class="bar" data-bar="84" role="img" aria-label="выходят из корзины, чтобы найти товар вручную: 84%"><span class="bar__t">выходят из&nbsp;корзины, чтобы найти товар вручную</span><span class="bar__v">84%</span><span class="bar__g" aria-hidden="true"></span></div>
+        <div class="bar" data-bar="40" role="img" aria-label="им важно быстро добавлять забытый товар в корзину: 40%"><span class="bar__t">им важно быстро добавлять забытый товар в&nbsp;корзину</span><span class="bar__v">40%</span><span class="bar__g" aria-hidden="true"></span></div>
+      </div>
+      <div class="note">
+        <h3>Выводы</h3>
+        <ul>
+          <li><b style="color:inherit">82%</b> пользователей регулярно заказывают продукты на&nbsp;дом, поэтому в&nbsp;их корзинах, вероятно, часто встречаются товары из&nbsp;прошлых заказов;</li>
+          <li>пользователю нужна возможность быстро добавить забытый товар&nbsp;— значит, лучше минимизировать количество шагов;</li>
+          <li>«Повторить заказ» не&nbsp;основная функция для&nbsp;большинства&nbsp;— стоит упростить добавление товаров для&nbsp;всех сценариев;</li>
+          <li>для бизнеса важно устранить барьеры: они влияют на&nbsp;средний чек и&nbsp;лояльность к&nbsp;приложению</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Цель и&nbsp;критерий успеха</h2><p>Свела вместе, что нужно пользователю и&nbsp;бизнесу, для&nbsp;кого делаем и&nbsp;как поймём, что получилось</p></div>
+      <div class="cards cards--4">
+        <div class="card"><h3>Пользователь</h3><p>Быстро добавлять забытый товар в&nbsp;корзину в&nbsp;процессе оформления заказа</p><p>Сэкономить время и&nbsp;когнитивную нагрузку</p></div>
+        <div class="card"><h3>Бизнес</h3><p>Повысить лояльность пользователей, улучшить пользовательский опыт</p><p>Повысить средний чек заказа</p></div>
+        <div class="card"><h3>Аудитория</h3><p>Пользователи, которые хотят сэкономить время при заказе</p><p>Те, кто регулярно заказывают доставку продуктов через приложение</p></div>
+        <div class="card card--green"><h3>Успех</h3><p>Сокращение шагов при добавлении товара в&nbsp;корзину</p><p>Вовлечение в&nbsp;новую функцию минимум 15% пользователей</p></div>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Анализ конкурентов</h2><p>Посмотрела, как конкуренты в&nbsp;доставке продуктов решают вопрос быстрого добавления товаров в&nbsp;корзину&nbsp;— и&nbsp;решают&nbsp;ли вообще</p></div>
+      <div class="tabs-win tabs-win--case" data-tabs>
+        <div class="tabs" role="tablist" aria-label="Конкуренты">
+          <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <button role="tab" id="t-yandex" aria-controls="p-yandex" aria-selected="true">yandex.md</button>
+          <button role="tab" id="t-lenta" aria-controls="p-lenta" aria-selected="false" tabindex="-1">lenta.md</button>
+          <button role="tab" id="t-samokat" aria-controls="p-samokat" aria-selected="false" tabindex="-1">samokat.md</button>
+          <button role="tab" id="t-perekrestok" aria-controls="p-perekrestok" aria-selected="false" tabindex="-1">perekrestok.md</button>
+        </div>
+        <div class="tab-panel comp" role="tabpanel" id="p-yandex" aria-labelledby="t-yandex">
+          <div class="comp__shots"><img src="img/vv/comp-yandex-1.webp" width="560" height="1214" alt="Яндекс Доставка: корзина с блоком «Порадовать себя»" loading="lazy"><img src="img/vv/comp-yandex-2.webp" width="560" height="1214" alt="Яндекс Доставка: страница поиска по каталогу" loading="lazy"></div>
+          <div><h3 class="sub-h" style="margin-top:0">Яндекс Доставка</h3><ol style="margin-top:14px"><li>В&nbsp;корзине есть «Поиск», открывающий страницу поиска по&nbsp;каталогу</li><li>Есть чипсы с&nbsp;определёнными товарами (принцип выдачи не&nbsp;понятен)</li><li>В&nbsp;корзине есть подборка «Подобрали для&nbsp;вас»</li></ol></div>
+        </div>
+        <div class="tab-panel comp" role="tabpanel" id="p-lenta" aria-labelledby="t-lenta" hidden>
+          <div class="comp__shots"><img src="img/vv/comp-lenta-1.webp" width="560" height="1214" alt="Лента: корзина без способа быстро добавить товар" loading="lazy"><img src="img/vv/comp-lenta-2.webp" width="560" height="1214" alt="Лента: блок «Добавьте к заказу»" loading="lazy"></div>
+          <div><h3 class="sub-h" style="margin-top:0">Лента</h3><ol style="margin-top:14px"><li>В&nbsp;корзине нет способа быстро добавить товар</li><li>Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</li></ol></div>
+        </div>
+        <div class="tab-panel comp" role="tabpanel" id="p-samokat" aria-labelledby="t-samokat" hidden>
+          <div class="comp__shots"><img src="img/vv/comp-samokat-1.webp" width="560" height="1214" alt="Самокат: корзина без способа быстро добавить товар" loading="lazy"><img src="img/vv/comp-samokat-2.webp" width="560" height="1214" alt="Самокат: блок «Добавить к заказу?»" loading="lazy"></div>
+          <div><h3 class="sub-h" style="margin-top:0">Самокат</h3><ol style="margin-top:14px"><li>В&nbsp;корзине нет способа быстро добавить товар</li><li>Есть предложение «Добавить к&nbsp;заказу» с&nbsp;набором разных продуктов</li></ol></div>
+        </div>
+        <div class="tab-panel comp" role="tabpanel" id="p-perekrestok" aria-labelledby="t-perekrestok" hidden>
+          <div class="comp__shots"><img src="img/vv/comp-perekrestok-1.webp" width="560" height="1214" alt="Перекрёсток: блок «Вам может быть интересно»" loading="lazy"><img src="img/vv/comp-perekrestok-2.webp" width="560" height="1214" alt="Перекрёсток: страница поиска по каталогу" loading="lazy"></div>
+          <div><h3 class="sub-h" style="margin-top:0">Перекрёсток</h3><ol style="margin-top:14px"><li>В&nbsp;корзине есть «Поиск», открывающий страницу поиска по&nbsp;каталогу</li><li>В&nbsp;поиске нет рекомендаций по&nbsp;предпочтениям или прошлым заказам</li><li>В&nbsp;корзине есть подборка «Вам может быть интересно»</li></ol></div>
+        </div>
+      </div>
+      <p class="p">Во&nbsp;всех приложениях уже есть подборки вроде «Возможно, вам также понадобится»: они строятся на&nbsp;истории заказов и&nbsp;хорошо решают задачу бизнеса&nbsp;— увеличить средний чек.</p>
+      <div class="note">
+        <h3>Вывод</h3>
+        <ul>
+          <li>возможность быстро добавить конкретный, заранее известный товар есть не&nbsp;везде&nbsp;— а&nbsp;опрос показал, что она важна для&nbsp;пользователей</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Решение и&nbsp;макеты</h2><p>Изменения направлены на&nbsp;сценарий, когда пользователь уже в&nbsp;корзине,&nbsp;— поэтому начала именно с&nbsp;этого этапа</p></div>
+      <figure class="s-flow" data-flowanim role="img" aria-label="Схема user flow: после проверки продуктов в корзине добавлена логика быстрого поиска — если не все продукты добавлены, пользователь ищет товар прямо в корзине и возвращается к проверке">
+<svg viewBox="0 0 1905 645" role="presentation" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><g class="stage"><g class="n out" data-s="1" style="--d:0s"><rect class="bx pill" x="74" y="346" width="228" height="91" rx="45"/><text class="tx pill" text-anchor="middle" font-size="14"><tspan x="188.0" y="387.0">Оформление заказа продуктов</tspan><tspan x="188.0" y="406.0">в приложении ВкусВилл</tspan></text></g><g class="ar out" data-s="1" style="--d:0.35s;"><path class="a" pathLength="1" d="M302 391 H356"/></g><g class="ar out" data-s="1" style="--d:0.7s;"><path class="a" pathLength="1" d="M356 391 V321 Q356 300 377 300 H414"/><path class="h" d="M403 292 L414 300 L403 308"/></g><g class="ar out" data-s="1" style="--d:0.8s;"><path class="a" pathLength="1" d="M356 391 H414"/><path class="h" d="M403 383 L414 391 L403 399"/></g><g class="ar out" data-s="1" style="--d:0.9s;"><path class="a" pathLength="1" d="M356 391 V461 Q356 482 377 482 H414"/><path class="h" d="M403 474 L414 482 L403 490"/></g><g class="n out" data-s="1" style="--d:1.0s"><rect class="bx green" x="414" y="266" width="228" height="69" rx="4"/><text class="tx green" text-anchor="middle" font-size="14"><tspan x="528.0" y="296.0">Набор продуктов</tspan><tspan x="528.0" y="315.0">из каталога</tspan></text></g><g class="n out" data-s="1" style="--d:1.1s"><rect class="bx green" x="414" y="357" width="228" height="69" rx="4"/><text class="tx green" text-anchor="middle" font-size="14"><tspan x="528.0" y="387.0">Оформление через</tspan><tspan x="528.0" y="406.0">повторный заказ</tspan></text></g><g class="n out" data-s="1" style="--d:1.2s"><rect class="bx green" x="414" y="448" width="228" height="69" rx="4"/><text class="tx green" text-anchor="middle" font-size="14"><tspan x="528.0" y="478.0">Набор продуктов</tspan><tspan x="528.0" y="497.0">из «Корзины»</tspan></text></g><g class="ar out" data-s="1" style="--d:1.5s;"><path class="a" pathLength="1" d="M642 300 H700 Q722 300 722 322 V391 H754"/><path class="h" d="M743 383 L754 391 L743 399"/></g><g class="ar out" data-s="1" style="--d:1.6s;"><path class="a" pathLength="1" d="M642 391 H754"/></g><g class="ar out" data-s="1" style="--d:1.55s;"><path class="a" pathLength="1" d="M642 482 H700 Q722 482 722 460 V391"/></g><g class="n out" data-s="1" style="--d:1.9s"><rect class="bx gray" x="754" y="357" width="228" height="69" rx="4"/><text class="tx gray" text-anchor="middle" font-size="14"><tspan x="868.0" y="387.0">Проверка продуктов</tspan><tspan x="868.0" y="406.0">в корзине</tspan></text></g><g class="ar out" data-s="1" style="--d:2.25s;"><path class="a" pathLength="1" d="M982 391 H1037"/><path class="h" d="M1026 383 L1037 391 L1026 399"/></g><g class="ar out" data-s="1" style="--d:3.5s;"><path class="a" pathLength="1" d="M1514 391 H1570"/><path class="h" d="M1559 383 L1570 391 L1559 399"/></g><g class="n out" data-s="1" style="--d:3.7s"><rect class="bx pill" x="1570" y="346" width="227" height="91" rx="45"/><text class="tx pill" text-anchor="middle" font-size="14"><tspan x="1683.5" y="396.5">Заказ оформлен</tspan></text></g><rect class="hl" x="1001" y="96" width="528" height="391"/><g class="n dia" data-s="1" style="--d:2.6s"><path class="bx dpath" d="M1128 309 L1219 391 L1128 473 L1037 391 Z"/><text class="tx dtx" text-anchor="middle" font-size="14"><tspan x="1128" y="386">Все продукты</tspan><tspan x="1128" y="405">добавлены?</tspan></text></g><g class="ar " data-s="1" style="--d:3.0s;"><path class="a" pathLength="1" d="M1219 391 H1286"/><path class="h" d="M1275 383 L1286 391 L1275 399"/></g><text class="lb n" data-s="1" style="--d:3.1s" x="1248" y="371" text-anchor="middle" font-size="22">Да</text><g class="n delivery" data-s="1" style="--d:3.2s"><rect class="bx gray" x="1286" y="357" width="228" height="69" rx="4"/><text class="tx gray" text-anchor="middle" font-size="14"><tspan x="1400.0" y="387.0">Заполнение данных</tspan><tspan x="1400.0" y="406.0">по доставке</tspan></text></g><g class="n fn" data-s="2" style="--d:0.4s"><rect class="bx new" x="1014" y="130" width="228" height="69" rx="4"/><text class="tx new" text-anchor="middle" font-size="14"><tspan x="1128.0" y="160.0">Функция быстрого поиска</tspan><tspan x="1128.0" y="179.0">в корзине</tspan></text></g><g class="ar " data-s="2" style="--d:0s;stroke:#3fae55"><path class="a" pathLength="1" d="M1128 309 V199"/><path class="h" d="M1120 210 L1128 199 L1136 210"/></g><text class="lb n" data-s="2" style="--d:.5s" x="1096" y="262" text-anchor="middle" font-size="22">Нет</text><g class="ar " data-s="2" style="--d:1.0s;stroke:#3fae55"><path class="a" pathLength="1" d="M1242 164.5 H1286"/><path class="h" d="M1275 156.5 L1286 164.5 L1275 172.5"/></g><g class="n " data-s="2" style="--d:1.3s"><rect class="bx new" x="1286" y="130" width="228" height="69" rx="4"/><text class="tx new" text-anchor="middle" font-size="14"><tspan x="1400.0" y="160.0">Найден необходимый товар</tspan><tspan x="1400.0" y="179.0">и добавлен в корзину</tspan></text></g><g class="ar " data-s="2" style="--d:1.7s;stroke:#3fae55"><path class="a" pathLength="1" d="M1400 199 V232 Q1400 254 1378 254 H1150 Q1128 254 1128 276 V300"/><path class="h" d="M1120 289 L1128 300 L1136 289"/></g></g></svg>
+        <span class="s-flow__chip">добавленная логика</span>
+        <button class="s-flow__replay" type="button" aria-label="Показать анимацию схемы ещё раз">ещё раз ↻</button>
+      </figure>
+
+      <h3 class="sub-h">Повторный заказ</h3>
+      <p>Путь к&nbsp;повторному заказу через «Профиль» уже достаточно короткий, поэтому я&nbsp;его сохранила, но&nbsp;поменяла одно ключевое место в&nbsp;логике.</p>
+      <figure class="fig fig--md"><img src="img/vv/reorder.webp" width="1700" height="1364" alt="Повторный заказ: было и стало" loading="lazy"></figure>
+      <div class="ba">
+        <div class="was"><h3>было</h3><p>Товары добавлялись в&nbsp;корзину, но&nbsp;пользователь оставался на&nbsp;странице профиля&nbsp;— непонятно, повторился&nbsp;ли заказ.</p></div>
+        <div class="now"><h3>стало</h3><p>Товары моментально добавляются в&nbsp;корзину, а&nbsp;пользователь попадает на&nbsp;страницу корзины для&nbsp;подтверждения и&nbsp;оформления.</p></div>
+      </div>
+
+      <h3 class="sub-h">Где разместить «Добавить товары»</h3>
+      <p>Рассмотрела несколько вариантов размещения кнопки в&nbsp;корзине.</p>
+      <figure class="fig"><img src="img/vv/placement.webp" width="1800" height="1128" alt="Три варианта расположения кнопки «Добавить товары» в корзине" loading="lazy"></figure>
+      <div class="split">
+        <img src="img/vv/placement-test.webp" width="640" height="1172" alt="Вариант с иконкой поиска в шапке корзины, выбранный для теста" loading="lazy">
+        <div><h3>Для юзабилити-теста</h3><p>Оставила два варианта, чтобы понять, какой из&nbsp;них пользователь замечает лучше.</p></div>
+      </div>
+      <div class="split split--rev">
+        <div><h3>А ещё — пустая корзина</h3><p>В&nbsp;текущем приложении в&nbsp;корзину нельзя попасть, не&nbsp;добавив туда хотя&nbsp;бы один товар, поэтому я&nbsp;нарисовала пустую корзину.</p><p>Здесь пользователь впервые видит кнопку «Добавить продукты в&nbsp;корзину»&nbsp;— это <b>ещё одна точка входа в&nbsp;каталог</b>. Тест должен был показать, насколько она заметна.</p></div>
+        <img src="img/vv/empty-cart.webp" width="640" height="1172" alt="Экран пустой корзины с кнопкой «Добавить продукты в корзину»" loading="lazy">
+      </div>
+
+      <h3 class="sub-h">Как попасть в каталог</h3>
+      <p>Помимо самой корзины продумала путь к&nbsp;каталогу&nbsp;— сценарии, которые заложила в&nbsp;макеты.</p>
+      <figure class="fig fig--md"><img src="img/vv/catalog-search.webp" width="1500" height="1319" alt="Каталог: поиск товара по названию" loading="lazy"></figure>
+      <figure class="fig fig--md"><img src="img/vv/catalog-quick.webp" width="1500" height="1558" alt="Каталог: подборка «Уже покупали» и поиск по разделам" loading="lazy"></figure>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Юзабилити-тест</h2><p>Собрала прототип и&nbsp;легенду, по&nbsp;которой пользователь проходил новый флоу. В&nbsp;тесте участвовали <span class="accent">6&nbsp;человек</span>&nbsp;— запись можно <a href="https://drive.google.com/drive/folders/1Gkw-UM8iIaN5DXC5Hb_8i53IAt4-H3FV" target="_blank" rel="noopener">посмотреть тут</a></p></div>
+      <ul class="diff" aria-label="Что показал тест: плюс — сработало, минус — не сработало">
+        <li class="ok"><span>Кнопку «Добавить ещё товары» заметили и&nbsp;использовали <b>все участники (100%)</b></span><img src="img/vv/find-cart.webp" width="742" height="1016" alt="Корзина: кнопка «Добавить ещё товары»" loading="lazy"></li>
+        <li class="ok"><span>Сценарий быстрого добавления подтвердился: <b>4 из&nbsp;6 (66,6%)</b> сразу заметили целевую кнопку в&nbsp;пустой корзине</span><img src="img/vv/find-empty.webp" width="502" height="516" alt="Пустая корзина с кнопкой «Добавить продукты в корзину»" loading="lazy"></li>
+        <li class="ok"><span>«Уже брали» оказалась полезной: <b>две трети (66,6%)</b> добавили через неё товары из&nbsp;истории заказов</span><img src="img/vv/find-tags.webp" width="842" height="216" alt="Быстрые фильтры «Уже брали», «По скидке», «Популярное»" loading="lazy"></li>
+        <li class="ok"><span>Категории каталога понятны всем, а&nbsp;<b>5 из&nbsp;6</b> сами применяли быстрые фильтры, чтобы уточнить поиск</span><img src="img/vv/find-ctags.webp" width="776" height="486" alt="Быстрые фильтры внутри категории «Фрукты»" loading="lazy"></li>
+        <li class="no"><span>Иконку корзины в&nbsp;панели навигации игнорировали&nbsp;— в&nbsp;корзину шли привычным путём</span><img src="img/vv/find-navbar.webp" width="842" height="270" alt="Иконка корзины в нижней панели навигации" loading="lazy"></li>
+        <li class="no"><span>Значок поиска (лупа) в&nbsp;шапке корзины почти не&nbsp;заметили&nbsp;— ни&nbsp;разу не&nbsp;воспользовались спонтанно</span></li>
+      </ul>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Прогноз эффективности</h2><p>Это не&nbsp;измеренный результат, а&nbsp;направление эффекта: как изменения должны повлиять на&nbsp;ключевые метрики, исходя из&nbsp;логики самих решений</p></div>
+      <div class="cards">
+        <div class="card card--green"><h3>Retention</h3><p class="card__sub">лояльность и&nbsp;удержание</p><p class="k">эффект</p><p>Меньше шагов и&nbsp;точек фрустрации в&nbsp;ключевом сценарии&nbsp;— сервис удобнее, пользователь вернётся снова</p></div>
+        <div class="card card--green"><h3>AOV</h3><p class="card__sub">средний чек</p><p class="k">эффект</p><p>Убран барьер для&nbsp;забытых и&nbsp;импульсных товаров&nbsp;— в&nbsp;корзине больше позиций и&nbsp;выше сумма заказа</p></div>
+        <div class="card card--green"><h3>LTV</h3><p class="card__sub">долгосрочная ценность</p><p class="k">эффект</p><p>Рост Retention и&nbsp;AOV вместе повышают долгосрочную ценность каждого клиента</p></div>
+      </div>
+    </section>
+
+    <nav class="end" aria-label="Дальше">
+      <a href="bspb.html">смотреть другой кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M8.5 6H18v9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#">наверх<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5.5 10.5 12 4l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+  </main>
 
 </div>
 <script src="js/main.js" defer></script>
