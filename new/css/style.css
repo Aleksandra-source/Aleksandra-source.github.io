@@ -486,3 +486,18 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 }
 .s-flow { margin: 28px 0 0; }
 .diff--cards .ok::before, .diff--cards .no::before { content: none; }
+
+/* комментарии к экранам БСПБ — облачка, как в макете, но живым текстом 13px */
+.anno__t--b { display: flex; align-items: center; font-size: 13px; line-height: 17px; }
+.anno--sm .anno__t--b { font-size: 13px; }
+.anno__t--b i { width: 100%; padding: 10px 14px; border-radius: 14px; background: #f0f0f0; font-style: normal; color: var(--ink); }
+.anno--full { max-width: none !important; }
+@media (max-width: 700px) {
+  /* на телефоне картинку с облачками листаем вбок, чтобы текст оставался читаемым */
+  .fig:has(.anno__t--b), .tab-panel:has(.anno__t--b) { overflow-x: auto; }
+  .anno:has(.anno__t--b) { min-width: 720px; }
+}
+/* в схеме решения облачки стоят тесно: растягиваем их до правого края картинки и делаем текст чуть меньше */
+.anno--full .anno__t--b { right: 0; width: auto !important; font-size: 12px; line-height: 15px; }
+.anno--full .anno__t--b i { padding: 8px 12px; }
+.anno--full .anno__t--b:first-of-type { right: auto; width: 26% !important; }
