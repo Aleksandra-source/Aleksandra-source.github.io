@@ -507,3 +507,12 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
 
 /* подпись, которая должна заканчиваться перед линией стрелки */
 .anno__t--blue.anno__t--end { transform: translate(-100%, -50%); }
+
+/* блок «скриншот + текст»: скриншот крупнее, текст в узкой колонке */
+.split { grid-template-columns: 340px 1fr; gap: 32px; padding: 28px 32px; }
+.split--rev { grid-template-columns: 1fr 340px; }
+.split p, .split li { font-size: 15px; line-height: 20px; }
+@media (max-width: 700px) {
+  .split, .split--rev { grid-template-columns: 1fr; padding: 20px; }
+  .split img { max-width: 280px; }
+}
