@@ -198,6 +198,16 @@
   const SRC = (n) => `img/proto/${n}.webp`;
   const anim = (el, kf, ms, easing = "cubic-bezier(.4,0,.2,1)") => el.animate(kf, { duration: ms, easing, fill: "forwards" }).finished;
 
+  // все экраны прототипов грузим сразу при открытии страницы, а не когда телефон доскроллили
+  function preloadProtos() {
+    const need = new Set();
+    document.querySelectorAll("[data-proto]").forEach((el) => {
+      (PROTOS[el.dataset.proto] || []).forEach((st) => { if (st.show || st.go) need.add(st.show || st.go); });
+    });
+    if (document.querySelector("[data-shake]")) { need.add("bs-pin"); need.add("bs-home"); }
+    need.forEach((n) => { const i = new Image(); i.decoding = "async"; i.src = SRC(n); });
+  }
+
   function phone(el) {
     const steps = PROTOS[el.dataset.proto];
     const screen = el.querySelector(".phone__screen");
@@ -447,6 +457,7 @@
 
   // codeBackground();   // фон с буквами пока выключен — пробуем просто белый
   typing();
+  preloadProtos();
   document.querySelectorAll("[data-proto]").forEach(phone);
   videos();
   tabs();
