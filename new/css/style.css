@@ -516,3 +516,8 @@ html:not(.js) .s-flow__chip, html:not(.js) .s-flow .hl { opacity: 1; }
   .split, .split--rev { grid-template-columns: 1fr; padding: 20px; }
   .split img { max-width: 280px; }
 }
+
+/* ВкусВилл: показываем только прорабатываемый фрагмент флоу, статично, по ширине колонки */
+.s-flow--focus svg { padding: 52px 12px 14px; }
+.s-flow--focus .s-flow__chip { opacity: 1; }
+.js .s-flow--focus .out[data-s] { opacity: .3; }
