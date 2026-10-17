@@ -461,6 +461,18 @@
     });
   }
 
+
+  /* портрет и видео «за компьютером» — когда текущая страница загрузилась, тихо подтягиваем их в кэш,
+     чтобы на главной и в «Обо мне» они появлялись сразу */
+  addEventListener("load", () => {
+    setTimeout(() => {
+      ["video/avatar.mp4", "img/avatar-poster.jpg", "video/hero-desk.mp4", "img/hero-desk-poster.jpg"].forEach((u) => {
+        if (document.querySelector('[src="' + u + '"], [poster="' + u + '"]')) return;   // уже есть на странице
+        fetch(u, { priority: "low" }).catch(() => {});
+      });
+    }, 300);
+  });
+
   // codeBackground();   // фон с буквами пока выключен — пробуем просто белый
   typing();
   preloadProtos();

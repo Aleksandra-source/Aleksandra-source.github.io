@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Обо мне — Евсеенкова Александра</title>
   <meta name="description" content="Продуктовый дизайнер Александра Евсеенкова: опыт работы в MenuMind, Evercode Lab, ВТБ и Росбанке.">
+  <!-- портрет / видео за компьютером — первыми, раньше всего остального -->
+  <link rel="preload" href="img/hero-desk-poster.jpg" as="image" fetchpriority="high">
   <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=2c7b0475">
+  <link rel="stylesheet" href="css/style.css?v=97e3d5e4">
 </head>
 <body>
 <div class="page">
@@ -22,7 +24,7 @@
   <main class="col">
     <section class="hero hero--about">
       <div class="hero__media">
-        <video width="1104" height="832" data-autoplay muted loop playsinline preload="auto" poster="img/hero-desk-poster.jpg" aria-label="Александра работает за ноутбуком">
+        <video width="1104" height="832" data-autoplay autoplay muted loop playsinline preload="auto" fetchpriority="high" poster="img/hero-desk-poster.jpg" aria-label="Александра работает за ноутбуком">
           <source src="video/hero-desk.mp4" type="video/mp4">
         </video>
       </div>
@@ -108,6 +110,6 @@
   </footer>
 
 </div>
-<script src="js/main.js?v=2c7b0475" defer></script>
+<script src="js/main.js?v=97e3d5e4" defer></script>
 </body>
 </html>
