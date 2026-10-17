@@ -54,7 +54,7 @@ img, video { display: block; max-width: 100%; height: auto; }  /* height: auto �
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   height: 69px; padding: 0 12px 0 20px; border-radius: 22px; background: var(--pill);
 }
-.header__name { white-space: nowrap; }
+.header__name { display: inline-block; min-width: 23ch; padding: 8px 0; white-space: nowrap; cursor: pointer; }   /* ширина под полное имя — кликается, даже когда текст стёрт */
 .nav { display: flex; gap: 6px; }
 .nav a { padding: 7px 13px; border-radius: 12px; transition: background .2s; white-space: nowrap; }
 .nav a:hover { background: rgba(255, 255, 255, .6); }

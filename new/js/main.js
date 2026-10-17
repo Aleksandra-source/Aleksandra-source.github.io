@@ -121,30 +121,36 @@
     }
     return { set, type, erase, caret };
   }
+  // имя печатается по кругу, пока открыта страница: целиком → пауза → стирается → заново
   async function nameLoop(el) {
-    const full = el.dataset.type, ini = el.dataset.initials || "";
+    const full = el.dataset.type;
     el.setAttribute("aria-label", full);
     const t = makeTyper(el);
-    if (reduce || !ini) { t.set(full); return; }
-    let s = ini;                                         // ae — сразу, чтобы хедер не мигал пустым при переходах
+    if (reduce) { t.set(full); return; }
+    let s = full[0];                                     // первая буква сразу — хедер не мигает пустым
     t.set(s);
     for (;;) {
-      await sleep(1500);
-      s = await t.erase(s, 1);                           // a
-      s = await t.type(s, full.slice(1));                // aleksandra evseenkova
-      await sleep(6500);
-      s = await t.erase(s, 1);                           // a
-      s = await t.type(s, ini.slice(1));                 // ae
+      await sleep(400);
+      s = await t.type(s, full.slice(s.length));
+      await sleep(2600);
+      s = await t.erase(s, 1);
     }
   }
-  async function typeOnce(el) {
+  // фраза в футере: печатается целиком, потом по кругу стирается и допечатывается только последнее слово —
+  // смысл всегда понятен, а строка остаётся живой
+  async function phraseLoop(el) {
     const full = el.dataset.type;
     el.setAttribute("aria-label", full);
     const t = makeTyper(el);
     if (reduce) { t.set(full); t.caret.classList.add("is-off"); return; }
-    await t.type("", full);
-    await sleep(3000);
-    t.caret.classList.add("is-off");
+    const keep = full.lastIndexOf(" ") + 1;              // «давайте поработаем |вместе»
+    let s = await t.type("", full);
+    for (;;) {
+      await sleep(2800);
+      s = await t.erase(s, keep);
+      await sleep(350);
+      s = await t.type(s, full.slice(keep));
+    }
   }
   function typing() {
     document.querySelectorAll("[data-type]").forEach((el) => {
@@ -153,7 +159,7 @@
         el.setAttribute("aria-label", full);
         el.innerHTML = '<span class="type" aria-hidden="true"> </span>';  // место под строку, пока не начали
         const io = new IntersectionObserver((es) => {
-          if (es.some((e) => e.isIntersecting)) { io.disconnect(); typeOnce(el); }
+          if (es.some((e) => e.isIntersecting)) { io.disconnect(); phraseLoop(el); }
         }, { threshold: 0.8 });
         io.observe(el);
       } else nameLoop(el);
