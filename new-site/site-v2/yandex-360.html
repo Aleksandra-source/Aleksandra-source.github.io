@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Яндекс 360: единая панель поддержки — Евсеенкова Александра</title>
+  <meta name="description" content="Кейс Яндекс 360: сократила переходы между админками и упростила поддержке работу с большим объёмом информации.">
+  <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=b797a8f0">
+</head>
+<body>
+<div class="page">
+
+  <header class="col header">
+    <a class="header__name" href="index.html" data-type="aleksandra evseenkova">aleksandra evseenkova</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html">кейсы</a>
+      <a href="about.html">обо мне</a>
+    </nav>
+  </header>
+
+  <main class="col col--wide" id="top">
+    <section class="case-sec case-sec--first">
+      <div class="case-head"><h1>Яндекс 360</h1><p>Сократила переходы между админками и&nbsp;упростила поддержке работу с&nbsp;большим объёмом информации</p></div>
+      <div class="shot"><video width="1620" height="912" data-autoplay muted loop playsinline preload="auto" poster="img/yandex-proto.jpg" aria-label="Прототип новой панели поддержки: переходы между сервисами, обращением и карточкой пользователя"><source src="video/yandex-proto.mp4" type="video/mp4"></video></div>
+      <div class="cards cards--rows">
+        <div class="card"><h3>Контекст</h3><p>У&nbsp;продукта есть собственная служба поддержки, которая помогает пользователям решать вопросы, связанные с&nbsp;телемостом, почтой, мессенджером и&nbsp;другими сервисами Яндекс 360</p></div>
+        <div class="card card--red"><h3>Проблема</h3><p>Чтобы обработать одно обращение, сотруднику поддержки приходится переключаться сразу между несколькими административными панелями. Это замедляет работу и&nbsp;увеличивает время ответа пользователю</p></div>
+        <div class="card card--green"><h3>Задача</h3><p>Спроектировать единую административную панель по&nbsp;пользователю, которая поможет сотруднику быстро получить общую информацию о&nbsp;пользователе по&nbsp;сервисам Яндекс 360</p></div>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>UX-аудит</h2><p>Провела анализ текущей административной панели, чтобы понять где саппорт теряет время</p></div>
+      <div class="media"><video width="1880" height="840" data-autoplay muted loop playsinline preload="auto" poster="img/ux-audit.jpg" aria-label="UX-аудит текущей админ-панели: проблемные места с комментариями"><source src="video/ux-audit.mp4" type="video/mp4"></video></div>
+      <div class="note">
+        <h3>Выводы</h3>
+        <ul>
+          <li>сейчас для поиска информации, необходимой для решения проблемы саппорту приходится сделать минимум 5&nbsp;шагов (если он знает где ее искать);</li>
+          <li>информация по&nbsp;сервисам пользователя находится в&nbsp;разных местах;</li>
+          <li>не&nbsp;сразу видно полезную информацию о&nbsp;статусе и&nbsp;тарифе пользователя</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>User&nbsp;flow</h2><p>Предположила, из&nbsp;каких шагов состоит работа с&nbsp;запросом и&nbsp;что важно для быстрого решения, что позволило сформулировать несколько гипотез</p></div>
+      <div class="media"><video width="1880" height="910" data-autoplay muted loop playsinline preload="auto" poster="img/user-flow.jpg" aria-label="Флоу сотрудника поддержки: от поступления запроса до коммуникации с пользователем"><source src="video/user-flow.mp4" type="video/mp4"></video></div>
+      <ol class="hyp">
+        <li><b>H1</b><span>Если сократить переходы между админками, это позволит ускорить обработку обращений</span></li>
+        <li><b>H2</b><span>Если собрать данные из&nbsp;разных сервисов в&nbsp;одной панели, сотруднику не&nbsp;придётся переключаться между ними&nbsp;— работа саппорта упростится</span></li>
+        <li><b>H3</b><span>Если показывать информацию о&nbsp;тарифе и&nbsp;сервисах, это позволит сотруднику быстрее выявлять проблему пользователя</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Бенчмаркинг</h2><p>Проанализировала, как CRM-системы структурируют большие объёмы данных, и&nbsp;на&nbsp;этой основе сформулировала новые гипотезы</p></div>
+      <div class="media media--bench"><video width="1336" height="728" data-autoplay muted loop playsinline preload="auto" poster="img/bench-carousel.jpg" aria-label="CRM-системы из бенчмаркинга: Intercom, Salesforce, HubSpot, Сбер"><source src="video/bench-carousel.mp4" type="video/mp4"></video></div>
+      <ol class="hyp">
+        <li><b>H4</b><span>Размещение ключевой информации о&nbsp;пользователе рядом с&nbsp;чатом позволит быстрее идентифицировать пользователя</span></li>
+        <li><b>H5</b><span>Группировка информации по&nbsp;сервисам в&nbsp;отдельных вкладках поможет быстрее находить нужные данные по&nbsp;пользователю</span></li>
+        <li><b>H6</b><span>Добавление истории обращений поможет быстрее понять контекст проблемы и&nbsp;избежать повторной проверки фактов</span></li>
+      </ol>
+    </section>
+
+    <section class="case-sec">
+      <div class="case-head"><h2>Юзабилити-тест</h2><p>Я&nbsp;провела юзабилити-тест с&nbsp;8&nbsp;участниками: каждый искал заданную информацию в&nbsp;старой и&nbsp;новой версиях админ-панели</p></div>
+      <div class="shot"><video width="1620" height="912" data-autoplay muted loop playsinline preload="auto" poster="img/yandex-proto.jpg" aria-label="Прототип новой админ-панели, который проверяли на юзабилити-тесте"><source src="video/yandex-proto.mp4" type="video/mp4"></video></div>
+      <div class="note note--big">
+        <h3>Результат</h3>
+        <ul>
+          <li>в&nbsp;новом интерфейсе количество шагов сократилось в&nbsp;<b>2&nbsp;раза</b></li>
+          <li>вся информация о&nbsp;пользователе теперь находится в&nbsp;одном окне</li>
+          <li>7&nbsp;из&nbsp;8&nbsp;участников справились быстрее, чем в&nbsp;старой версии</li>
+        </ul>
+      </div>
+    </section>
+
+    <nav class="end" aria-label="Дальше">
+      <a href="vkusvill.html">смотреть другой кейс<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M8.5 6H18v9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#">наверх<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5.5 10.5 12 4l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+  </main>
+
+</div>
+<script src="js/main.js?v=b797a8f0" defer></script>
+</body>
+</html>

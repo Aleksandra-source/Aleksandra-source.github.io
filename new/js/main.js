@@ -475,7 +475,15 @@
 
   // codeBackground();   // фон с буквами пока выключен — пробуем просто белый
   typing();
-  preloadProtos();
+  // экраны телефонов подтягиваем сразу, но не раньше, чем стартует портрет / видео: первое впечатление важнее
+  (function afterHero(run) {
+    const hv = document.querySelector(".hero__media video");
+    if (!hv || (hv.readyState >= 3 && !hv.paused)) return run();
+    let done = false;
+    const go = () => { if (!done) { done = true; run(); } };
+    hv.addEventListener("playing", go, { once: true });
+    setTimeout(go, 2500);
+  })(preloadProtos);
   document.querySelectorAll("[data-proto]").forEach(phone);
   videos();
   tabs();

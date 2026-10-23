@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обо мне — Евсеенкова Александра</title>
+  <meta name="description" content="Продуктовый дизайнер Александра Евсеенкова: опыт работы в MenuMind, Evercode Lab, ВТБ и Росбанке.">
+  <!-- портрет / видео за компьютером — первыми, раньше всего остального -->
+  <link rel="preload" href="img/hero-desk-poster.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=b797a8f0">
+</head>
+<body>
+<div class="page">
+
+  <header class="col header">
+    <a class="header__name" href="index.html" data-type="aleksandra evseenkova">aleksandra evseenkova</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="index.html">кейсы</a>
+      <a href="about.html" aria-current="page">обо мне</a>
+    </nav>
+  </header>
+
+  <main class="col">
+    <section class="hero hero--about">
+      <div class="hero__media">
+        <video width="1104" height="832" data-autoplay autoplay muted loop playsinline preload="auto" fetchpriority="high" poster="img/hero-desk-poster.jpg" aria-label="Александра работает за ноутбуком">
+          <source src="video/hero-desk.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="hero__text">
+        <h1 class="sr-only">Обо мне</h1>
+        <p>Эмпат с&nbsp;аналитическим складом ума и&nbsp;здоровой долей перфекционизма&nbsp;— люблю разбираться в&nbsp;контексте, прежде чем предлагать решение.</p>
+        <div class="links">
+          <a class="btn" href="cv-evseenkova-aleksandra-2026.pdf?v=2" target="_blank" rel="noopener">CV</a>
+          <a class="btn" href="mailto:sasha.evseenkova@list.ru">E-mail</a>
+          <a class="btn" href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Telegram</a>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="exp-title">
+      <div class="exp__head"><b id="exp-title">опыт работы</b><span class="muted">переключай вкладки</span></div>
+      <div class="tabs-win" data-tabs>
+        <div class="tabs" role="tablist" aria-label="Места работы">
+          <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+          <button role="tab" id="t-menumind" aria-controls="p-menumind" aria-selected="true">menumind.md</button>
+          <button role="tab" id="t-evercode" aria-controls="p-evercode" aria-selected="false" tabindex="-1">evercode.md</button>
+          <button role="tab" id="t-vtb" aria-controls="p-vtb" aria-selected="false" tabindex="-1">vtb.md</button>
+          <button role="tab" id="t-rosbank" aria-controls="p-rosbank" aria-selected="false" tabindex="-1">rosbank.md</button>
+        </div>
+
+        <ol class="code" role="tabpanel" id="p-menumind" aria-labelledby="t-menumind">
+          <li data-n="1" class="h1"># MenuMind</li>
+          <li data-n="2" class="muted">&gt; стартап · MVP · сервис электронного меню с&nbsp;AI · 2026</li>
+          <li data-n="3"></li>
+          <li data-n="4" class="h2">## роль</li>
+          <li data-n="5">Продуктовый дизайнер</li>
+          <li data-n="6"></li>
+          <li data-n="7" class="h2">## что делаю</li>
+          <li data-n="8">- проектирую админку для владельцев и&nbsp;управляющих</li>
+          <li data-n="9">- продумываю флоу, делаю вайрфреймы и&nbsp;прототипы</li>
+          <li data-n="10">- дорабатываю дизайн-систему под продукт</li>
+        </ol>
+        <ol class="code" role="tabpanel" id="p-evercode" aria-labelledby="t-evercode" hidden>
+          <li data-n="1" class="h1"># Evercode Lab</li>
+          <li data-n="2" class="muted">&gt; IT-компания · финтех/Web3 · 2026</li>
+          <li data-n="3"></li>
+          <li data-n="4" class="h2">## роль</li>
+          <li data-n="5">Специалист L1</li>
+          <li data-n="6"></li>
+          <li data-n="7" class="h2">## что делала</li>
+          <li data-n="8">- анализировала обращения пользователей</li>
+          <li data-n="9">- находила проблемы в&nbsp;UX и&nbsp;сценариях</li>
+          <li data-n="10">- помогала команде улучшать UX Web3-продукта</li>
+        </ol>
+        <ol class="code" role="tabpanel" id="p-vtb" aria-labelledby="t-vtb" hidden>
+          <li data-n="1" class="h1"># Bank VTB</li>
+          <li data-n="2" class="muted">&gt; банк · 2024-2025</li>
+          <li data-n="3"></li>
+          <li data-n="4" class="h2">## роль</li>
+          <li data-n="5">Главный эксперт</li>
+          <li data-n="6"></li>
+          <li data-n="7" class="h2">## что делала</li>
+          <li data-n="8">- помогала клиентам во&nbsp;взаимодействии с&nbsp;продуктами банка</li>
+          <li data-n="9">- провела 600+ сделок, включая электронное подписание</li>
+          <li data-n="10">- выросла до&nbsp;главного эксперта за&nbsp;полгода</li>
+        </ol>
+        <ol class="code" role="tabpanel" id="p-rosbank" aria-labelledby="t-rosbank" hidden>
+          <li data-n="1" class="h1"># Rosbank</li>
+          <li data-n="2" class="muted">&gt; банк · 2022-2024</li>
+          <li data-n="3"></li>
+          <li data-n="4" class="h2">## роль</li>
+          <li data-n="5">Главный эксперт</li>
+          <li data-n="6"></li>
+          <li data-n="7" class="h2">## что делала</li>
+          <li data-n="8">- разбирала жалобы и&nbsp;сложные обращения</li>
+          <li data-n="9">- за&nbsp;время работы увеличила NPS отдела на&nbsp;15%</li>
+          <li data-n="10">- была наставником для новых сотрудников</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="col footer">
+    <div class="footer__main">
+      <p data-type="давайте поработаем вместе" data-type-when="visible">давайте поработаем вместе</p>
+      <a class="btn-tg" href="https://t.me/a_evseenkova_a" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+  </footer>
+
+</div>
+<script src="js/main.js?v=b797a8f0" defer></script>
+</body>
+</html>
