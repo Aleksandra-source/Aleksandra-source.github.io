@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сайт переехал — Евсеенкова Александра</title>
+  <meta name="description" content="Портфолио Александры Евсеенковой переехало на новый адрес: aleksandra-source.github.io/new/">
+  <link rel="preload" href="/new/fonts/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face { font-family: "Plex Mono"; src: url(/new/fonts/IBMPlexMono-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+    @font-face { font-family: "Plex Mono"; src: url(/new/fonts/IBMPlexMono-Medium.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+    @font-face { font-family: "Plex Mono"; src: url(/new/fonts/IBMPlexMono-SemiBold.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+    :root {
+      --ink: #2a2a2a; --grey: #737373; --faint: #ababab; --pill: #f6f6f6; --title: #f0f0f0; --body: #fafafa;
+      --orange: #eb581e; --green: #34962d; --dot-green: #61c554; --dot-red: #ed6a5e; --dot-grey: #c7c7c7;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: #fff; color: var(--ink); font: 400 16px/1.4 "Plex Mono", ui-monospace, monospace; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    p { margin: 0; }
+    .page { min-height: 100vh; padding: 46px 16px 64px; display: flex; flex-direction: column; align-items: center; }
+    .col { width: 100%; max-width: 620px; }
+
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 69px; padding: 0 20px; border-radius: 22px; background: var(--pill); }
+    .caret { display: inline-block; width: .6em; height: 1.05em; margin-left: 2px; background: var(--ink); vertical-align: -.17em; animation: blink 1.05s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .status { display: inline-flex; align-items: center; gap: 8px; color: var(--grey); font-size: 14px; }
+    .status::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--dot-red); animation: pulse 2s ease-in-out infinite; }
+    .status.is-ok::before { background: var(--dot-green); }
+    @keyframes pulse { 50% { transform: scale(.65); opacity: .6; } }
+
+    .win { margin-top: 54px; border-radius: 24px; background: var(--body); overflow: hidden; }
+    .win__bar { position: relative; display: flex; align-items: center; height: 42px; padding: 0 20px; background: var(--title); }
+    .dots { display: flex; gap: 8px; }
+    .dots i { width: 12px; height: 12px; border-radius: 50%; background: var(--dot-grey); }
+    .dots i:nth-child(1) { background: var(--dot-red); } .dots i:nth-child(2) { background: #f4bf4f; } .dots i:nth-child(3) { background: var(--dot-green); }
+    .win__file { position: absolute; left: 50%; transform: translateX(-50%); color: var(--grey); font-size: 14px; white-space: nowrap; }
+    .term { padding: 26px 24px 28px; font-size: 14px; line-height: 24px; min-height: 196px; }
+    .term .ln { min-height: 24px; white-space: pre-wrap; word-break: break-word; }
+    .term .p { color: var(--faint); }
+    .term .c301 { color: var(--orange); font-weight: 600; }
+    .term .url { font-weight: 500; }
+    .term .ok { color: var(--green); font-weight: 600; }
+
+    .msg { margin-top: 46px; text-align: left; opacity: 0; transform: translateY(8px); transition: opacity .8s ease, transform .9s cubic-bezier(.22, 1, .36, 1); }
+    .msg h1 { margin: 0; font-size: 30px; line-height: 1.15; font-weight: 600; letter-spacing: -.01em; }
+    .msg p { margin-top: 14px; color: var(--grey); max-width: 46ch; }
+    .is-msg .msg { opacity: 1; transform: none; }
+
+    /* old -> new: two files and packets flying between them */
+    .move { margin-top: 38px; display: grid; grid-template-columns: 1fr minmax(48px, 120px) 1fr; align-items: center; gap: 0; opacity: 0; transition: opacity .8s ease .15s; }
+    .is-msg .move { opacity: 1; }
+    .file { border-radius: 18px; background: var(--body); padding: 16px 16px 18px; min-width: 0; }
+    .file .dots { margin-bottom: 14px; } .file .dots i { width: 9px; height: 9px; }
+    .file b { display: block; font-weight: 500; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file span { display: block; margin-top: 4px; font-size: 12px; color: var(--grey); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .file--old { opacity: .55; }
+    .file--old b { text-decoration: line-through; text-decoration-thickness: 1px; }
+    .file--new { box-shadow: 0 0 0 1px #e3efe0, 0 10px 30px rgba(52, 150, 45, .08); background: #fbfefa; }
+    .file--new .dots i:nth-child(1), .file--new .dots i:nth-child(2) { background: var(--dot-grey); }
+    .file--new.is-live { animation: land 1.2s cubic-bezier(.22, 1, .36, 1) 1; }
+    @keyframes land { 0% { transform: scale(.97); } 40% { transform: scale(1.025); } 100% { transform: none; } }
+    .lane { position: relative; height: 24px; }
+    .lane::before { content: ""; position: absolute; left: 6px; right: 6px; top: 11px; border-top: 1.5px dashed #d4d4d4; }
+    .pkt { position: absolute; top: 6px; width: 12px; height: 12px; border-radius: 4px; background: var(--ink); left: 0; opacity: 0; animation: fly 2.4s cubic-bezier(.45, 0, .25, 1) infinite; }
+    .pkt:nth-child(2) { animation-delay: .8s; background: var(--orange); }
+    .pkt:nth-child(3) { animation-delay: 1.6s; background: var(--dot-green); }
+    @keyframes fly { 0% { left: 0; opacity: 0; transform: scale(.6); } 12% { opacity: 1; transform: scale(1); } 85% { opacity: 1; } 100% { left: calc(100% - 12px); opacity: 0; transform: scale(.6); } }
+
+    .go { margin-top: 38px; opacity: 0; transform: translateY(6px); transition: opacity .8s ease .25s, transform .9s cubic-bezier(.22, 1, .36, 1) .25s; }
+    .is-msg .go { opacity: 1; transform: none; }
+    .btn { display: inline-flex; align-items: center; gap: 12px; height: 52px; padding: 0 22px; border-radius: 16px; background: var(--ink); color: #fff; font-size: 16px; font-weight: 500; transition: transform .25s cubic-bezier(.22, 1, .36, 1), background-color .25s; }
+    .btn:hover { transform: translateY(-2px); background: #000; }
+    .btn svg { width: 20px; height: 20px; transition: transform .25s; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .btn:hover svg { transform: translate(3px, -3px); }
+    .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    .go .alt { display: block; margin-top: 14px; font-size: 13px; color: var(--grey); }
+    .go .alt a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+    @media (max-width: 560px) {
+      .page { padding-top: 24px; } .win { margin-top: 36px; }
+      .msg h1 { font-size: 24px; } .term { font-size: 12.5px; padding: 20px 16px; }
+      .win__file { position: static; transform: none; margin-left: 14px; font-size: 12px; }
+      .move { grid-template-columns: 1fr 44px 1fr; } .file { padding: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .caret, .status::before, .pkt { animation: none; } .pkt { opacity: 0; } }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="col header">
+    <span>aleksandra evseenkova<span class="caret"></span></span>
+    <span class="status" id="status">переезд</span>
+  </header>
+
+  <main class="col" id="root">
+    <section class="win" aria-label="Сообщение о переезде сайта">
+      <div class="win__bar"><span class="dots"><i></i><i></i><i></i></span><span class="win__file">moved.txt</span></div>
+      <div class="term" id="term" aria-hidden="true"></div>
+    </section>
+
+    <div class="msg">
+      <h1>сайт переехал</h1>
+      <p id="lead">Портфолио теперь живёт по новому адресу: кейсы, обо мне и контакты — всё уже там.</p>
+    </div>
+
+    <div class="move" aria-hidden="true">
+      <div class="file file--old"><span class="dots"><i></i><i></i><i></i></span><b>aleksandra-source.github.io</b><span>старый адрес</span></div>
+      <div class="lane"><i class="pkt"></i><i class="pkt"></i><i class="pkt"></i></div>
+      <div class="file file--new" id="newfile"><span class="dots"><i></i><i></i><i></i></span><b>…github.io/new/</b><span>новый адрес</span></div>
+    </div>
+
+    <div class="go">
+      <a class="btn" id="go" href="/new/">перейти на новый сайт<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M9 5h10v10"/></svg></a>
+      <span class="alt" id="alt" hidden></span>
+    </div>
+  </main>
+</div>
+
+<noscript><style>.msg, .move, .go { opacity: 1 !important; transform: none !important; }</style></noscript>
+<script>
+(function () {
+  var NEW = "/new/";
+  // old deep links (shared in CVs and messages) lead to the same page on the new site
+  var MAP = [
+    [/^\/cases\/yandex360(\.html)?\/?$/i, "yandex-360.html", "кейс Яндекс 360"],
+    [/^\/cases\/vkusvill(\.html)?\/?$/i, "vkusvill.html", "кейс ВкусВилл"],
+    [/^\/cases\/bspb(\.html)?\/?$/i, "bspb.html", "кейс Банка Санкт-Петербург"],
+    [/^\/about(\.html)?\/?$/i, "about.html", "страницу «обо мне»"]
+  ];
+  var target = NEW, label = "";
+  for (var i = 0; i < MAP.length; i++) if (MAP[i][0].test(location.pathname)) { target = NEW + MAP[i][1]; label = MAP[i][2]; break; }
+  var go = document.getElementById("go");
+  go.href = target;
+  if (label) {
+    go.firstChild.nodeValue = "открыть " + label;
+    var alt = document.getElementById("alt");
+    alt.hidden = false;
+    alt.innerHTML = 'или <a href="' + NEW + '">на главную нового сайта</a>';
+  }
+
+  var lines = [
+    [["p", "$ "], ["", "curl -I aleksandra-source.github.io"]],
+    [["", "HTTP/1.1 "], ["c301", "301 Moved Permanently"]],
+    [["", "location: "], ["url", "aleksandra-source.github.io/new/"]],
+    [["ok", "✓ новый сайт на связи"]]
+  ];
+  var term = document.getElementById("term"), root = document.getElementById("root");
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var status = document.getElementById("status"), nf = document.getElementById("newfile");
+
+  function done() {
+    root.classList.add("is-msg");
+    status.textContent = "online"; status.classList.add("is-ok");
+    nf.classList.add("is-live");
+  }
+  function build(animate) {
+    var delay = 350, caret = document.createElement("span");
+    caret.className = "caret";
+    lines.forEach(function (parts, li) {
+      var ln = document.createElement("div"); ln.className = "ln"; term.appendChild(ln);
+      parts.forEach(function (pt) {
+        var span = document.createElement("span"); span.className = pt[0]; ln.appendChild(span);
+        if (!animate) { span.textContent = pt[1]; return; }
+        var text = pt[1];
+        for (var k = 0; k < text.length; k++) (function (k) {
+          setTimeout(function () { span.textContent += text[k]; ln.appendChild(caret); }, delay + k * (li === 0 ? 34 : 18));
+        })(k);
+        delay += text.length * (li === 0 ? 34 : 18);
+      });
+      delay += li === 0 ? 380 : 260;
+    });
+    return delay;
+  }
+  if (reduce) { build(false); done(); }
+  else { var total = build(true); setTimeout(done, total + 150); }
+})();
+</script>
+</body>
+</html>
